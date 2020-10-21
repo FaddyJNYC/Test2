@@ -1,0 +1,35 @@
+List :
+
+It is the 1st row of the list
+It is the 2nd row of the list
+…
+…
+…
+It is the last row of the list
+
+ Here is a brief Courier text.
+  Here is a brief MS Sans - Serif text.
+  Here is a brief MS Serif text.
+  Here is a brief Times New Roman text.
+
+  
+
+ Some paragraphs :
+
+Align left :
+
+     The text you are reading is aligned left. It is an align – left text. It is also an align – left sentence.           
+        
+II.	Align right:
+
+  The text you are reading is aligned right. It is an align – right text. It is also an align – right sentence. 
+
+III.	Align centered:
+
+        The text you are reading is aligned center. It is an align – centered text. It is also an align – centered sentence. 
+
+IV.	Align justified:
+
+          The text you are reading is aligned justify. It is an align – justified text. It is also an align – justified sentence.
+
+Here are some special characters: öt árvízt?r? ütvefúrógép, which means “five flood resistant hammer drills” (J) in Hungarian.
