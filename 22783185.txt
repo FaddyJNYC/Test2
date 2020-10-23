@@ -1,0 +1,787 @@
+Perceptual categorization speaks to two key dynamical phenomena:
+transitions from one perceptual state to another and the dynamical
+mechanisms that permit this transition. In terms of perceptual
+transitions, perception can be regarded as the selection of a single
+hypothesis from competing alternatives that could explain sensations
+(Gregory, 1980). This selection necessarily entails a change in the
+brain's representational or perceptual state—that may be unconscious
+in the sense of Helmholtz's unconscious inference or conscious. The
+implicit transition underlies much of empirical neuroscience (for
+example, event related potentials and brain activation studies) and
+has been invoked to understand how sensory information “goes beyond
+unconscious processing and gains access to conscious processing, a
+transition characterized by the existence of a reportable subjective
+experience” (Dehaene and Changeux, 2011). Dehaene and Changeux review
+converging neurophysiological data, acquired during conscious and
+unconscious processing, that speaks to the neural signatures of
+conscious access: late amplification of relevant sensory activity,
+long-distance cortico-cortical synchronization and 2009). In what
+follows, we ask whether the underlying dynamical mechanisms that lead
+to perceptual transitions and consequent ignition can be derived from
+basic principles; and, if so, what does this tell us about the self-
+organized brain.One of the most ubiquitous (and paradoxical) dynamical
+features of self-organizing and 1980) is their predisposition to
+destroy their own fixed points. We have referred to this as 2010;
+Friston and Ao, 2012). The importance of itinerancy has been
+articulated many times in the past (Nara, 2003), particularly from the
+perspective of computation and autonomy (van Leeuwen, 2008).
+Itinerancy provides a link between exploration and foraging in
+ethology (Ishii et al., 2002) and dynamical systems theory approaches
+to the brain (Freeman, 1994) that emphasise the importance of chaotic
+itinerancy (Tsuda, 2001) and self-organized critically (Beggs and
+Plenz, 2003; Pasquale et al., 2008; Shew et al., 2011). Itinerant
+dynamics also arise from metastability (Jirsa et al., 1994) and
+underlie important phenomena like winnerless competition (Rabinovich
+et al., 2008).The vitiation of fixed points or attractors is a
+mechanism that appears in several guises and has found important
+applications in a number of domains. For example, it is closely
+related to the notion of autopoiesis and self-organization in situated
+(embodied) cognition (Maturana and Varela, 1980). It is formally
+related to the destruction of gradients in synergetic treatments of
+intentionality (Tschacher and Haken, 2007). Mathematically, it finds a
+powerful application in universal optimization schemes (Tyukin et al.,
+2003) and, indeed, as a model of perceptual categorization (Tyukin et
+al., 2009). In what follows, we briefly review the dynamical scenarios
+that support itinerant dynamics: Chaotic itinerancy refers to the
+behavior of complicated (usually coupled non-linear) systems that
+possess weakly attracting sets—1931), and concerns the behavior of
+systems that have been evolving for a long time: intuitively, an
+ergodic system forgets its initial states, such that the probability a
+system is found in any state becomes—for almost every state—the
+proportion of time that state is occupied. See (Breakspear, 2004) for
+further discussion and illustrations. See (Namikawa, 2005) for
+discussion of chaotic itinerancy and power law residence times in
+attractor ruins.The notion of Milnor attractors underlies much of the
+technical and cognitive literature on itinerant dynamics. For example,
+one can explain “a range of phenomena in biological vision, such as
+mental rotation, visual search, and the presence of multiple time
+scales in adaptation” using the concept of weakly attracting sets
+(Tyukin et al., 2009). The common theme here is the induction of
+itinerancy through the destabilisation of attracting sets or the
+gradients causing them (Tschacher and Haken, 2007). The ensuing
+attractor ruins or relics (Gros, 2009) provide a framework for
+heteroclinic orbits that are ubiquitous in electrophysiology
+(Breakspear and Stam, 2005), cognition (Bressler and Tognoli, 2006)
+and large-scale neuronal dynamics (Werner, 2007).In heteroclinic
+cycling there are no attractors, not even Milnor ones (or at least
+there is a large open set in state space with no attractors)—only
+saddles connected one to the other by heteroclinic orbits. A saddle is
+a point (invariant set) that has both attracting (stable) and
+repelling (unstable) manifolds. A heteroclinic cycle is a topological
+circle of saddles connected by heteroclinic orbits. If a heteroclinic
+cycle is asymptotically stable, the system spends longer and longer
+periods of time in a neighborhood of successive saddles; producing a
+peripatetic wandering through state space. The resulting heteroclinic
+cycles have been proposed as a metaphor for neuronal dynamics that
+underlie cognitive processing (Rabinovich et al., 2008) and exhibit
+important behaviors such as winnerless competition, of the sort seen
+in central pattern generators in the motor system. Heteroclinic cycles
+have also been used as generative models in the perception of
+sequences with deep hierarchical structure (Kiebel et al., 2009).In
+multistability, there are typically a number of classical
+attractors—stronger than Milnor attractors in the sense that their
+basins of attraction not only have positive measure but are also open
+sets. Open sets are just sets of points that form a neighborhood: in
+other words, one can move a point in any direction without leaving the
+set—like the interior of a ball, as opposed to its surface. These
+attractors are not connected, but rather separated by a basin
+boundary. However, they are weak in the sense that the basins are
+shallow (but topologically simple). System noise is then required to
+drive the system from attractor one to another—this is called Noise
+plays an obligate role in switching; however, is not a prerequisite
+for heteroclinic cycling but acts to settle the excursion time around
+the cycle onto some characteristic time scale. Without noise, the
+system will gradually slow as it gets closer and closer (but never
+onto) the cycle. In chaotic itinerancy, the role of noise is
+determined by the geometry of the instabilities. Multi-stability
+underlies much of the work on attractor network models of perceptual
+decisions and categorization; for example, in binocular rivalry
+(Theodoni et al., 2011).All three scenarios considered above rest on a
+delicate balance between dynamical stability and instability: chaotic
+itinerancy requires weakly attracting sets that have unstable
+manifolds; heteroclinic cycles are based on saddles with unstable
+manifolds and switching requires classical attractors with shallow
+basins that can be destabilized by noise. In terms of linear stability
+analysis, dynamical instability requires the principal Lyapunov
+exponent—describing the local exponential divergence of flow—to be
+greater than zero. Generally, when a negative principal Lyapunov
+exponent approaches zero from below, systems approach a phase
+transition and exhibit critical slowing. Lyapunov exponents are based
+on a local linear approximation to flow and describe the rate of
+exponential decay of small fluctuations about the flow. As the
+Lyapunov exponents approach zero these fluctuations decay more slowly.
+However, at some point very near the instability, the local
+linearization breaks down and higher order non-linear terms from the
+Taylor series expansion dominate (or at least contribute). At this
+stage, the system's memory goes from an exponential form to a power
+law and the fluctuations no longer decay exponentially but can
+persist, inducing correlations over large distances and timescales.
+For example, in the brain, long-range cortico-cortical synchronization
+may be evident over several centimetres and show slow fluctuations
+(Breakspear et al., 2010). This phenomenon is probably best
+characterized in continuous phase transitions in statistical physics,
+where it is referred to as 1987).In what follows, In the context of
+self-organized neuronal activity, we will conjecture that perceptual
+inference mandates critical slowing and is therefore associated with
+phase transitions and long-range correlations—of the sort that may
+correspond to the ignition phenomena considered in (Dehaene and
+Changeux, 2011). So what qualifies the brain as ergodic?
+Operationally, this simply means that the probability of finding the
+brain in a particular state is proportional to the number of times
+that state is visited. In turn, this implies that neuronal states are
+revisited over sufficiently long periods of time. This fundamental and
+general form of homoeostasis is precisely what the free energy
+principle tries to explain.In this paper, we focus on a rather
+elementary form of self-organized instability; namely the
+autovitiation of stable dynamics during (Bayes-optimal) perception. In
+brief, if neuronal activity represents the causes of sensory input,
+then it should represent uncertainty about those causes in a way that
+precludes overly confident representations. This means that neuronal
+responses to stimuli should retain an optimal degree of instability
+that allows them to explore alternative hypotheses about the causes of
+those stimuli. To formalise this intuition, we consider neuronal
+dynamics as performing Bayesian inference about the causes of
+sensations, using a gradient descent on a (variational free energy)
+bound on the surprise induced by sensory input. This allows us to
+examine the stability of this descent in terms of Lyapunov exponents
+and how local Lyapunov exponents should behave. We will see that the
+very nature of free energy minimization produces local Lyapunov
+exponents that fluctuate around small (near zero) values. In other
+words, Bayes-optimal perception has an inherent tendency to promote
+critical slowing, which may be necessary for perceptual transitions
+and consequent categorization.This paper comprises four sections. The
+first section reviews Bayes-optimal inference in the setting of free
+energy minimization to establish the basic imperatives for neuronal
+activity. In the second section, we look at neuronal implementations
+of free energy minimization, in terms of predictive coding, and how
+this relates to the anatomy and physiology of message passing in the
+brain. In the third section, we consider the dynamics of predictive
+coding in terms of generalized synchronization and Lyapunov exponents.
+This section establishes a conjecture that predictive coding will
+necessarily show self-organized instability. The conjecture is
+addressed numerically using neuronal simulations of perceptual
+categorization in the final section. We conclude with a brief
+discussion of self-organization, over different scales, in relation to
+the optimality principles on which this approach is based.This section
+establishes the nature of Bayes-optimal inference in the context of
+self-organized exchanges with the world. It starts with the basic
+premise that underlies free energy minimization; namely, the
+imperative to minimize the dispersion of sensory states to ensure a
+homoeostasis of the external and internal milieu (Ashby, 1947). We
+show briefly how action and perception follow from this imperative and
+highlight the central role of minimizing free energy. This section
+develops the ideas in a rather compact and formal way. Readers who
+prefer a nonmathematical description could skip to the summary and
+discussion of the results at the end of this section.We will use
+2008). Finally, In what follows, we would consider free energy
+minimization in terms of active inference: Active inference rests on
+the tuple (Ω, Ψ, We assume that the imperative for any biological
+system is to minimize the dispersion of its sensory states, with
+respect to action: mathematically, this dispersion corresponds to the
+(Shannon) entropy of the probability density over sensory states.
+Under ergodic assumptions, this entropy is equal to the long-term time
+average of surprise (almost surely): Surprise (or more formally
+surprisal or self information) Action cannot minimize sensory surprise
+directly (Equation 2) because this would involve an intractable
+marginalization over hidden states (an impossible averaging over all
+hidden states to obtain the probability density over sensory
+states)—so surprise is replaced with an upper bound called variational
+free energy (Feynman, 1972). This free energy is a functional of the
+conditional density or a function of the internal states that
+parameterise the conditional density. The conditional density is a key
+concept in inference and is a probabilistic representation of the
+unknown or hidden states. It is also referred to as the recognition
+density. Unlike surprise, free energy can be quantified because it
+depends only on sensory states and the internal states that
+parameterise the conditional density. However, replacing surprise with
+free energy means that internal states also have to minimize free
+energy, to ensure it is a tight bound on surprise: This induces a dual
+minimization with respect to action and the internal states. These
+minimizations correspond to This is known as approximate Bayesian
+inference, which becomes exact when the conditional and posterior
+densities have the same form (Beal, 2003). The only outstanding issue
+is the form of the conditional density adopted by an agent:If we admit
+an encoding of the conditional density up to second order moments,
+then the maximum entropy principle (Jaynes, 1957) implicit in the
+definition of free energy (Equation 3) requires To recap, we started
+with the assumption that biological systems minimize the dispersion or
+entropy of sensory states to ensure a sustainable and homoeostatic
+exchange with their environment (Ashby, 1947). Clearly, this entropy
+cannot be measured or changed directly. However, if agents know how
+their action changes sensations (for example, if they know contracting
+certain muscle fibres will necessarily excite primary sensory
+afferents from stretch receptors), then they can minimize the
+dispersion of their sensory states by countering surprising deviations
+from their predictions. Minimizing surprise through action is not as
+straightforward as it might seem, because surprise 1866/1962; Gregory,
+1980; Ballard et al., 1983; Dayan et al., 1995; Friston, 2005; Yuille
+and Kersten, 2006). See Figure 1 for a schematic summary. We now turn
+to neurobiological implementations of this scheme, with a special
+focus on hierarchical message passing in the brain and the associated
+neuronal dynamics.In this section, we take the general principles
+above and consider how they might be implemented in the brain. The
+equations in this section may appear a bit complicated; however, they
+are based on just three assumptions: The brain minimizes the free
+energy of sensory inputs defined by a generative model.The generative
+model used by the brain is hierarchical, non-linear and
+dynamic.Neuronal firing rates encode the expected state of the world,
+under this model.The first assumption is the free energy principle,
+which leads to active inference in the embodied context of action. The
+second assumption is motivated easily by noting that the world is both
+dynamic and non-linear and that hierarchical causal structure emerges
+inevitably from a separation of temporal scales (Ginzburg and Landau,
+1950; Haken, 1983). The final assumption is the Laplace assumption
+that, in terms of neural codes, leads to the 2009).Given these
+assumptions, one can simulate a whole variety of neuronal processes by
+specifying the particular equations that constitute the brain's
+generative model. The resulting perception and action are specified
+completely by the above assumptions and can be implemented in a
+biologically plausible way as described below (see Table 1 for a list
+of previous applications of this scheme). In brief, these simulations
+use differential equations that minimize the free energy of sensory
+input using a generalized gradient descent (Friston et al.,
+2010).Table 1Processes and paradigms that have been modelled using
+generalized filtering.DomainProcess or paradigmPerceptionPerceptual
+categorization (bird songs) (Friston and Kiebel, 2009a) Novelty and
+omission-related responses (Friston and Kiebel, 2009b)Perceptual
+inference (speech) (Kiebel et al., 2009)IllusionsThe Cornsweet
+illusion and Mach bands (Brown and Friston, 2012)Sensory
+learningPerceptual learning (mismatch negativity) (Friston and Kiebel,
+2009a,b)AttentionAttention and the Posner paradigm (Feldman and
+Friston, 2010) Attention and biased competition (Feldman and Friston,
+2010)Motor controlRetinal stabilization and oculomotor reflexes
+(Friston et al., 2010) Orienting and cued reaching (Friston et al.,
+2010) Motor trajectories and place cells (Friston et al.,
+2011)Sensorimotor integrationBayes-optimal sensorimotor integration
+(Friston et al., 2010)Visual searchSaccadic eye movements (Friston et
+al., 2012)BehaviorHeuristics and dynamical systems theory (Friston and
+Ao, 2012) Goal-directed behavior (Friston et al., 2009)Action
+observationAction observation and mirror neurons (Friston et al.,
+2011)Action selectionAffordance and sequential behavior (Friston et
+al., 2012)These coupled differential equations describe perception and
+action respectively and just say that internal brain states and action
+change in the direction that reduces free energy. The first is known
+as (generalized) predictive coding and has the same form as Bayesian
+(e.g., Kalman-Bucy) filters used in time series analysis; see also
+(Rao and Ballard, 1999). The first term in Equation (6) is a
+prediction based upon a matrix differential operator To perform
+neuronal simulations using this generalized descent, it is only
+necessary to integrate or solve Equation (6) to simulate neuronal
+dynamics that encode the conditional expectations and ensuing action.
+Conditional expectations depend upon the brain's generative model of
+the world, which we assume has the following (hierarchical) form This
+equation is just a way of writing down a model that specifies the
+generative density over the sensory and hidden states, where the
+hidden states Ψ = Hidden causes Given the form of the generative model
+(Equation 7) we can now write down the differential equations
+(Equation 6) describing neuronal dynamics in terms of (precision-
+weighted) prediction errors on the hidden causes and states. These
+errors represent the difference between conditional expectations and
+predicted values, under the generative model (using Equation (8) can
+be derived fairly easily by computing the free energy for the
+hierarchical model in Equation (7) and inserting its gradients into
+Equation (6). This gives a relatively simple update scheme, in which
+conditional expectations are driven by a mixture of prediction errors,
+where prediction errors are defined by the equations of the generative
+model.It is difficult to overstate the generality and importance of
+Equation (8): its solutions grandfather nearly every known statistical
+estimation scheme, under parametric assumptions about additive or
+multiplicative noise (Friston, 2008). These range from ordinary least
+squares to advanced variational deconvolution schemes. The resulting
+scheme is called 2010). In neural network terms, Equation (8) says
+that error-units receive predictions from the same level and the level
+above. Conversely, conditional expectations (encoded by the activity
+of state units) are driven by prediction errors from the same level
+and the level below. These constitute bottom-up and lateral messages
+that drive conditional expectations toward a better prediction to
+reduce the prediction error in the level below. This is the essence of
+recurrent message passing between hierarchical levels to optimize free
+energy or suppress prediction error: see (Friston and Kiebel, 2009a)
+for a more detailed discussion. In neurobiological implementations of
+this scheme, the sources of bottom-up prediction errors, in the
+cortex, are thought to be superficial pyramidal cells that send
+forward connections to higher cortical areas. Conversely, predictions
+are conveyed from deep pyramidal cells, by backward connections, to
+target (polysynaptically) the superficial pyramidal cells encoding
+prediction error (Mumford, 1992; Friston and Kiebel, 2009a,b). Figure
+2 provides a schematic of the proposed message passing among
+hierarchically deployed cortical areas. Although this paper focuses on
+perception, for completeness we conclude this section by looking at
+the neurobiology of action.In active inference, conditional
+expectations elicit behavior by sending top-down predictions down the
+hierarchy that are unpacked into proprioceptive predictions at the
+level of the cranial nerve nuclei and spinal-cord. These engage
+classical reflex arcs to suppress proprioceptive prediction errors and
+produce the predicted motor trajectory The reduction of action to
+classical reflexes follows because the only way that action can
+minimize free energy is to change sensory (proprioceptive) prediction
+errors by changing sensory signals; cf., the equilibrium point
+formulation of motor control (Feldman and Levin, 1995). In short,
+active inference can be regarded as equipping a generalized predictive
+coding scheme with classical reflex arcs: see (Friston et al., 2009,
+2010) for details. The actual movements produced clearly depend upon
+top-down predictions that can have a rich and complex structure, due
+to perceptual optimization based on the sampling of salient
+exteroceptive and interoceptive inputs.In summary, we have derived
+equations for the dynamics of perception and action using a free
+energy formulation of adaptive (Bayes-optimal) exchanges with the
+world and a generative model that is both generic and biologically
+plausible. Intuitively, all we have done is to apply the principle of
+free energy minimization to a particular model of how sensory inputs
+are caused. This model is called a generative model because it can be
+used to generate sensory samples and thereby predict sensory inputs
+for any given set of hidden states. By requiring hidden states to
+minimize free energy, they become Bayes-optimal estimates of hidden
+states in the real world—because they implicitly maximize Bayesian
+model evidence. One simple scheme—that implements this minimization—is
+called predictive coding and emerges when random effects can be
+modelled as additive Gaussian fluctuations. Predictive coding provides
+a neurobiological plausible scheme for inferring states of the world
+that reduces, essentially, to minimizing prediction errors; namely,
+the difference between what is predicted—given the current estimates
+of hidden states—and the sensory inputs actually sampled.In what
+follows, we use Equations (6), (7), and (8) to treat neuronal
+responses in terms of predictive coding. A technical treatment of the
+material above will be found in (Friston et al., 2010), which provides
+the details of the generalized descent or filtering used to produce
+the simulations in the last section. Before looking at these
+simulations, we consider the nature of generalized filtering and
+highlight its curious but entirely sensible dynamical properties.This
+section examines self-organization in the light of minimizing free
+energy. These arguments do not depend in any specific way on
+predictive coding or the neuronal implementation of free energy
+minimization—they apply to any self-organizing system that minimizes
+the entropy of the (sensory) states that drive its internal states;
+either exactly by minimizing (sensory) surprise or approximately by
+minimizing free energy. In what follows, we will first look at the
+basic form of the dynamics implied by exposing a self-organizing
+system to sensory input in terms of skew product systems. A skew
+product system comprises two coupled systems, where the states of one
+system influence the flow of states in the other—in our case, hidden
+states in the world influence neuronal dynamics. These coupled systems
+invoke the notion of (generalized) synchronization as quantified by
+conditional Lyapunov exponents (CLE). This is important because the
+dynamics of a generalized descent on free energy have some particular
+implications for the CLE. These implications allow us to conjecture
+that the local Lyapunov exponents will fluctuate around small (near
+zero) values, which is precisely the condition for chaotic itinerancy
+and critical slowing. By virtue of the fact that this critical slowing
+is self-organized, it represents an elementary form of self-organized
+criticality; namely self-organized critical slowing. In the next
+section, we will test this conjecture numerically with simulations of
+perception, using the predictive coding scheme of the previous
+section.Conditional Lyapunov exponents are normally invoked to
+understand synchronization between two systems that are coupled,
+usually in a unidirectional manner, so that there is a 1997; Barreto
+et al., 2003). The notion of chaotic synchronization has been
+generalized for coupled non-identical systems with unidirectional
+coupling or a 1997): Crucially, if we ignore action, neuronal dynamics
+underlying perception have this skew product structure, where
+Generalized synchronization occurs if there exists a map Φ : Ψ →
+Strong synchronization implies a smooth map (1979)Here, λThe Lyapunov
+exponents of a dynamical system characterize the rate of separation of
+infinitesimally close trajectories and provide a measure of
+contraction or expansion of the state space occupied. For our
+purposes, they can be considered the eigenvalues of the Jacobian that
+describes the rate of change of flow, with respect to the states. The
+This characterization of coupled dynamical systems means that we can
+consider the brain as being driven by sensory fluctuations from the
+environment. The resulting skew product system suggests that neuronal
+dynamics should show weak synchronization with the sensorium, which
+means that the maximal (principal) conditional Lyapunov exponent
+should be less than zero. However, if neuronal dynamics are generating
+predictions, by modelling the causes of sensations, then these
+dynamics should themselves be chaotic—because the sensations are
+caused by itinerant dynamics in the world. So, how can generalized
+synchronization support chaotic dynamics when the principal CLE is
+negative?In skew product systems of the sort above it is useful to
+partition the Lyapunov exponents into those pertaining to 2004). In
+the full state space, the tangential Lyapunov exponents can be
+positive such that the motion on the synchronization manifold is
+chaotic, as in the driving system, while the transverse Lyapunov
+exponents are negative (or close to zero) so that the response system
+is weakly synchronized with the drive system. See Figure 3 for a
+schematic illustration of tangential and transverse stability. In
+short, negative transverse Lyapunov exponents ensure the
+synchronization manifold 1997). In the present setting, this means
+that the sensorium enslaves chaotic neuronal responses. See
+(Breakspear, 2001) for a treatment of chaotic itinerancy and
+generalized synchronization as the basis of olfactory perception: By
+studying networks of Milnor attractors (Breakspear, 2001) shows how
+different sensory perturbations can evoke specific switches between
+various patterns of activity.Although generalized synchronization
+provides a compelling metaphor for perception, it also presents a
+paradox: if the CLE are negative and the synchronized manifold is
+stable, there is no opportunity for neuronal dynamics (conditional
+expectations) to jump to another attractor and explore alternative
+hypotheses. This dialectic is also seen in system identification,
+where the synchronization between an observed dynamical system and a
+model system is used to optimize model parameters by maximizing
+synchronization. However, if the coupling between the observations and
+the model is too strong, the variation of synchronization with respect
+to the parameters is too small to permit optimization. This leads to
+the notion of 2008). In other words, we want the synchronization
+between the causes of sensory input and neuronal representations to be
+strong but not too strong. Here, we resolve this general dialectic
+with the conjecture that Bayes-optimal synchronization is inherently
+balanced:Dynamical systems that minimize variational free energy
+dynamically show self-organized critical slowing, with local CLE
+λ(From Equation (6), one can see that the Jacobian can be decomposed
+into prediction and update terms The contribution of the second
+(update) depends upon the curvature of the variational free energy.
+This will always have negative eigenvalues, because the curvature is
+positive definite. Conversely, the first (prediction) term has
+eigenvalues of zero. This means, as the free energy curvature
+decreases the eigenvalues of the Jacobian will get smaller (and can
+indeed become positive for small but finite curvatures). This is
+important for two reasons; first, because the free energy changes with
+time, the local CLE will fluctuate. Second, because the system is
+minimizing free energy, it is implicitly minimizing the curvature
+(conditional precision) and is therefore driving some local CLE toward
+zero (and possibly positive) values. In short, free energy
+minimization will tend to produce local CLE that fluctuate at near
+zero values and exhibit self-organized instability or slowing. More
+formally:Let 0 ≤ γThis shows that the greatest contribution (In γSo
+how are the Lyapunov and Gibbs exponents related? By ignoring third
+and higher derivatives of Gibbs energy, we can approximate the
+curvature of the free energy with the curvature of the Gibbs energy:
+From Equations (5) and (13) The relationship between the Lyapunov
+exponents (eigenvalues of In other words, the Lyapunov exponents
+approximate the negative Gibbs exponents. This means that a
+generalized descent on free energy will be attracted to inherently
+unstable minima, with a low curvature and small local CLE. ■We could
+motivate the diagonal approximation of the curvature above by noting
+diagonal forms of the conditional covariance minimize free energy.
+However, off-diagonal terms are usually quite pronounced and indicate
+conditional dependencies among representations. The associated off-
+diagonal terms in the curvature mean that λ ≈ −γ only holds for large
+exponents, while small Lyapunov exponents are greater than their
+corresponding (negative) Gibbs exponents. This means that a
+generalized descent on free energy can become transiently chaotic with
+positive Lyapunov exponents. We will see an example of this
+later.Heuristically, this self-organized instability follows from the
+principle of maximum entropy (that generalises Laplace's principle of
+indifference) and reflects the intuition that, while being faithfully
+responsive to sensory information, it is important to avoid very
+precise and particular interpretations. From a dynamical perspective,
+it implies an active maintenance of critically slow (Oseledets) modes,
+whose CLE are close to zero. In summary, dynamical (approximate)
+Bayesian inference schemes are inherently self-destabilizing because
+they search out explanations for data that have the largest margin of
+error (smallest conditional precision). This produces instability and
+a critical slowing of the implicit gradient descent. In the next
+section, we will use a heuristic measure of this slowing: This is
+simply a sum of the exponential CLE that discounts large negative
+values. It can be thought of, roughly, as the number of small CLE,
+where smallness is controlled by a scale parameter τ. Alternatively,
+the components of the sum in Equation (17) can be regarded as the
+relative amplitude of a perturbation to the associated mode after τ
+units of time. In systems with a large number of small negative CLE,
+these relative amplitudes will be preserved and critical slowing will
+be large. For systems that show generalized synchronization (where all
+the CLE are negative) the critical slowing in Equation (17) is upper
+bounded by the number of CLE.In summary, we have reviewed the central
+role of Lyapunov exponents in characterizing dynamics; particularly in
+the context of generalized (weak or strong) synchronization. This is
+relevant from the point of view of neuronal dynamics, because we can
+cast neuronal responses to sensory drive as a skew product system;
+where generalized synchronization requires the CLE of the neuronal
+system to be negative. However, generalized synchronization is not a
+complete description of how external states entrain the internal
+states of self-organizing systems: Entrainment rests upon minimizing
+free energy that, we conjecture, has an inherent instability. This
+instability or self-organized critical slowing is due to the fact that
+internal states with a low free energy are necessarily states with a
+low free energy curvature. Statistically, this ensures that
+conditional expectations maintain a conditional indifference or
+uncertainty that allows for a flexible and veridical representation of
+hidden states in the world. Dynamically, this low curvature
+ameliorates dissipation by reducing the (dissipative) update, relative
+to the (conservative) prediction. In other words, the particular
+dynamics associated with variational free energy minimization may have
+a built-in tendency to instability.It should be noted, that this
+conjecture deals only with dynamical (gradient descent) minimization
+of free energy. One could also argue that chaotic itinerancy may be
+necessary for exploring different conditional expectations to select
+the one with the smallest free energy. However, it is interesting to
+note that—even with a deterministic gradient descent—there are reasons
+to conjecture a tendency to instability. The sort of self-organized
+instability is closely related to, but is distinct from, chaotic
+itinerancy and classical self-organized criticality. Chaotic
+itinerancy deals with itinerant dynamics of deterministic systems that
+are reciprocally coupled to each other (Tsuda, 2001). Here, we are
+dealing with systems with a skew product (master-slave) structure.
+However, it may be that both chaotic itinerancy and critical slowing
+share the same hallmark; namely, fluctuations of the local Lyapunov
+exponents around small (near zero) values (Tsuda and Fujii,
+2004).Classical self-organized criticality usually refers to the
+intermittent behavior of skew product systems in which the drive is
+constant. This contrasts with the current situation, where we consider
+the driving system (the environment) to show chaotic itinerancy. In
+self-organized criticality, one generally sees intermittency with
+characteristic power laws pertaining to macroscopic behaviors. It
+would be nice to have a general theory linking the organization of
+microscopic dynamics in terms of CLE to the macroscopic phenomena
+studied in self-organized criticality. However, work in this area is
+generally restricted to specific systems. For example, (Cessac et al.,
+2001) discuss Lyapunov exponents in the setting of the Zhang model of
+self-organized criticality. They show that small CLE are associated
+with energy transport and derive bounds on the principal negative CLE
+in terms of the energy flux dissipated at the boundaries per unit of
+time. Using a finite size scaling ansatz for the CLE spectrum, they
+then relate the scaling exponent to quantities like avalanche size and
+duration. Whether generalized filtering permits such an analysis is an
+outstanding question. For the rest of this paper, we will focus on
+illustrating the more limited phenomena of self-organized critical
+slowing using simulations of perception.In this section, we illustrate
+perceptual ignition and critical slowing using neuronal simulations
+based on the predictive coding scheme of previous sections. Our
+purpose here is simply to illustrate self-organized instability using
+numerical simulations: these simulations should be regarded as a proof
+of principle but should not be taken to indicate that the emergent
+phenomena are universal or necessary for perceptual inference. In
+brief, we created sensory stimuli corresponding to bird songs, using a
+Lorentz attractor with variable control parameters (like the Raleigh
+number). A synthetic bird then heard the song and used a hierarchical
+generative model to infer the control parameters and thereby
+categorise the song. These simulations show how the stimulus induces
+critical slowing in terms of changes in the CLE of the perceptual
+dynamics. We then systematically changed the generative model by
+changing the precision of the motion on hidden states. By repeating
+the simulations, we could then examine the emergence of critical
+slowing (averaged over peristimulus time) in relation to changes in
+variational free energy and categorization performance. Based on the
+conjecture of the previous section, we anticipated that there will be
+a regime in which critical slowing was associated with minimum free
+energy and veridical categorization. In what follows, we describe the
+stimuli and generative model. We then describe perceptual
+categorization under optimal prior beliefs about precision and finally
+characterize the perceptual responses under different (suboptimal)
+priors.The example used here deals with the generation and recognition
+of bird songs (Zeigler and Marler, 2008; Perl et al., 2011). We
+imagine that bird songs are produced by two time-varying hidden causes
+that modulate the frequency and amplitude of vibrations of the syrinx
+of a song bird (see Figure 4). There has been an extensive modelling
+effort using attractor models at the biomechanical level to understand
+the generation of birdsong (Perl et al., 2011). Here we use the
+attractors at a higher level to provide time-varying control over the
+resulting sonograms (Kiebel et al., 2009). We drive the syrinx with
+two states of a Lorenz attractor, one controlling the frequency
+(between two to five KHz) and the other (after rectification)
+controlling the amplitude or volume. The parameters of the Lorenz
+attractor were chosen to generate a short sequence of chirps every
+second or so. These parameters correspond to hidden causes (vvThe
+generative model was equipped with prior beliefs that songs could come
+in one of three categories; corresponding to three distinct pairs of
+values for the hidden causes. This was modelled using three hidden
+states to model the Lorentz attractor dynamics at the first level and
+three hidden states to model the category of the song at the second
+level. The hidden causes linking the hidden states at the second level
+to the first were a weighted mixture of the three pairs of values
+corresponding to each category of song. The bird was predisposed to
+infer one and only one category by weighting the control values with a
+softmax function of the hidden states. This implements a winner-takes-
+all like behavior and enables us to interpret the softmax function as
+a probability over the three song categories (softmax
+probability).This model of an avian brain may seem a bit contrived or
+arbitrary; however, it was chosen as a minimal but fairly generic
+model for perception. It is generic because it has all the ingredients
+required for perceptual categorization. First, it is hierarchical and
+accommodates chaotic dynamics in the generation of sensory input.
+Here, this is modelled as a Lorentz attractor that is subject to small
+random fluctuations. Second, it has a form that permits categorization
+of stimuli that extend over (frequency) space and time. In other
+words, perception, or model inversion maps a continuous, high
+dimensional sensory trajectory onto a perceptual category or point in
+some perceptual space. This is implemented by associating each
+category with a hidden state that induces particular values of the
+hidden causes. Finally, there is a prior that induces competition or
+winner-takes-all interactions among categorical representations,
+implemented using a softmax function. This formal prior (a prior
+induced by the form of a generative model) simply expresses the prior
+belief that there is only one cause of any sensory consequence at any
+time. Together, this provides a generative model based upon highly
+non-linear and chaotic dynamics that allows competing perceptual
+hypotheses to explain sensory data.Figure 4 shows a schematic of
+stimulus generation and the generative model used for categorization.
+The equations on the left describe the production of the stimulus,
+where the equations of motion for the hidden states xvThe equations on
+the right constitute the generative model and have the form of
+Equation (7). Notice that the generative model is slightly more
+complicated than the process generating stimuli—it is equipped with
+hidden states at a higher hierarchical level 4. Given the precise form
+of the generative model and a stimulus sequence, one can now integrate
+or solve Equation (8) to simulate neuronal responses encoding
+conditional expectations and prediction errors.Figure 5 shows an
+example of perceptual categorization using the format of Figure 2. The
+panel on the left shows the stimulus in sonogram format, while the
+corresponding conditional predictions and errors (dotted lines) are
+shown as functions of time (resp. a sonogram) in the upper left (resp.
+right) panel. These predictions are based on the expected hidden
+states at the first level shown on the lower left. The grey areas
+correspond to conditional confidence intervals of 90%. It can be seen
+that the conditional estimate of the hidden state modulating frequency
+is estimated reasonably accurately (red Line); however, the
+corresponding modulation of amplitude takes a couple of chirps before
+it finds the right level (blue line). This reflects changes in the
+conditional expectations about hidden causes and the implicit category
+of the song. The correct (third) category is only inferred after about
+80 time bins (red line in the right panel), when expectations of the
+second level hidden states are driven by ascending prediction errors
+to their appropriate values.Figure 6 shows the same results with
+conditional confidence intervals on all hidden states and causes and
+the implicit softmax probabilities based on the categorical hidden
+states at the second level (lower right panel). Note the high degree
+of uncertainty about the first hidden attractor state, which can only
+be inferred on the basis of changes (generalized motion) in second and
+third states that are informed directly by the frequency and amplitude
+of the stimulus. These results illustrate perceptual ignition of
+dynamics in higher levels of the hierarchical model that show an
+almost categorical switch from the first to the third category (from
+blue to red in the lower right panels). This ignition occurs after a
+period of exposure to the new song and enables it to be predicted more
+accurately. These dynamics can also be regarded as a generalized
+synchronization of simulated neuronal activity with the true hidden
+states generating the stimulus. So is there any evidence for critical
+slowing?Figure 7 shows the evolution of free energy and CLE as a
+function of peristimulus time. The upper left panel shows a phasic
+excess of free energy at the stimulus onset (first chirp or frequency
+glide). This is resolved quickly by changes in conditional
+expectations to reduce free energy to prestimulus levels. This
+reduction changes the flow and Jacobian of the conditional
+expectations and the local CLE as shown on the upper right.
+Remarkably, there is pronounced critical slowing, as quantified by
+Equation (17) (using τ = 8 time bins or 128 ms), from the period of
+stimulus onset to the restoration of minimal free energy. The panels
+on the right show the underlying changes in the CLE—in their raw form
+(upper right panel) and their exponentials (lower right panel). The
+measure of critical slowing is simply the sum of these exponential
+CLE. It can be seen that many large negative CLE actually decrease
+their values, suggesting that some subspace of the generalized descent
+becomes more stable. However, the key change is in the CLE with small
+negative values, where several move towards zero (highlighted in red).
+These changes dominate the measure of critical slowing and reflect
+self-organized instability following stimulus onset—an instability
+that coincides exactly with the perceptual switch to the correct
+category of stimulus (see previous figure).The changes described above
+are over peristimulus time and reflect local CLE. Although we will not
+present an analysis of global CLE, we can average the local values
+over the second half of peristimulus time during which the chaotic
+song is presented. To test our conjecture that free energy
+minimization and perceptual inference induce critical slowing, we
+repeated the above simulations while manipulating the (prior beliefs
+about) precision of the motion of hidden attractor states.Bayes-
+optimal inference depends upon a delicate balance in the precisions
+assumed for the random fluctuations at each level of hierarchical
+models. These prior beliefs are encoded by the log precisions in
+Equation (8). When intermediate levels are deemed too precise, top-
+down empirical priors overwhelm sensory evidence, resulting in
+illusory predictions. Furthermore, they predominate over the less
+precise prior beliefs at higher levels in the hierarchy. This can lead
+to false inference and a failure to recognise the high-level causes of
+sensory inputs. Conversely, when intermediate precisions are too low,
+the prediction errors from intermediate levels are insufficiently
+precise to change higher level conditional expectations. This again,
+can lead to false perception, even if low-level attributes are
+represented more accurately. These failures of inference are
+illustrated in Figure 8, using the same format as Figure 6. The left
+panels show the results of decreasing the log precision on the motion
+of hidden states from 4 to 1, while the right panels show the
+equivalent results when increasing the log precision from 4 to 7.
+These simulations represent perceptual categorization with under and
+over confident beliefs about the chaotic motion of the hidden
+attractor states. In both instances, there is a failure of perception
+of all but the frequency glide at the onset of the song (compare the
+sonograms in Figure 8 with that in Figure 6). In both cases, this is
+due to a failure of inference about the hidden categorical states that
+would normally augment the predictions of hidden attractor states and
+subsequent sensations. In the under confident condition, there is a
+slight deviation of predictions about amplitude from baseline (zero)
+levels—but this is not sufficiently informed by top-down empirical
+priors to provide a veridical prediction. Conversely, in the over
+confident condition, the amplitude predictions remain impervious to
+sensory input and reflect top-down prior beliefs that the bird is
+listening to silence. Notice the shrinkage in conditional uncertainty
+about the first hidden attractor state (green line) in the upper right
+panels. This reflects the increase in precision of the motion of these
+hidden states.Finally, we repeated the above simulations for 64 values
+of precision on the motion of hidden attractor states from a log
+precision of zero (a variance of one) to a log precision of seven. At
+each value, we computed the time average of free energy, the softmax
+probability of the correct stimulus category and critical slowing. In
+addition, we recorded the principal local CLE for each simulation.
+Figure 9 shows the interrelationships among these characterizations:
+the upper left panel shows the average probability of correctly
+identifying the song, which ranges from zero in the low and high
+precision regime, to about 70% in the intermediate regime. The two
+vertical lines correspond to the onset and offset of nontrivial
+categorization, with a softmax probability of greater than 0.05. The
+variation in these average probabilities is due to the latency of the
+perceptual switch to the correct song. This can be seen in the upper
+right panel that shows the principal CLE in image format as a function
+of peristimulus time (columns) and precision (rows). It can be seen
+that the principal CLE shows fluctuations in, and only, in the regime
+of veridical categorization. Crucially, these fluctuations appear
+earlier when the categorization probabilities were higher, indicating
+short latency perceptual switches. Note that the principal CLE attains
+positive values for short periods of time. This does not necessarily
+mean a loss of generalized synchronization; provided the long-term
+time average is zero or less, when evaluated over long stimulus
+presentation times. Given that we are looking explicitly at stimulus
+responses or transients, these positive values could be taken as
+evidence for transient chaos.The lower left panel shows the average
+free energy as a function of precision. As one might anticipate, this
+exhibits a clear minimum around the level of precision that produces
+the best perceptual categorization. The key results, from point of
+view of this paper, are presented in the lower right panel. This shows
+a very clear critical slowing in, and only in the regime of correct
+categorization. In short, these results are entirely consistent with
+the conjecture that free energy minimization induces instability or
+critical slowing and thereby provides a more veridical representation
+of hidden states in the world.In summary, these simulations of
+perceptual transitions affirm the notion that a sensitive response to
+sensory perturbations from the environment is accompanied by critical
+slowing of representational dynamics—of the sort that would be
+predicted by Bayes-optimal perception and the implicit maximum entropy
+principle. Although we have focused on perception, the imperative to
+minimize free energy, in the larger setting of active inference, may
+mean that any self-organizing system that resists a dispersion of its
+(sensory) states should show the same sort of critical slowing. The
+perceptual categories used in this paper to illustrate perceptual
+transitions were very distinct. One might imagine that the role of
+critical slowing and transitions may become more important when
+discriminating between more ambiguous stimuli; for example, those used
+to elicit bistable perception. In future work, we hope to look at
+bistable perception (binocular rivalry) and revisit our recent work in
+this area, in terms of critical slowing. In these models, the system
+works at the border of a Hopf bifurcation, where noise is more
+efficient in provoking perceptual transitions (Theodoni et al.,
+2011).We have addressed self-organization at a number of levels.
+First, we have looked at self-organization in terms of the selective
+sampling of the environment to minimize surprise (free energy) and
+therefore maintain a homoeostasis in the sense of Ashby (Ashby, 1947).
+Because surprise is negative log evidence in statistics, free energy
+minimization can also be understood as accumulating evidence for
+generative models of the world in a Bayes-optimal fashion. Second, we
+have considered free energy minimization in self-organizing systems as
+a dynamical process that performs a (generalized) gradient descent.
+Statistically speaking, this corresponds to a generalized (Bayesian)
+filtering or deconvolution that discovers the underlying causes of
+sensory states. This form of dynamics has the rather curious property
+of self-destabilization; in the sense that the internal states of a
+system (like the brain) will seek out regions of low free energy that,
+by definition, have a low curvature and invite relatively unstable
+(slow) dynamics. This form of self-organizing instability was
+demonstrated using neuronal simulations of perceptual categorization
+and a fairly minimal, but generic generative model. These
+demonstrations provided an example of Bayes-optimal perceptual
+categorization that was associated with self-organized instability or
+critical slowing that may be an integral part of perceptual switching
+or ignition. Finally, there is an important third level of self-
+organization that is implicit in the final simulations: at the
+beginning, we established that the internal states of a self-
+organizing system will minimize free energy. 9. This is a nice
+illustration of how self-organization can induce self-organization in
+subtle and recursive fashion.The authors declare that the research was
+conducted in the absence of any commercial or financial relationships
+that could be construed as a potential conflict of interest.

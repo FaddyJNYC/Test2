@@ -1,0 +1,29 @@
+Chris Thornton [1] poses some simple but key questions about the free-
+energy principle reviewed in [2]. These puzzles have simple and clear
+answers:[1].Answer: One of the main motivations for the free-energy
+principle is its appeal to [approximate] Bayesian inference where
+ambiguities are resolved by priors [3]. Priors are mandated by the
+(ill-posed) problems created by ambiguity and empirical priors are an
+integral part of hierarchical inference [2,Box 3]. This is not
+theoretical hand waving; in biophysics, the free-energy formulation is
+used routinely to solve difficult ill-posed inverse problems (e.g.
+[4]).[1].Answer: The representations are not environmental causes [2].
+The implicit optimization of neuronal connections (i.e. perceptual
+learning) leads to hierarchical brain structures (models) that
+recapitulate causal structure in the sensorium. This optimization
+process can ‘prune’ the form or structure of the model (cf., synaptic
+pruning [5]) and is used routinely in model optimization (e.g.
+automatic relevance determination [6]). Furthermore, one could regard
+natural selection as optimizing the structural form of models at an
+evolutionary scale, through minimizing free-energy (where it is called
+free-fitness [7]). In a statistical setting, free-energy bounds on
+model evidence are used routinely in Bayesian model selection (where
+the log model evidence is negative surprise, e.g. [8];) (Figure
+1).[1].Answer: The range of [2] specifies the range of hidden states
+in the world [1].Answer: The explanatory advance furnished by free-
+energy is fundamental: it provides a means to minimize surprise. This
+is because surprise cannot be quantified by an agent, whereas free-
+energy can. Again, this is not abstract hand waving; the free-energy
+bound on surprise (or log-evidence for a model) plays an essential
+role in physics [9], machine learning [10] and statistics [11] for
+this reason.

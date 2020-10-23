@@ -1,0 +1,744 @@
+This paper describes hierarchical dynamic models (HDMs) and reviews a
+generic variational scheme for their inversion. We then show that the
+brain has evolved the necessary anatomical and physiological equipment
+to implement this inversion, given sensory data. These models are
+general in the sense that they subsume simpler variants, such as those
+used in independent component analysis, through to generalised
+nonlinear convolution models. The generality of HDMs renders the
+inversion scheme a useful framework that covers procedures ranging
+from variance component estimation, in classical linear observation
+models, to blind deconvolution, using exactly the same formalism and
+operational equations. Critically, the nature of the inversion lends
+itself to a relatively simple neural network implementation that
+shares many formal similarities with real cortical hierarchies in the
+brain.Recently, we introduced a variational scheme for model inversion
+(i.e., inference on models and their parameters given data) that
+considers hidden states in generalised coordinates of motion. This
+enabled us to derive estimation procedures that go beyond conventional
+approaches to time-series analysis, like Kalman or particle filtering.
+We have described two versions; variational filtering [1] and dynamic
+expectation maximisation (DEM; [2]) that use free and fixed-form
+approximations to the posterior or conditional density respectively.
+In these papers, we used hierarchical dynamic models to illustrate how
+the schemes worked in practice. In this paper, we focus on the model
+DEM to show how their inversion relates to conventional treatments of
+these special cases.A key aspect of DEM is that it was developed with
+neuronal implementation in mind. This constraint can be viewed as
+formulating a neuronally inspired estimation and inference framework
+or conversely, as providing heuristics that may inform our
+understanding of neuronal processing. The basic ideas have already
+been described, in the context of static models, in a series of papers
+[3]–[5] that entertain the notion that the brain may use empirical
+Bayes for inference about its sensory input, given the hierarchical
+organisation of cortical systems. In this paper, we generalise this
+idea to cover hierarchical dynamical systems and consider how neural
+networks could be configured to invert HDMs and deconvolve sensory
+causes from sensory input.This paper comprises five sections. In the
+first, we introduce hierarchical dynamic models. These cover many
+observation or generative models encountered in the estimation and
+inference literature. An important aspect of these models is their
+formulation in generalised coordinates of motion; this lends them a
+hierarchal form in both structure and dynamics. These hierarchies
+induce empirical priors that provide structural and dynamic
+constraints, which can be exploited during inversion. In the second
+and third sections, we consider model inversion in general terms and
+then specifically, using dynamic expectation maximisation (DEM). This
+reprises the material in Friston et al. [2] with a special focus on
+HDMs. DEM is effectively a variational or ensemble learning scheme
+that optimises the conditional density on model states (D-step),
+parameters (E-step) and hyperparameters (M-step). It can also be
+regarded as a generalisation of expectation maximisation (EM), which
+entails the introduction of a deconvolution or D-step to estimate
+time-dependent states. In the fourth section, we review a series of
+HDMs that correspond to established models used for estimation, system
+identification and learning. Their inversion is illustrated with
+worked-examples using DEM. In the final section, we revisit the DEM
+steps and show how they can be formulated as a simple gradient ascent
+using neural networks and consider how evoked brain responses might be
+understood in terms of inference under hierarchical dynamic models of
+sensory input.To simplify notation we will use In this section, we
+cover hierarchal models for dynamic systems. We start with the basic
+model and how generalised motion furnishes empirical priors on the
+dynamics of the model's hidden states. We then consider hierarchical
+forms and see how these induce empirical priors in a structural sense.
+We will try to relate these perspectives to established treatments of
+empirical priors in static and state-space models.Dynamic causal
+models are probabilistic generative models A dynamic input-state-
+output model can be written asAt this point, readers familiar with
+standard state-space models may be wondering where all the extra
+equations in Equation 2 come from and, in particular, what the
+generalised motions; [6]. This is because standard Markovian (c.f.,
+Wiener) processes have generalised motion that has infinite variance
+and are infinitely ‘jagged’ or rough. This means [6], pp 122–124). So
+why have standard state-space models, and their attending inversion
+schemes like Kalman filtering, dominated the literature over the past
+half-century? Partly because it is convenient to ignore generalised
+motion and partly because they furnish reasonable approximations to
+fluctuations over time-scales that exceed the correlation time of the
+random processes: “Thus the results obtained by applying the
+techniques of Markov process theory are valuable only to the extent to
+which they characterise just these ‘large-scale’ fluctuations” ([6], p
+123). However, standard models fail at short time-scales. This is
+especially relevant in this paper because the brain has to model
+continuous sensory signals on a fast time-scale.Having said this, it
+is possible to convert the generalised state-space model in Equation 2
+into a standard form by expressing the components of generalised
+motion in terms of a standard [uncorrelated] Markovian process, [6],
+Equation 4.288 and below). The second line obtains by substituting
+Equation 2 into the first and prescribes a standard state-space model,
+whose states cover generalised motion; [6], p 121). However, generally
+[6], p 165). See also [7] (pp 122–125) for a related treatment.If
+there is a formal equivalence between standard and generalised state-
+space models, why not use the standard formulation, with a suitably
+high-order approximation? The answer is that we do not need to; by
+retaining an explicit formulation in generalised coordinates we can
+devise a simple inversion scheme (Equation 23) that outperforms
+standard Markovian techniques like Kalman filtering. This simplicity
+is important because we want to understand how the brain inverts
+dynamic models. This requires a relatively simple neuronal
+implementation that could have emerged through natural selection. From
+now on, we will reserve ‘state-space models’ (SSM) for standard Given
+the form of generalised state-space models we now consider what they
+entail as probabilistic models of observed signals. We can write
+Equation 2 compactly asGaussian assumptions about the fluctuations
+Figure 1 (left) shows the directed graph depicting the conditional
+dependencies implied by this model. Next, we consider hierarchal
+models that provide another form of hierarchical constraint. It is
+useful to note that hierarchical models are special cases of Equation
+1, in the sense that they are formed by introducing conditional
+independencies (i.e., removing edges in Bayesian dependency
+graphs).HDMs have the following form, which generalises the (Figure 1
+(right). In hierarchical form, the output of one level acts as an
+input to the next. When the state-equations are linear, the hierarchy
+performs successive convolutions of the highest level input, with
+random fluctuations entering at each level. However, inputs from
+higher levels can also enter nonlinearly into the state equations and
+can be regarded as changing its control parameters to produce quite
+complicated generalised convolutions with ‘deep’ (i.e., hierarchical)
+structure.The conditional independence of the fluctuations at
+different hierarchical levels means that the HDM has a Markov property
+over levels, which simplifies attending inference schemes. See [8] for
+a discussion of approximate Bayesian inference in conditionally
+independent hierarchical models of static data. Consider the empirical
+prior implied by Equation 6[9], factorisations of the likelihood
+create empirical priors that share properties of both the likelihood
+and priors. For example, the prediction In generalised coordinates,
+the precision, [10]. Note that when the random fluctuations are
+uncorrelated, the curvature (and higher derivatives) of the
+autocorrelation are infinite. In this instance, the precision of high-
+order motion falls to zero. This is the limiting case assumed by
+state-space models; it corresponds to the assumption that incremental
+fluctuations are independent (c.f., a Wiener process or random walk).
+Although, this is a convenient assumption that is exploited in
+conventional Bayesian filtering schemes and appropriate for physical
+systems with Brownian processes, it is less plausible for biological
+and other systems, where random fluctuations are themselves generated
+by dynamical systems ([6], p 81). [1]. A typical example is shown in
+Figure 2, in generalised coordinates and after projection onto the
+time-bins (using a Taylor expansion, whose coefficients comprise the
+matrix When dealing with discrete time-series it is necessary to map
+the trajectory implicit in the generalised motion of the response onto
+discrete samples, [Figure 2, right). This means samples in the remote
+past or future do not contribute to the likelihood and the inversion
+of discrete time-series data can proceed using local samples around
+the current time bin; i.e., it can operate ‘on-line’.We can now write
+down the exact form of the generative model. For dynamic models, under
+Gaussian assumptions about the random terms, we have a simple
+quadratic form (ignoring constants)[4]). For hierarchical models, the
+prediction error on the response is supplemented with prediction
+errors on the causesThese constraints on the structural and dynamic
+form of the system are specified by the functions In this section, we
+have introduced hierarchical dynamic models in generalised coordinates
+of motion. These models are about as complicated as one could imagine;
+they comprise causes and hidden states, whose dynamics can be coupled
+with arbitrary (analytic) nonlinear functions. Furthermore, these
+states can have random fluctuations with unknown amplitude and
+arbitrary (analytic) autocorrelation functions. A key aspect of the
+model is its hierarchical form, which induces empirical priors on the
+causes. These recapitulate the constraints on hidden states, furnished
+by the hierarchy implicit in generalised motion. We now consider how
+these models are inverted.This section considers variational inversion
+of models under mean-field and Laplace approximations, with a special
+focus on HDMs. This treatment provides a heuristic summary of the
+material in [2]. Variational Bayes is a generic approach to model
+inversion that approximates the conditional density [11]–[15]. The
+log-evidence for any parametric model can be expressed in terms of a
+free-energy The objective is to optimise Invoking an arbitrary
+density, discussion) into an easier optimisation problem. This rests
+on inducing a bound that can be optimised with respect to In this
+dynamic setting [2] that the solution for the states is a function of
+their instantaneous energy, These equations provide closed-form
+expressions for the conditional or variational density in terms of the
+internal energy defined by our model; Equation 10. They are
+intuitively sensible, because the conditional density of the states
+should reflect the instantaneous energy; Equation 17. Whereas the
+conditional density of the parameters can only be determined after all
+the data have been observed; Equation 18. In other words, the
+variational energy involves the prior energy and an integral of time-
+dependent energy. In the absence of data, when the integrals are zero,
+the conditional density reduces to the prior density.If the analytic
+forms of Equations 17 and 18 were tractable (e.g., through the use of
+conjugate priors), [16] for an excellent treatment of static
+conjugate-exponential models. However, we will take a simpler approach
+that does not require bespoke update equations. This is based on a
+fixed-form approximation to the variational density.Under the Laplace
+approximation, the marginals of the conditional density assume a
+Gaussian form The advantage of the Laplace assumption is that the
+conditional covariance is a simple function of the modes. Under the
+Laplace assumption, the internal and variational actions are (ignoring
+constants)By differentiating Equation 19 with respect to the
+covariances and solving for zero, it is easy to show that the
+conditional precisions are the negative curvatures of the internal
+action [2]. Unless stated otherwise, all gradients and curvatures are
+evaluated at the mode or mean.The Laplace approximation gives a
+compact and simple form for the conditional precisions; and reduces
+the problem of inversion to finding the conditional modes. This
+generally proceeds in a series of iterated steps, in which the mode of
+each parameter set is updated. These updates optimise the variational
+actions in Equation 19 with respect to EM; [17]) and restricted
+maximum likelihood (ReML; [18]) for linear models [15]. We now
+consider each of the steps entailed by our mean-field partition.As
+with conventional variational schemes, we can update the modes of our
+three parameter sets in three distinct steps. However, the step
+dealing with the state (D-step) must integrate its conditional mode
+E-step) and hyperparameters (M-step). We now consider optimising the
+modes or conditional means in each of these steps.In static systems,
+the mode of the conditional density maximises variational energy, such
+that ∂Another way of looking at this is to consider the problem of
+finding the path of the conditional mode. However, the mode is in
+generalised coordinates and already encodes its path. This means we
+have to optimise the path of the mode subject to the constraint that
+Equation 23 prescribes the trajectory of the conditional mode, which
+can be realised with a local linearization [19] by integrating over
+ΔD-step because it is not a function of the states. This means
+uncertainly about the hyperparameters does not affect the update for
+the states. This is because we assumed the precision was linear in the
+hyperparameters. The updates in Equation 25 provide the conditional
+trajectory Exactly the same update procedure can be used for the E-
+and M-steps. However, in this instance there are no generalised
+coordinates to consider. Furthermore, we can set the interval between
+updates to be arbitrarily long because the parameters are updated
+after the time-series has been integrated. If ΔD-Step can be regarded
+as a generalization of classical ascent schemes to generalised
+coordinates that cover dynamic systems. For our HDM, the requisite
+gradients and curvatures of variational action for the E-step areThese
+steps represent a full variational scheme. A simplified version, which
+discounts uncertainty about the parameters and states in the D and
+E-steps, would be the analogue of an EM scheme. This simplification is
+easy to implement by removing D- and E-steps respectively. We will
+pursue this in the context of neurobiological implementations in the
+last section.These updates furnish a variational scheme under the
+Laplace approximation. To further simplify things, we will assume ΔDEM
+scheme can be summarised as iterating until convergence    In this
+section, we have seen how the inversion of dynamic models can be
+formulated as an optimization of action. This action is the anti-
+derivative or path-integral of free-energy associated with changing
+states and a constant (of integration) corresponding to the prior
+energy of time-invariant parameters. By assuming a fixed-form
+(Laplace) approximation to the conditional density, one can reduce
+optimisation to finding the conditional modes of unknown quantities,
+because their conditional covariance is simply the curvature of the
+internal action (evaluated at the mode). The conditional modes of
+(mean-field) marginals optimise variational action, which can be
+framed in terms of gradient ascent. For the states, this entails
+finding a path or trajectory with stationary variational action. This
+can be formulated as a gradient ascent in a frame of reference that
+moves along the path encoded in generalised coordinates.In this
+section, we review the model and inversion scheme of the previous
+section in light of established procedures for supervised and self-
+supervised learning. This section considers HDMs from the pragmatic
+point of view of statistics and machine learning, where the data are
+empirical and arrive as discrete data sequences. In the next section,
+we revisit these models and their inversion from the point of view of
+the brain, where the data are sensory and continuous. This section
+aims to establish the generality of HDMs by showing that many well-
+known approaches to data can be cast as an inverting a HDM under
+simplifying assumptions. It recapitulates the unifying perspective of
+Roweis and Ghahramani [20] with a special focus on hierarchical models
+and the triple estimation problems DEM can solve. We start with
+supervised learning and then move to unsupervised schemes. Supervised
+schemes are called for when causes are known but the parameters are
+not. Conversely, the parameters may be known and we may want to
+estimate causes or hidden states. This leads to a distinction between
+All the schemes described in this paper are available in Matlab code
+as academic freeware (http://www.fil.ion.ucl.ac.uk/spm). The
+simulation figures in this paper can be reproduced from a graphical
+user interface called from the DEM toolbox.In these models the causes
+are known and enter as priors D-step.Usually, supervised learning
+entails learning the parameters of static nonlinear generative models
+with known causes. This corresponds to a HDM with infinitely precise
+priors at the last level, any number of subordinate levels (with no
+hidden states)[21]. This mapping corresponds to inversion of the
+generative model that maps causes to data; DEM. However, unlike back
+propagation of errors or universal approximation in neural networks
+[22], DEM is not simply a nonlinear function approximation device.
+This is because the network connections parameterise a generative
+model as opposed to its inverse; PDP (parallel distributed processing)
+schemes, DEM enables Bayesian inference through an explicit
+parameterisation of the conditional densities of the parameters.In
+nonlinear optimisation, we want to identify the parameters of a
+static, nonlinear function that maps known causes to responses. This
+is a trivial case of the static model above that obtains when the
+hierarchical order reduces to D-step and generalised coordinates
+redundant. Therefore, identification or inversion of these models
+reduces to conventional expectation-maximisation (EM), in which the
+parameters and hyperparameters are optimised recursively, through a
+coordinate ascent on the variational energy implicit in the E and
+M-steps. Expectation-maximisation has itself some ubiquitous special
+cases, when applied to simple linear models:Consider the linear model,
+with a response that has been elicited using known causes, E-step
+reduces toIf we have flat priors on the parameters, ΠML) estimators.
+Finally, under i.i.d. (identically and independently distributed)
+assumptions about the errors, the dependency on the hyperparameters
+disappears (because the precisions cancel) and we obtain ordinary
+least squares (OLS) estimates; It is interesting to note that
+transposing the general linear model is equivalent to the switching
+the roles of the causes and parameters; D-step with the E-step. This
+gives exactly the same results because the two updates are formally
+identical for static models, under whichIn the identification of
+nonlinear dynamic systems, one tries to characterise the architecture
+that transforms known inputs into measured outputs. This
+transformation is generally modelled as a generalised convolution
+[23]. When then inputs are known deterministic quantities the
+following [23]. This means there is no conditional uncertainty about
+the states (given the parameters) and the D-step reduces to
+integrating the state-equation to produce deterministic outputs. The
+E-Step updates the conditional parameters, based on the resulting
+prediction error and the M-Step estimates the precision of the
+observation error. The ensuing scheme is described in detail in [24],
+where it is applied to nonlinear hemodynamic models of fMRI time-
+series. This is an EM scheme that has been used widely to invert
+deterministic dynamic causal models of biological time-series. In
+part, the motivation to develop DEM was to generalise EM to handle
+state-noise or random fluctuations in hidden states. The extension of
+EM schemes into generalised coordinates had not yet been fully
+explored and represents a potentially interesting way of harnessing
+serial correlations in observation noise to optimise the estimates of
+a system's parameters. This extension is trivial to implement with DEM
+by specifying very high precisions on the causes and state-noise.In
+these models, the parameters are known and enter as priors E-Step
+redundant. We will review estimation under static models and then
+consider Bayesian deconvolution and filtering with dynamic models.
+Static models imply the generalised motion of causal states is zero
+and therefore it is sufficient to represent conditional uncertainty on
+their amplitude; i.e., D-step for static models is integrated until
+convergence to a fixed point, which entails setting Δ[15]. Note that
+making In static systems, the problem reduces to estimating the causes
+of inputs after they are passed through some linear or nonlinear
+mapping to generate observed responses. For simple nonlinear
+estimation, in the absence of prior expectations about the causes, we
+have the nonlinear hierarchal modelD-Step performs a nonlinear
+optimisation of the states to estimate their most likely values and
+the M-Step estimates the variance components at each level. As
+mentioned above, for static systems, Δ[15] for more details.When the
+model above is linear, we have the ubiquitous hierarchical linear
+observation model used in Parametric Empirical Bayes (PEB; [8]) and
+mixed-effects analysis of covariance (ANCOVA) analyses.D-Step
+converges after a single iteration because the linearity of this model
+renders the Laplace assumption exact. In this context, the M-Step
+becomes a classical restricted maximum likelihood (ReML) estimation of
+the hierarchical covariance components, ΣReML objective function and
+the variational energy are formally identical under this model
+[15],[18]. Figure 3 shows a comparative evaluation of ReML and DEM
+using the same data. The estimates are similar but not identical. This
+is because DEM hyperparameterises the covariance as a linear mixture
+of precisions, whereas the ReML scheme used a linear mixture of
+covariance components.When there are many more causes then
+observations, a common device is to eliminate the causes in Equation
+40 by recursive substitution to give a model that generates sample
+covariances and is formulated in terms of covariance components (i.e.,
+hyperparameters).M-step. The causes can then be recovered from the
+hyperparameters using Equation 39 and the matrix inversion lemma. This
+can be useful when inverting ill-posed linear models (e.g., the
+electromagnetic inversion problem; [25]). Furthermore, by using
+shrinkage hyperpriors one gets a behaviour known as automatic
+relevance determination (ARD), where irrelevant components are
+essentially switched off [26]. This leads to sparse models of the data
+that are optimised automatically.The model in Equation 41 is also
+referred to as a Gaussian process model [27]–[29]. The basic idea
+behind Gaussian process modelling is to replace priors GPP), specified
+by a Gaussian covariance function of the response, Σ(GPP is furnished
+by the hierarchical structure of the HDM.In deconvolution problems,
+the objective is to estimate the inputs to a dynamic system given its
+response and parameters.D-Step. Recall the E-Step is redundant because
+the parameters are known. When ΣM-Step is also unnecessary and DEM
+reduces to deconvolution. This is related to Bayesian deconvolution or
+filtering under state-space models:State-space models have the
+following form in discrete time and rest on a vector autoregressive
+(VAR) formulationDeconvolution under HDMs is related to Bayesian
+approaches to inference on states using Bayesian belief update
+procedures (i.e., incremental or recursive Bayesian filters). The
+conventional approach to online Bayesian tracking of nonlinear or non-
+Gaussian systems employs extended Kalman filtering [30] or sequential
+Monte Carlo methods such as particle filtering. These Bayesian filters
+try to find the posterior densities of the hidden states in a
+recursive and computationally expedient fashion, assuming that the
+parameters and hyperparameters of the system are known. The extended
+Kalman filter is a generalisation of the Kalman filter in which the
+linear operators, of the state-space equations, are replaced by their
+partial derivatives evaluated at the current conditional mean. See
+also Wang and Titterington [31] for a careful analysis of variational
+Bayes for continuous linear dynamical systems and [32] for a review of
+the statistical literature on continuous nonlinear dynamical systems.
+These treatments belong to the standard class of schemes that assume
+Wiener or diffusion processes for state-noise and, unlike HDM, do not
+consider generalised motion.In terms of establishing the generality of
+the HDM, it is sufficient to note that Bayesian filters simply
+estimate the conditional density on the hidden states of a HDM. As
+intimated in the introduction, their underlying state-space models
+assume that DEM and extended Kalman filtering (and particle filtering)
+in [2]. DEM is consistently more accurate because it harvests
+empirical priors in generalised coordinates of motion. Furthermore,
+DEM can be used for both inference on hidden states and the random
+fluctuations driving them, because it uses an explicit conditional
+density In all the examples below, both the parameters and states are
+unknown. This entails a dual or triple estimation problem, depending
+on whether the hyperparameters are known. We will start with simple
+static models and work towards more complicated dynamic variants. See
+[33] for a comprehensive review of unsupervised learning for many of
+the models in this section. This class of models is often discussed
+under the rhetoric of blind source separation (BSS), because the
+inversion is blind to the parameters that control the mapping from
+sources or causes to observed signals.The Principal Components
+Analysis (PCA) model assumes that uncorrelated causes are mixed
+linearly to form a static observation. This is a M-Step here because
+there are no hyperparameters to estimate. The D-Step estimates the
+causes under the unitary shrinkage priors on their amplitude and the
+E-Step updates the parameters to account for the data. Clearly, there
+are more efficient ways of inverting this model than using DEM; for
+example, using the eigenvectors of the sample covariance of the data.
+However, our point is that PCA is a special case of an HDM and that
+any optimal solution will optimise variational action or energy.
+Nonlinear PCA is exactly the same but allowing for a nonlinear
+generating function.[34] for an example of nonlinear PCA with a
+bilinear model applied to neuroimaging data to disclose interactions
+among modes of brain activity.The model for factor analysis is exactly
+the same as for PCA but allowing for observation errorPCA model [35].
+The critical distinction, from the point of view of the HDM, is that
+the M-Step is now required to estimate the error variance. See Figure
+4 for a simple example of factor analysis using DEM. Nonlinear
+variants of factor analysis obtain by analogy with Equation
+46.Independent component analysis (ICA) decomposes the observed
+response into a linear mixture of non-Gaussian causes [36]. Non-
+Gaussian causal states are implemented simply in ICA corresponds
+toPCA, ΣM-Step. It is interesting to examine the relationship between
+nonlinear PCA and ICA; the key difference is that the nonlinearity is
+in the first level in PCA, as opposed to the second in ICA. Usually,
+in ICA the probability integral transform is pre-specified to render
+the second-level causes supra-Gaussian. From the point of view of a
+HDM this corresponds to specifying precise priors on the second-level
+parameters. However, DEM can fit unknown distributions by providing
+conditional estimates of both the mixing matrix In the same way that
+factor analysis is a generalisation of PCA to non-Gaussian causes, ICA
+can be extended to form sparse-coding models of the sort proposed by
+Olshausen and Fields [37] by allowing observation error.ICA model but
+with the addition of observation error. By choosing M-Step comes into
+play again for these models. All the models considered so far are for
+static data. We now turn to BSS in dynamic systems.Blind deconvolution
+tries to estimate the causes of an observed response without knowing
+the parameters of the dynamical system producing it. This represents
+the least constrained problem we consider and calls upon the same HDM
+used for system identification. An empirical example of triple
+estimation of states, parameters and hyperparameters can be found in
+[2]. This example uses functional magnetic resonance imaging time-
+series from a brain region to estimate not only the underlying
+neuronal and hemodynamic states causing signals but the parameters
+coupling experimental manipulations to neuronal activity. See Friston
+et al. [2] for further examples, ranging from the simple convolution
+model considered next, through to systems showing autonomous dynamics
+and deterministic chaos. Here we conclude with a simple Table
+1.10.1371/journal.pcbi.1000211.t001Table 1Level  ΠΠ  Π Π   exp(exp(0 0
+10In this model, causes or inputs perturb the hidden states, which
+decay exponentially to produce an output that is a linear mixture of
+hidden states. Our example used a single input, two hidden states and
+four outputs. To generate data, we used a deterministic Gaussian bump
+function input Figure 5 shows a schematic of the generative model and
+the implicit recognition scheme based on prediction errors. This
+scheme can be regarded as a message passing scheme that is considered
+in more depth in the next section. Figure 6 summarises the results
+after convergence of DEM (about sixteen iterations using an embedding
+order of This section has tried to show that the HDM encompasses many
+standard static and dynamic observation models. It is further evident
+than many of these models could be extended easily within the
+hierarchical framework. Figure 7 illustrates this by providing a
+ontology of models that rests on the various constraints under which
+HDMs are specified. This partial list suggests that only a proportion
+of potential models have been covered in this section.In summary, we
+have seen that endowing dynamical models with a hierarchical
+architecture provides a general framework that covers many models used
+for estimation, identification and unsupervised learning. A
+hierarchical structure, in conjunction with nonlinearities, can
+emulate non-Gaussian behaviours, even when random effects are
+Gaussian. In a dynamic context, the level at which the random effects
+enter controls whether the system is deterministic or stochastic and
+nonlinearities determine whether their effects are additive or
+multiplicative. DEM was devised to find the conditional moments of the
+unknown quantities in these nonlinear, hierarchical and dynamic
+models. As such it emulates procedures as diverse as independent
+components analysis and Bayesian filtering, using a single scheme. In
+the final section, we show that a DEM-like scheme might be implemented
+in the brain. If this is true, the brain could, in principle, employ
+any of the models considered in this section to make inferences about
+the sensory data it harvests.In this final section, we revisit DEM and
+show that it can be formulated as a relatively simple neuronal network
+that bears many similarities to real networks in the brain. We have
+made the analogy between the DEM and perception in previous
+communications; here we focus on the nature of recognition in
+generalised coordinates. In brief, deconvolution of hidden states and
+causes from sensory data (D-step) may correspond to perceptual
+inference; optimising the parameters of the model (E-step) may
+correspond to perceptual learning through changes in synaptic efficacy
+and optimising the precision hyperparameters (M-step) may correspond
+to encoding perceptual salience and uncertainty, through
+neuromodulatory mechanisms.A key architectural principle of the brain
+is its hierarchical organisation [38]–[41]. This has been established
+most thoroughly in the visual system, where lower (primary) areas
+receive sensory input and higher areas adopt a multimodal or
+associational role. The neurobiological notion of a hierarchy rests
+upon the distinction between forward and backward connections
+[42]–[45]. This distinction is based upon the specificity of cortical
+layers that are the predominant sources and origins of extrinsic
+connections (extrinsic connections couple remote cortical regions,
+whereas intrinsic connections are confined to the cortical sheet).
+Forward connections arise largely in superficial pyramidal cells, in
+supra-granular layers and terminate on spiny stellate cells of layer
+four in higher cortical areas [40],[46]. Conversely, backward
+connections arise largely from deep pyramidal cells in infra-granular
+layers and target cells in the infra and supra-granular layers of
+lower cortical areas. Intrinsic connections mediate lateral
+interactions between neurons that are a few millimetres away. There is
+a key functional asymmetry between forward and backward connections
+that renders backward connections more modulatory or nonlinear in
+their effects on neuronal responses (e.g., [44]; see also Hupe et al.
+[47]). This is consistent with the deployment of voltage-sensitive
+NMDA receptors in the supra-granular layers that are targeted by
+backward connections [48]. Typically, the synaptic dynamics of
+backward connections have slower time constants. This has led to the
+notion that forward connections are driving and illicit an obligatory
+response in higher levels, whereas backward connections have both
+driving and modulatory effects and operate over larger spatial and
+temporal scales.The hierarchical structure of the brain speaks to
+hierarchical models of sensory input. We now consider how this
+functional architecture can be understood under the inversion of HDMs
+by the brain. We first consider inference on states or perception.If
+we assume that the activity of neurons encode the conditional mode of
+states, then the D-step specifies the neuronal dynamics entailed by
+perception or recognizing states of the world from sensory data.
+Furthermore, if we ignore mean-field terms; i.e., discount the effects
+of conditional uncertainty about the parameters when optimising the
+states, Equation 23 prescribes very simple recognition dynamicsIf we
+unpack these equations we can see the hierarchical nature of this
+message passing (see Figure 8).The connections from error to state-
+units have a simple form that depends on the gradients of the model's
+functions; from Equation 12Figure 8).We can identify error-units with
+superficial pyramidal cells, because the only messages that pass up
+the hierarchy are prediction errors and superficial pyramidal cells
+originate forward connections in the brain. This is useful because it
+is these cells that are primarily responsible for
+electroencephalographic (EEG) signals that can be measured non-
+invasively. Similarly the only messages that are passed down the
+hierarchy are the predictions from state-units that are necessary to
+form prediction errors in lower levels. The sources of extrinsic
+backward connections are largely the deep pyramidal cells and one
+might deduce that these encode the expected causes of sensory states
+(see [49] and Figure 9). Critically, the motion of each state-unit is
+a linear mixture of bottom-up prediction error; see Equation 52. This
+is exactly what is observed physiologically; in that bottom-up driving
+inputs elicit obligatory responses that do not depend on other bottom-
+up inputs. The prediction error itself is formed by predictions
+conveyed by backward and lateral connections. These influences embody
+the nonlinearities implicit in Equation 51 is cast in terms of
+generalised states. This suggests that the brain has an explicit
+representation of generalised motion. In other words, there are
+separable neuronal codes for different orders of motion. This is
+perfectly consistent with empirical evidence for distinct populations
+of neurons encoding elemental visual features and their motion (e.g.,
+motion-sensitive area V5; [39]). The analysis in this paper suggests
+that acceleration and higher-order motion are also encoded; each order
+providing constraints on a lower order, through [50]). One could
+speculate that the encoding of different orders of motion may involve
+rate codes in distinct neuronal populations or multiplexed temporal
+codes in the same populations (e.g., in different frequency bands).
+See [51] for a neurobiologically realistic treatment of temporal
+dynamics in decision-making during motion perception and [52] for a
+discussion of synchrony and attentive learning in laminar
+thalamocortical circuits.When dealing with empirical data-sequences
+one has to contend with sparse and discrete sampling. Analogue
+systems, like the brain can sample generalised motion directly. When
+sampling sensory data, one can imagine easily how receptors generate
+[53]). Note that sampling high-order derivatives is formally
+equivalent to high-pass filtering sensory data. A simple consequence
+of encoding generalised motion is, in electrophysiological terms, the
+emergence of spatiotemporal receptive fields that belie selectivity to
+particular sensory trajectories.The conditional expectations of the
+parameters, [39],[40]. Furthermore, we would not expect to see
+positive feedback loops; c.f., [54]. We now consider the synaptic
+efficacies underlying effective connectivity.If synaptic efficacy
+encodes the parameter estimates, we can cast parameter optimisation as
+changing synaptic connections. These changes have a relatively simple
+form that is recognisable as associative plasticity. To show this, we
+will make the simplifying but plausible assumption that the brain's
+generative model is based on nonlinear functions [55]. This means that
+the synaptic connection to the [56],[57].Equation 51 shows that the
+influence of prediction error is scaled by its precision [58],[59].
+Furthermore, they enact the sorts of mechanisms implicated in biased
+competition models of spatial and object-based attention mediating
+visual search [60],[61].Equation 51 formulates this bias or gain-
+control in terms of lateral connections, As above, changes in [62] for
+review) and are not unrelated to the ideas in [63]. These authors
+posit a role for acetylcholine (an ascending modulatory
+neurotransmitter) in mediating expected uncertainty. This is entirely
+consistent with the dynamics of The mean-field approximation [64].
+However, the optimisation of one set of sufficient statistics is a
+function of the others. This has a fundamental implication for
+optimisation in the brain (see Figure 10). For example, ‘activity-
+dependent plasticity’ and ‘functional segregation’ speak to reciprocal
+influences between changes in states and connections; in that changes
+in connections depend upon activity and changes in activity depend
+upon connections. Things get more interesting when we consider three
+sets, because quantities encoding precision must be affected by and
+affect neuronal activity and plasticity. This places strong
+constraints on the neurobiological candidates for these
+hyperparameters. Happily, the ascending neuromodulatory
+neurotransmitter systems, such as dopaminergic and cholinergic
+projections, have exactly the right characteristics: they are driven
+by activity in presynaptic connections and can affect activity though
+classical neuromodulatory effects at the post-synaptic membrane [65],
+while also enabling potentiation of connection strengths [66],[67].
+Furthermore, it is exactly these systems that have been implicated in
+value-learning [68]–[70], attention and the encoding of uncertainty
+[63],[71].We have seen that the brain has, in principle, the
+infrastructure needed to invert hierarchical dynamic models of the
+sort considered in previous sections. It is perhaps remarkable that
+such a comprehensive treatment of generative models can be reduced to
+recognition dynamics that are as simple as Equation 51. Having said
+this, the notion that the brain inverts hierarchical models, using a
+DEM-like scheme, speaks to a range of empirical facts about the
+brain:The hierarchical organisation of cortical areas (c.f., [39])Each
+area comprises distinct neuronal subpopulations, encoding expected
+states of the world and prediction error (c.f., [72]).Extrinsic
+forward connections convey prediction error (from superficial
+pyramidal cells) and backward connections mediate predictions, based
+on hidden and causal states (from deep pyramidal cells) [49].Recurrent
+dynamics are intrinsically stable because they are trying to suppress
+prediction error [54],[64].Functional asymmetries in forwards (linear)
+and backwards (nonlinear) connections may reflect their distinct roles
+in recognition (c.f., [44]).Principal cells elaborating predictions
+(e.g., deep pyramidal cells) may show distinct (low-pass) dynamics,
+relative to those encoding error (e.g., superficial pyramidal
+cells)Lateral interactions may encode the relative precision of
+prediction errors and change in a way that is consistent with
+classical neuromodulation (c.f., [63],[71]).The rescaling of
+prediction errors by recurrent connections, in proportion to their
+precision, affords a form of cortical bias or gain control
+[73],[74].The dynamics of plasticity and modulation of lateral
+interactions encoding precision or uncertainty (which optimise a path-
+integral of variational energy) must be slower than the dynamics of
+neuronal activity (which optimise variational energy Neuronal
+activity, synaptic efficacy and neuromodulation must all affect each
+other; activity-dependent plasticity and neuromodulation shape
+neuronal responses and:Neuromodulatory factors play a dual role in
+modulating postsynaptic responsiveness (e.g., through modulating in
+after-hyperpolarising currents) and synaptic plasticity
+[66],[67].These observations pertain to the anatomy and physiology of
+neuronal architectures; see Friston et al. [5] for a discussion of
+operational and cognitive issues, under a free-energy principle for
+the brain.We have tried to establish the generality of HDMs as a model
+that may be used by the brain. However, there are many alternative
+formulations that could be considered. Perhaps the work of Archambeau
+et al. [75] is formally the closest to one presented in this paper.
+These authors propose an approach that is very similar to DEM but is
+framed in terms of SDEs. A related formulation, with particle
+annihilation and symmetry breaking, has been proposed [76] as a
+mechanism for learning. This work adopts a path integral approach to
+optimal control theory and reinforcement learning. Cortical processing
+as the statistical result of the activity of neural ensembles is an
+established and important idea (e.g., [77],[78]). Although,
+computationally intensive (see Discussion), particle filtering can be
+efficient [79]; Furthermore, it can be combined with local linearised
+sequential methods (e.g., the Ensemble Kalman Filter; [80]) to provide
+data assimilation methods for huge data sets. In fact, Schiff and
+Sauer [81] have recently proposed an Ensemble Kalman Filter for the
+control of cortical dynamics that could have biological and
+engineering significance. Finally, [82] proposes a path integral
+approach to particle filtering for data assimilation. The common theme
+here is the use of ensembles to represent more realistic and
+complicated conditional densities. Although the biological relevance
+of these exciting developments remains to be established they may
+provide insights into neuronal computations. They also speak to
+ensembles of HDMs, under the Laplace assumption, to approximate the
+conditional density with a mixture of Gaussians (Nelson Trujillo-
+Barreto – personal communication).Clearly, the theoretical treatment
+of this section calls for an enormous amount of empirical verification
+and hypothesis testing, not least to disambiguate among alternative
+theories and architectures. We have laid out the neurobiological and
+psychophysical motivation for the neuronal implementation of DEM in
+[3] and [4]. These papers deal with inference in the brain and
+motivate an overarching free-energy principle, using the notion of
+equilibrium densities and active agents. In [83] we address the face
+validity of the neuronal scheme described in this section, using
+synthetic birds and the perceptual categorisation of birdsong. These
+papers try to emulate empirical LFP and EEG studies to establish the
+sorts of electrophysiological responses one would expect to see in
+paradigms, such as those used to elicit the mismatch negativity
+[84],[85].We are now in a position to revisit some of the basic
+choices behind the DEM scheme, in light of its neuronal
+implementation. Some of these choices are generic and some are
+specific to neuronal inversion. All can be framed in terms of
+assumptions about the existence and form of the approximating
+conditional density, The second choice was to use a fixed-form for
+[1]. For standard SSMs, which ignore the high-order motion of random
+fluctuations, particle filtering is the most common approach. However,
+the dimensionality of the representational problems entailed by
+neuronal computations probably precludes particle-based (i.e., free-
+form) representations: consider face recognition, a paradigm example
+in perceptual inference. Faces can be represented in a perceptual
+space of about thirty dimensions (i.e., faces have about thirty
+discriminable attributes). To populate a thirty-dimensional space we
+would need at least 2[86] and above)The third choice was a mean-field
+approximation; DEM scheme in which conditional uncertainty about the
+parameters was ignored when optimising the states and The fourth
+assumption was that the fixed-form of The final choice was to include
+generalised motion under DEM assume high-order motion exists to
+infinite order. This is because random fluctuations in biophysical
+systems are almost invariably the product of dynamical systems, which
+renders their serial correlations analytic ([6], p 83; [23]). The
+resulting optimisation scheme is very simple (Equation 23) and is
+basically a restatement of Hamilton's principle of stationary action.
+If one ignores serial correlations, one could recourse to Extended
+Kalman filtering (EKF) or related Bayesian assimilation procedures for
+standard SSMs. From the perspective of DEM, these conventional
+procedures have an unduly complicated construction and deal only with
+a special ([2], we show that DEM and EKF give numerically identical
+results, when serial correlations are suppressed.It is interesting to
+consider DEM in relation to common distinctions among inversion
+schemes: sequential data assimilation (SDA) vs. path integral
+approaches or integration DEM blurs these distinctions somewhat: on
+the one hand, DEM is a path integral approach because the unknown
+quantities optimise action (the path integral of energy). On the other
+hand, it operates online and assimilates data with a differential
+equation (23), whose solution has stationary action. Furthermore, this
+equation can be integrated over time; indeed this is the mechanism
+suggested for neuronal schemes. However, when using DEM to analyse
+discrete data (e.g., the examples in the third section), this
+differential equation is solved over sampling intervals, using local
+linearization; c.f., [19].In summary, any generic inversion scheme
+needs to induce a lower-bound on the log-evidence by invoking an
+approximating conditional density In conclusion, we have seen how the
+inversion of a fairly generic hierarchical and dynamical model of
+sensory inputs can be transcribed onto neuronal quantities that
+optimise a variational bound on the evidence for that model This
+optimisation corresponds, under some simplifying assumptions, to
+suppression of prediction error at all levels in a cortical hierarchy.
+This suppression rests upon a balance between bottom-up (prediction
+error) influences and top-down (empirical prior) influences that are
+balanced by representations of their precision (uncertainty). These
+representations may be mediated by classical neuromodulatory effects
+and slow postsynaptic cellular processes that are driven by overall
+levels of prediction error.The ideas presented in this paper have a
+long history, starting with the notion of neuronal energy [87];
+covering ideas like efficient coding and analysis by synthesis
+[88],[89] to more recent formulations in terms of Bayesian inversion
+and predictive coding (e.g., [90],[91]). The specific contribution of
+this work is to establish the generality of models that may, at least
+in principle, be entertained by the brain.

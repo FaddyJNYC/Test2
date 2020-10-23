@@ -1,0 +1,592 @@
+1In recent years, we have applied the free energy principle to
+generative models of worlds that can be described in terms of discrete
+states in an attempt to understand the embodied Bayesian brain. The
+resulting active inference scheme (for Markov decision processes) has
+been applied in a variety of domains (see Table 1). This paper takes
+active inference to the next level and considers hierarchical models
+with deep temporal structure (George and Hawkins, 2009, Kiebel et al.,
+2009, LeCun et al., 2015). This structure follows from generative
+models that entertain state transitions or sequences over time. The
+resulting model enables inference about narratives with deep temporal
+structure (c.f., sequential scene construction) of the sort seen in
+reading. In short, equipping an agent or simulated subject with deep
+temporal models allows them to accumulate evidence over different
+temporal scales to find the best explanation for their
+sensations.Table 1Applications of active inference for Markov decision
+processes.Table 1ApplicationCommentReferencesDecision making under
+uncertaintyInitial formulation of active inference for Friston et al.
+(2012b)Optimal control (the mountain car problem)Illustration of
+Friston et al. (2012a)Evidence accumulation: Urns taskDemonstration of
+how beliefs states are absorbed into a generative modelFitzGerald et
+al., 2015b, FitzGerald et al., 2015cAddictionApplication to
+psychopathologySchwartenbeck et al. (2015c)Dopaminergic
+responsesAssociating dopamine with the encoding of (expected)
+precision provides a plausible account of dopaminergic
+dischargesFriston et al. (2014), FitzGerald et al.
+(2015a)Computational fMRIUsing Bayes optimal precision to predict
+activity in dopaminergic areasSchwartenbeck et al. (2015a)Choice
+preferences and epistemicsEmpirical testing of the hypothesis that
+people prefer to keep options openSchwartenbeck et al.
+(2015b)Behavioural economics and trust gamesExamining the effects of
+prior beliefs about self and othersMoutoussis et al. (2014)Foraging
+and two step mazesFormulation of epistemic and pragmatic value in
+terms of Friston et al. (2015)Habit learning, reversal learning and
+devaluationLearning as minimising variational free energy with respect
+to model parameters – and action selection as FitzGerald et al.
+(2014), Friston et al. (2016)Saccadic searches and scene
+constructionFriston and Buzsaki (2016), Mirza et al.
+(2016)Electrophysiological responses: Simulating neuronal processing
+with a gradient descent on variational free energy; c.f., dynamic In
+pressStructure learning, sleep and insightInclusion of parameters into
+expected free energy to enable structure learning via Under
+reviewNarrative construction and readingHierarchical generalisation of
+generative model with Current paperThis paper has two agendas: to
+introduce hierarchical (deep) generative models for active inference
+under Markov decision processes (or hidden Markov models) and to show
+how their belief updating can be understood in terms of neuronal
+processes. The problem we focus on is how subjects deploy active
+vision to disambiguate the causes of their sensations. In other words,
+we ask how people choose where to look next, when resolving
+uncertainty about the underlying conceptual, semantic or lexical
+causes of sensory input. This means that we are not concerned with
+computational linguistics Epistemics is at the heart of active
+inference, which is all about reducing surprise or uncertainty, where
+uncertainty is expected surprise. Technically, this means that one can
+describe both inference (perception) and behaviour (action) in terms
+of minimising a free energy functional of probabilistic or Bayesian
+beliefs. In this setting, variational free energy approximates
+surprise and expected free energy approximates uncertainty (a.k.a.
+entropy). This single imperative provides an inclusive account of
+established (normative) approaches to perception and action; for
+example, the principle of maximum mutual information, the principle of
+minimum redundancy, formulations of saliency as Bayesian surprise,
+risk sensitive or KL control, expected utility theory, and so on
+(Barlow, 1974, Itti and Baldi, 2009, Kappen et al., 2012, Ortega and
+Braun, 2013). Our focus here is on how subjects use accumulated
+beliefs about the hidden states of the world to prescribe active
+sampling of new information to resolve their uncertainty quickly and
+efficiently (Ferro et al., 2010).Our second agenda is to translate
+these normative (variational) principles into neurobiology by trying
+to establish the construct validity of active inference in terms of
+behaviour and electrophysiological responses. We do this at three
+levels: first, by highlighting the similarity between the message
+passing implied by minimising variational free energy and the
+neurobiology of neuronal circuits. Specifically, we try to associate
+the dynamics of a gradient descent on variational free energy with
+neuronal dynamics based upon neural mass models (Lopes da Silva,
+1991). Furthermore, the exchange of sufficient statistics implicit in
+belief propagation is compared with the known characteristics of
+extrinsic (between cortical area) and intrinsic (within cortical area)
+neuronal connectivity. Second, we try to reproduce reading-like
+behaviour – in which epistemically rich information is sampled by
+sparse, judicious saccadic eye movements. This enables us to associate
+perisaccadic updating with empirical phenomena, such as delay period
+activity and perisaccadic local field potentials (Kojima and Goldman-
+Rakic, 1982, Purpura et al., 2003, Pastalkova et al., 2008). Finally,
+in terms of the non-invasive electrophysiology, we try to reproduce
+the well-known violation responses indexed by phenomena like the
+mismatch negativity (MMN) and P300 waveforms in event related
+potential research (Strauss et al., 2015).This paper comprises four
+sections. The first (Active inference and free energy) briefly reviews
+active inference, establishing the normative principles that underlie
+action and perception. The second section (Belief propagation and
+neuronal networks) considers action and perception, paying special
+attention to hierarchical generative models and how the minimisation
+of free energy could be implemented in the brain. The third section
+(Simulations of reading) introduces a particular generative model used
+to simulate reading and provides an illustration of the ensuing
+behaviour – and simulated electrophysiological responses. The final
+section (Simulations of classical violation responses) rehearses the
+reading simulations using different prior beliefs to simulate
+responses to violations at different hierarchical levels in the
+model.2Active inference rests upon a generative model that is used to
+infer the most likely causes of observable outcomes in terms of
+expected states of the world. A generative model is just a
+probabilistic specification of how consequences (outcomes) follow from
+causes (states). These states are called latent or Dayan et al.,
+1995). Crucially, the prior probability of each policy (i.e., action
+or plan) is the free energy expected under that policy (Friston et
+al., 2015). This means that policies are more probable if they
+minimise expected surprise or resolve uncertainty.Evaluating the
+expected free energy of plausible policies – and implicitly their
+posterior probabilities – enables the most likely action to the
+selected. This action generates a new outcome and the cycle of
+perception and action starts again. The resulting behaviour represents
+a principled sampling of sensory cues that has epistemic, uncertainty
+reducing and pragmatic, surprise reducing aspects. The pragmatic
+aspect follows from prior beliefs or preferences about future outcomes
+that makes some outcomes more surprising than others. For example, I
+would not expect to find myself dismembered or humiliated – and would
+therefore avoid these surprising state of affairs. On this view,
+behaviour is dominated by epistemic imperatives until there is no
+further uncertainty to resolve. At this point pragmatic (prior)
+preferences predominate, such that explorative behaviour gives way to
+exploitative behaviour. In this paper, we focus on epistemic behaviour
+and only use prior preferences to establish a task or instruction set.
+Namely, to report a categorical decision when sufficiently confident;
+i.e., under the prior belief one does not make mistakes.2.1We are
+concerned here with hierarchical generative models in which the
+outcomes of one level generate the hidden states at a lower level.
+Fig. 1 provides a schematic of this sort of model. Outcomes depend
+upon hidden states, while hidden states unfold in a way that depends
+upon a sequence of actions or a ABDATable 2 and the Appendix A. For
+simplicity, Fig. 1 assumes there is a single hidden factor and outcome
+modality.Table 2Glossary of expressions (for the Table
+2ExpressionDescriptionOutcomes in Sequences of outcomes until the
+current time pointHidden states of the Sequences of hidden states
+until the end of the current sequenceSequential policies specifying
+controlled transitions within Action or control variables for the
+Auxiliary (depolarisation) variable corresponding to the surprise of
+an expected state – a softmax function of depolarisationPredictive
+posterior over future outcomes using a generalised dot product (sum of
+products) operatorBayesian model average of hidden states over
+policiesLikelihood tensor mapping from hidden states to the Transition
+probability for the Prior probability of the Prior probability of the
+Marginal free energy for each policyExpected free energy for each
+policyEntropy of outcomes under each combination of states in the The
+generative model in Fig. 1 generates outcomes in the following way:
+first, a policy (action or plan) is selected at the highest level
+using a softmax function of their expected free energies. Sequences of
+hidden states are then generated using the probability transitions
+specified by the selected policy (encoded in B matrices). These hidden
+states generate outcomes and initial hidden states in the level below
+(according to A and D matrices). In addition, hidden states can
+influence the expected free energy (through C matrices) and therefore
+influence the policies that determine transitions among subordinate
+states. The key aspect of this generative model is that state
+transitions proceed at different rates at different levels of the
+hierarchy. In other words, the hidden state at a particular level
+entails a sequence of hidden states at the level below. This is a
+necessary consequence of conditioning the initial state at any level
+on the hidden states in the level above. Heuristically, this
+hierarchical model generates outcomes over nested timescales; like the
+second-hand of a clock that completes a cycle for every tick of the
+minute-hand that, in turn precesses more quickly than the hour hand.
+It is this particular construction that lends the generative model a
+deep temporal architecture. In other words, hidden states at higher
+levels contextualise transitions or trajectories of hidden states at
+lower levels; generating a deep dynamic narrative.2.2For any given
+generative model, active inference corresponds to optimising
+expectations of hidden states and policies with respect to variational
+free energy. These expectations constitute the sufficient statistics
+of posterior beliefs, usually denoted by the probability distribution
+, where  are hidden or unknown states and policies. This optimisation
+can be expressed mathematically as: denotes observations up until the
+current time point and  represents hidden states over all the time
+points in a sequence. Because the (KL) divergence between a subject’s
+beliefs and the true posterior cannot be less than zero, the
+penultimate equality means that free energy is minimised when the two
+are the same. At this point, the free energy becomes the Beal, 2003).
+In other words, minimising free energy is equivalent to minimising the
+complexity of accurate explanations for observed outcomes.In active
+inference, both beliefs and action minimise free energy. However,
+beliefs cannot affect outcomes. This means that action affords the
+only means of minimising surprise, where action minimises expected
+free energy; i.e. expected surprise or uncertainty. In turn, this
+rests on equipping subjects with the prior beliefs that their policies
+will minimise expected free energy (Friston et al., 2015): is the
+predictive distribution over hidden states and outcomes under that
+policy. Comparing the expressions for expected free energy (Eq. (2))
+with variational free energy (Eq. (1)), we see that the (negative)
+divergence becomes There are several special cases of expected free
+energy that appeal to (and contextualise) established constructs. For
+example, maximising epistemic value is equivalent to maximising
+(expected) Bayesian surprise (Itti and Baldi, 2009), where Bayesian
+surprise is the divergence between posterior and prior beliefs. This
+can also be interpreted as the principle of maximum mutual information
+or minimum redundancy (Barlow, 1961, Linsker, 1990, Olshausen and
+Field, 1996, Laughlin, 2001). In this context, epistemic value is the
+expected  nats or less).2.3Minimising expected free energy is
+essentially the same as avoiding surprises and resolving uncertainty.
+This resolution of uncertainty is closely related to satisfying
+artificial curiosity (Schmidhuber, 1991, Still and Precup, 2012) and
+speaks to the value of information (Howard, 1966). Expected free
+energy can be expressed in terms of epistemic and expected value – or
+in terms of risk and ambiguity. The expected complexity or risk is
+exactly the same quantity minimised in risk sensitive or KL control
+(Klyubin et al., 2005, van den Broek et al., 2010), and underpins
+related (free energy) formulations of bounded rationality based on
+complexity costs (Braun et al., 2011, Ortega and Braun, 2013). In
+other words, minimising expected complexity renders behaviour risk-
+sensitive, while maximising expected accuracy induces ambiguity-
+resolving behaviour. In the next section, we look more closely at how
+this minimisation is implemented.3Having defined a generative model,
+the expectations encoding posterior beliefs (and action) can be
+optimised by minimising variational free energy. Fig. 2 provides the
+mathematical expressions for this optimisation or belief updating.
+Although the updates look a little complicated, they are remarkably
+plausible in terms of neurobiological process theories (Friston et
+al., 2014). In brief, minimising variational free energy means that
+expectations about allowable policies become a softmax function of
+variational and expected free energy, where the (path integral) of
+variational free energy scores the evidence that a particular policy
+is being pursued (Eq. 1.c in Fig. 2). Conversely, the expected free
+energy plays the role of a prior over policies that reflect their
+ability to resolve uncertainty (Eq. 1.d). The resulting policy
+expectations are used to predict the state at each level in the form
+of a Fig. 2 only shows action selection for the lowest (first)
+level.Of special interest here, are the updates for expectations of
+hidden states (for each policy and time). These have been formulated
+as a gradient descent on variational free energy (see Appendix A1).
+This furnishes a dynamical process theory that can be tested against
+empirical measures of neuronal dynamics. Specifically, the Bayesian
+updating or belief propagation (see Appendix A2) has been expressed so
+that it can be understood in terms of neurophysiology. Under this
+interpretation, expected states are a softmax function of log
+expectations that can be associated with neuronal depolarisation (Eq.
+2.b). In other words, the softmax function becomes a firing rate
+function of depolarisation, where changes in postsynaptic potential
+are caused by currents induced by presynaptic input from prediction
+error units (Eq. 2.a). In this formulation, Sohal et al., 2009,
+Cruikshank et al., 2012, Lee et al., 2013).3.1The graphics in Fig. 2
+have assigned various expectations and errors to neuronal populations
+in specific cortical layers. This (speculative) assignment, allows one
+to talk about the functional anatomy of extrinsic and intrinsic
+connectivity in terms of belief propagation. In brief, the
+mathematical form of Bayesian belief updating tells us which neuronal
+representations talk to each other. For example, in a hierarchical
+setting, the only sufficient statistics that are exchanged between
+levels are the Bayesian model averages of expected states. This means,
+by definition, that the Bayesian model averages must be encoded by
+principal cells that send neuronal connections to other areas in the
+cortical hierarchy. These are the superficial and deep pyramidal cells
+show in red in Fig. 2. Next, we know that the targets of ascending
+extrinsic (feedforward) connections from superficial pyramidal cells
+are the spiny stellate cells in Layer 4 (Felleman and Van Essen, 1991,
+Bastos et al., 2012, Markov et al., 2013). The only sufficient
+statistics in receipt of Bayesian model averages from the level below
+are policy-specific expectations about hidden states. These can be
+associated with spiny stellate cells (upper cyan layer in Fig. 2).
+These sufficient statistics are combined to form the Bayesian model
+average in superficial pyramidal cells, exactly as predicted by
+quantitative connectivity studies of the canonical cortical
+microcircuit (Thomson and Bannister, 2003). One can pursue this game
+and – with some poetic license – reproduce the known quantitative
+microcircuitry of inter-and intralaminar connections. Fig. 3
+illustrates one solution that reproduces not only the major intrinsic
+connections but also their excitatory and inhibitory nature. This
+arrangement suggests that inhibitory interneurons play the role of
+error units (which is consistent with the analysis above), while
+policy-specific expectations are again encoded by excitatory neurons
+in Layer 4. Crucially, this requires a modulatory weighting of the
+intrinsic feedforward connections from expectation units to their
+Bayesian model averages in the superficial layers. This brings us to
+extrinsic connections and the neuronal encoding of policies in the
+cortico-basal ganglia-thalamic loops.3.2According to the belief
+propagation equations, expected policies rest upon their variational
+and expected free energy. These free energies comprise (KL)
+divergences that can always be expressed in terms of an average
+prediction error. Here, the variational free energy is the expected
+state prediction error, while the expected free energy is the expected
+outcome prediction error. These averages are gathered over all
+policies and time points within a hierarchical level and are passed
+through a sigmoid (softmax) function to produce policy expectations.
+If we associate this pooling with cortico-subcortical projections to
+the basal ganglia – and the subsequent Bayesian model averaging with
+thalamocortical projections to the cortex – there is a remarkable
+correspondence between the implicit connectivity (both in terms of its
+specificity and excitatory versus inhibitory nature) and the
+connectivity of the cortico-basal ganglia-thalamocortical loops.The
+schematic in Fig. 4 is based upon the hierarchical anatomy of cortico-
+basal ganglia-thalamic loops described in (Jahanshahi et al., 2015).
+If one subscribes to this functional anatomy, the formal message
+passing of belief propagation suggests that competing low level (motor
+executive) policies are evaluated in the putamen; intermediate
+(associative) policies in the caudate and high level (limbic) policies
+in the ventral striatum. These representations then send (inhibitory
+or GABAergic) projections to the globus pallidus interna (GPi) that
+encodes the expected (selected) policy. These expectations are then
+communicated via thalamocortical projections to superficial layers
+encoding Bayesian model averages. From a neurophysiological
+perspective, the best candidate for the implicit averaging would be
+matrix thalamocortical circuits that “appear to be specialized for
+robust transmission over relatively extended periods, consistent with
+the sort of persistent activation observed during working memory and
+potentially applicable to state-dependent regulation of excitability”
+(Cruikshank et al., 2012). This deep temporal hierarchy is apparent in
+hierarchically structured cortical dynamics – invasive recordings in
+primates suggest an anteroposterior gradient of spontaneous
+fluctuation time constants consistent with the architecture in Fig. 4
+(Kiebel et al., 2008, Murray et al., 2014). Clearly, there are many
+anatomical issues that have been ignored here; such as the distinction
+between direct and indirect pathways (Frank, 2005), the role of
+dopamine in modulating the precision of beliefs about policies
+(Friston et al., 2014) and so on. However, the basic architecture
+suggested by the above treatment speaks to the biological plausibility
+of belief updating under hierarchical generative models.3.3By assuming
+a generic (hierarchical Markovian) form for the generative model, it
+is fairly easy to derive Bayesian updates that clarify the
+relationship between perception and action selection. In brief, the
+agent first infers the hidden states under each policy that it
+entertains. It then evaluates the evidence for each policy based upon
+observed outcomes and beliefs about future states. The posterior
+beliefs about each policy are used to form a Bayesian model average of
+the next outcome, which is realised through action. In hierarchical
+models, the implicit belief updating (known as belief propagation in
+machine learning) appears to rest on message passing that bears a
+remarkable similarity to cortical hierarchies and cortico-basal
+ganglia-thalamic loops; both in terms of extrinsic connectivity and
+intrinsic canonical (cortical) microcircuits. In the next section, we
+use this scheme to simulate reading.4The remainder of this paper
+considers simulations of reading using a generative model that is a
+hierarchical extension of a model we have used previously to
+illustrate scene construction (Mirza et al., 2016). In the original
+paradigm, (simulated) subjects had to sample four quadrants of a
+visual scene to classify the arrangement of visual objects (a Fig. 5).
+By stimulating reading, we hoped to produce realistic sequences of
+saccadic eye movements, in which the subject interrogated local
+features (i.e. letters) with sparse and informative foveal sampling;
+in other words, jumping to key letter features and moving to the next
+word as soon as the current word could be inferred confidently.
+Furthermore, because the subject has a deep model, she already has in
+mind the words and letters that are likely to be sampled in the
+future; enabling an efficient foraging for information.To simulate
+this sort of task, one needs to specify the hidden factors, allowable
+policies and prior preferences. Fig. 5 illustrates the factorisation
+and hierarchical structure of the resulting model. At the highest
+level there are three hidden factors (only two are shown in the figure
+for simplicity). These comprise the sentence (with six alternatives),
+the word the subject is currently examining (one of four words) and
+the decision (Fig. 5 for clarity.This setup defines the state space
+and mapping from hidden states to outcomes encoded by the A
+parameters. Note that the likelihood mapping involves interactions
+among hidden states; for example, one has to know both the location
+being sampled and the word generating outcomes before the letter is
+specified. These interactions are modelled very simply by placing a
+one at the appropriate combination of hidden states (and zeros
+elsewhere) in the row of A corresponding to the outcome. Similarly,
+the D parameters specify the outcome in terms of hidden states at the
+lower level in terms of (combinations of) hidden factors at the higher
+level.It is now necessary to specify the contingencies and transitions
+among hidden states in terms of the B parameters. There is a separate
+B matrix for every hidden factor and policy. In this example, these
+matrices have a very simple form: on any given trial, policies cannot
+change the sentence or word. This means the corresponding B matrices
+are identity matrices. For hidden locations, the B matrices simply
+encode a transition from the current location to the location
+specified by the policy. Here the policies were again very simple;
+namely, where one looks next (in a body and head centred frame of
+reference at the first and second levels respectively). For
+simplicity, the preceding actions that constitute each policy were the
+actions actually selected. In more sophisticated setups, policies can
+include different sequences of actions; however here, the number of
+policies and actions were the same. This means we do not have to worry
+about the evidence the different policies encoded by the variational
+free energy (as in the right panel of Fig. 2). There were three
+policies or actions at the second level; proceed to the next word or
+stop reading and make a categorical decision of Finally, the prior
+preferences encoded in the C parameters rendered all outcomes equally
+preferred, with the exception of being wrong, which was set at . In
+other words, the subject thought they were exp(4) ≈ 54 times less
+likely to be wrong than undecided or right. This aversion to making
+mistakes ensures the subject does not solicit feedback to resolve
+uncertainty about the category of the sentence. In other words, the
+subject has to be relatively confident – after epistemic foraging –
+about the underlying narrative before confirming any inference with
+feedback. Prior beliefs about first level hidden states, encoded in
+the D parameters, told the subject they would start at the first
+quadrant of the first word, with an equal probability of all
+sentences. Because all six sentences began with either A heuristic
+motivation for including hidden factors like horizontal flipping
+appeals to the way that we factorise hidden causes of stimuli; in
+other words, carve nature at its joints. The fact that we are capable
+of:“raeding wrods with jubmled lettres” (Rayner et al., 2006),suggests
+that horizontal flipping can be represented in a way that is
+conditionally independent of grapheme content.This completes our
+specification of the generative model. To simulate reading, the
+equations in Fig. 2 were integrated using 16 iterations for each time
+point at each level. At the lowest level, an iteration is assumed to
+take 16 ms, so that each epoch or transition is about 256 ms.1 This is
+the approximate frequency of saccadic eye movements (and indeed
+phonemic processing in auditory language processing), meaning that the
+simulations covered a few seconds of simulated time. The scheduling of
+updates in hierarchical models presents an interesting issue. In
+principle, we could implement the belief updating synchronously;
+enabling second level expectations to be informed by first level
+expectations as they accumulate evidence. Alternatively, we could wait
+until the first level convergences and update higher levels
+asynchronously – so that the high-level waits until the lower level
+sequence completes before updating and providing (empirical) prior
+constraints for the initial state at the lower level. We elected to
+illustrate the latter (asynchronous) updating, noting that alternative
+(synchronous) schemes could be implemented and compared to empirical
+neuronal responses. Asynchronous scheduling has the advantage of
+computational simplicity, because it means each level can be
+integrated or solved by the same routine (here, spm_MDP_VB_X.m). This
+means that the sequence of posterior expectations following
+convergence at one level can be passed as (probabilistic) outcomes to
+the next, while the outcomes from the highest level enter as prior
+constraints on the initial states of the level below. Furthermore, we
+will see below that the ensuing updates bear a marked similarity to
+empirical (neurophysiological) responses.Fig. 6 shows simulated
+behavioural responses during reading in terms of eye movements (upper
+panel) over four transitions at the second level, where each
+transition entails one or two saccades at the first. In this exemplar
+simulation, the stimuli were generated at random using the above
+generative model. Here, the subject read the first sentence in lower
+case, apart from the second letter that was in upper case (i.e. with a
+surprising vertical flipping). In this trial, the subject looks at the
+first quadrant of the first word and sees a The key thing to take from
+these results is that the agent can have precise beliefs about letters
+without ever seeing them. For example, the subject believes there is a
+Fig. 7 shows the simulated electrophysiological responses associated
+with the belief updating reported in Fig. 6. Expectations about the
+hidden state at the higher (upper panel) and lower (middle panel)
+levels are presented in raster format. The horizontal axis is time
+over the entire trial, where each iteration corresponds roughly to
+16 ms and the trial lasted for three and half seconds. The vertical
+axis corresponds to the Bayesian model averages or expectations about
+the six sentences at the higher level and the three words at the lower
+level. Under the scheduling used in these simulations, higher level
+expectations wait until lower-level updates have terminated and,
+reciprocally, lower-level updates are suspended until belief updating
+in the higher level has been completed. This means the expectations
+are sustained at the higher level, while the lower level gathers
+information. The resulting patterns of firing rate over time show a
+marked resemblance to pre-saccadic delay period activity in the
+prefrontal cortex. The insert on the upper right is based upon the
+empirical results reported in (Funahashi, 2014) and tie in nicely with
+the putative role of matrix thalamocortical projections during delay
+period activity (Cruikshank et al., 2012). Note that the expectations
+are reset at the beginning of each epoch, producing the transients in
+the lower panel on the left. These fluctuations are the firing rate in
+the upper panels filtered between 4 Hz and 32 Hz and can be regarded
+as (band pass filtered) changes in simulated depolarisation. These
+simulated local field potentials are again remarkably similar to
+empirical responses. The examples shown in the lower right inset are
+based on the study of perisaccadic electrophysiological responses in
+early and inferotemporal cortex during active vision reported in
+(Purpura et al., 2003).4.1In the previous section, we highlighted the
+biological plausibility of belief updating based upon deep temporal
+models. In this section, the biological plausibility is further
+endorsed in terms of canonical electrophysiological phenomena such as
+perisaccadic delay period firing activity and local field potentials.
+Furthermore, these simulations have a high degree of face validity in
+terms of saccadic eye movements during reading (Rayner, 1978, Rayner,
+2009). In the final section, we focus on the electrophysiological
+correlates and try to reproduce classical event related potential
+phenomena such as the mismatch negativity and other responses to
+violation.5Fig. 8 shows simulated electrophysiological correlates of
+perisaccadic responses after the last saccade prior to the decision
+epoch, when the subject declared her choice (in this case Strauss et
+al., 2015) – and a subsequent P300 (or N400) response to semantic
+(global) violations (Donchin and Coles, 1988). These distinct
+violation responses are important correlates of attentional processing
+and, clinically, conscious level and psychopathology (Morlet and
+Fischer, 2014, Light et al., 2015).To simulate local (word or lexical)
+violations, we reversed the prior expectation of an upper case by
+switching the priors on the vertical flip for, and only for the last
+word. This produced greater excursions in the dynamics of belief
+updating. These can be seen as slight differences between the normal
+response (dotted lines) and response under local violations (solid
+lines) in the upper left panel of Fig. 8. The lower-level (lexical)
+expectations are shown in blue, while high-level (contextual)
+expectations are shown in red. Belief updating at the lower-level
+produces a fluctuation at around 100 ms known as an N1 response in ERP
+research. In contrast to these early (a.k.a. exogenous) responses,
+later (a.k.a. endogenous) responses appear to be dominated by
+expectations at the higher level. The difference waveforms (with and
+without surprising stimulus features) are shown on the upper right
+panel and look remarkably like a classical mismatch negativity. Note
+that the mismatch negativity peaks at about 170 ms and slightly
+postdates the N1. Again, this is exactly what is observed empirically;
+leading to debates about whether the generators of the N1 and MMM are
+the same or different. These simulations offer a definitive answer:
+the generators (neuronal encoding of expectations) are exactly the
+same; however, evidence accumulation is slightly slower when
+expectations are violated – leading to a protracted difference
+waveform.To emulate global violations, we decreased the prior
+probability of the inferred (first) sentence by a factor of eight.
+This global (semantic) violation rendered the sampled word relatively
+surprising, producing a difference waveform with more protracted
+dynamics. Again, this is remarkably similar to empirical P300
+responses seen with contextual violations. It is well known that the
+amplitude of the P300 component is inversely related to the
+probability of stimuli (Donchin and Coles, 1988). The anterior P3a is
+generally evoked by stimuli that deviate from expectations. Indeed,
+novel stimuli generate a higher-amplitude P3a component than deviant
+but repeated stimuli. The P3b is a late positive component with a
+parietal (posterior) distribution seen in oddball paradigms and is
+thought to represent a context-updating operation (Donchin and Coles,
+1988, Morlet and Fischer, 2014). Here, this context is operationalised
+in terms of changes in (sentence) context, under which lexical
+features are accumulated.Finally, we combined the local and global
+priors to examine the interaction between local and global violations
+in terms of the difference of difference waveforms. The results are
+shown on the lower right and suggest that the effect of a global
+violation on the effects of a local violation (and 5.1The opportunity
+to simulate these classical waveforms rests upon having a
+computationally and neurophysiologically plausible process theory that
+accommodates notions of violations and expectations. Happily, this is
+exactly the sort of framework offered by active inference. The MMN and
+P300 are particularly interesting from the point of view of clinical
+research and computational psychiatry (Montague et al., 2012). Indeed,
+their use in schizophrenia research (Umbricht and Krljes, 2005, Wang
+et al., 2014, Light et al., 2015) was a partial motivation for the
+work reported in this paper.6This paper has introduced the form and
+variational inversion of deep (hierarchical) temporal models for
+discrete (Markovian) hidden states and outcomes. This form of
+modelling has been important in machine learning; e.g. (Nefian et al.,
+2002, George and Hawkins, 2009), with a special focus on hierarchical
+or deep architectures (Salakhutdinov et al., 2013, Zorzi et al., 2013,
+Testolin and Zorzi, 2016). The technical contribution of this work is
+a formal treatment of discrete time in a hierarchical (nested or deep)
+setting and a simple set of belief update rules that follow from
+minimising variational free energy. Furthermore, this minimisation is
+contextualised within active inference to generate purposeful
+(epistemic and pragmatic) behaviour based on planning as inference
+(Botvinick and Toussaint, 2012).The inference scheme presented here
+takes a potentially important step in explaining hierarchical temporal
+behaviour and how it may be orchestrated by the brain. There are a
+number of directions in which the scope of hierarchical schemes of the
+sort could be expanded. Firstly, to fully capture the dynamic
+character of language comprehension and production, means one has to
+handle systems of compositional recursive rules (Fodor and Pylyshyn,
+1988, Pinker and Ullman, 2002), that underlie language grammars
+(Chomsky, 2006). This is likely to require deeper generative models
+that may entail some structure learning or nonparametric Bayesian
+methods (MacKay and Peto, 1995, Goldwater, 2006, Gershman and Niv,
+2010, Collins and Frank, 2013). Secondly, there are subtle aspects to
+processing of serial order that have been identified and modelled
+(Page and Norris, 1998, Burgess and Hitch, 1999, Brown et al., 2000,
+Botvinick and Plaut, 2006). For example, without additional
+mechanisms, associative chaining models – in which chains are
+constructed with one-to-one dependencies between items – have
+difficulty modelling repetition (Lashley, 1951). This is because
+dependencies from an item typically change when it is repeated,
+requiring context dependent mechanisms to be added. The types-tokens
+framework (Kanwisher, 1987, Bowman and Wyble, 2007) may be a
+particularly useful way to handle repetition. In addition to
+repetitions, error patterns in serial order recall seem inconsistent
+with a vanilla associative chaining model (Henson, 1998, Page and
+Norris, 1998). In further work on the deep temporal model presented
+here, we will explore extensions that enable language grammars and
+classic serial order recall data to be simulated.From a
+neurobiological perspective, the belief updating appears to be
+sufficiently simple to be biologically plausible; resting on simple
+operators such as softmax functions, logarithmic transforms and linear
+algebra (that can be implemented using firing rate functions,
+nonlinear postsynaptic responses and neuronal connectivity
+respectively). Furthermore, the intrinsic and extrinsic connectivity
+required by the belief propagation appears to map gracefully to
+intrinsic and extrinsic connectivity within canonical microcircuits –
+and in the cortical-basal ganglia-thalamic loops responsible for
+action selection in the brain. The computational architecture that
+emerges from applying standard (variational) Bayesian belief updating
+to hierarchical models relates observable neuronal dynamics to
+underlying computational processes; an approach that might be
+applicable to temporally structured neurophysiological responses
+across different measurements and cognitive domains (Dehaene-Lambertz
+et al., 2006, Hasson et al., 2008, Cocchi et al., 2016). Finally, the
+biological plausibility of the resulting scheme acquires a predictive
+validity; in the sense that it reproduces some specific violation
+responses studied in state-of-the-art cognitive neuroscience (Strauss
+et al., 2015, Uhrig et al., 2016).7Although the generative model –
+specified by the (A,B,C,D) matrices – changes from application to
+application, the belief updates in Fig. 2 are generic and can be
+implemented using standard routines (here spm_MDP_VB_X.m). These
+routines are available as Matlab code in the SPM academic software:
+http://www.fil.ion.ucl.ac.uk/spm/. The simulations in this paper can
+be reproduced (and customised) via a graphical user interface: by
+typing DEM and selecting the reading demo.The authors have no
+disclosures or conflict of interest.

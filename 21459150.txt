@@ -1,0 +1,399 @@
+This paper is about optimizing or selecting among a large number of
+models using their Bayesian model evidence. It addresses the class of
+problems, under which different models can be formed by changing prior
+beliefs about their parameters; for example, by switching off various
+parameters or by changing their prior variance. The main point made in
+this paper is that it is only necessary to fit or invert a full model
+to access the model evidence or marginal likelihood (and the posterior
+density on the parameters) of any reduced model. This can greatly
+finesse the scoring of models, when exploring large model spaces in a
+Conceptually, this treatment of model evidence highlights the
+connection between Bayesian model selection and the optimization of a
+(full) model, in terms of its priors. In both cases, one is maximizing
+model evidence by changing hyperparameters that encode the prior
+density over the parameters of a likelihood function. Operationally
+this is a form of empirical Bayes, in the sense that the priors are
+optimized using observed data. As such, it rests upon an implicit or
+explicit hierarchical structure in the form of the prior. This
+perspective unifies a number of model optimization and selection
+schemes, including parametric empirical Bayes (Efron and Morris, 1973;
+Kass and Steffey, 1989), automatic relevance determination (Mackay and
+Takeuchi, 1996; Tipping, 2001) and Bayesian model comparison (Kass and
+Raftery, 1995; Penny et al., 2004). We will try to illustrate this
+perspective with a few toy examples. A real world application of this
+scheme can be found in the context of network discovery, using dynamic
+causal modeling in Friston et al (2010a).In classical parametric
+statistics, it is standard practice to invert or optimize the
+parameters of a generative (observation) model and then interrogate
+reduced forms (e.g., using the extra sum of squares principle and
+Friston et al., 2007) and relevance determination (Mackay and
+Takeuchi, 1996; Tipping 2001), which aim to switch off or suppress
+irrelevant model parameters. Crucially, this suppression or
+elimination can be formulated in terms of priors on the free
+parameters of a model, where increasing the precision (inverse
+variance) of appropriate shrinkage priors effectively sets these
+parameters to zero. However, this is just a special instance of
+optimizing the priors of a model, in relation to model evidence. We
+exploit this by noting that the evidence This note comprises two
+sections: In the first, we present the assumptions and derivations
+that motivate the scheme. We start with some general assumptions about
+the existence of a full model, which shares the same likelihood with a
+set of reduced models with different prior densities. Under these
+assumptions, it is simple to derive the evidence of any reduced model
+as a function of the posterior and prior densities of the full model
+(to within an additive constant). In the limiting case, when a subset
+of parameters is fixed at zero, we recover the well known
+Savage–Dickey density ratio (Dickey, 1971; Verdinelli and Wasserman,
+1995). Our particular focus will be on the expression for model
+evidence under Gaussian assumptions about the form of the posterior
+over model parameters. This Laplace assumption is particularly
+relevant for variational or ensemble learning schemes, which
+predominate in many practical modeling applications (Beal and
+Ghahramani, 2003; Friston et al., 2007). In this context, the model
+evidence and posterior density over its parameters reduces to a simple
+analytic function of the means and precisions of the full prior and
+posterior. In the second section, we illustrate the use of this
+expression when optimizing priors or selecting among models defined in
+terms of their priors. We will use three examples of increasing
+complexity. The first uses a simple general linear model and looks at
+optimizing the priors on precision parameters, to highlight the
+potential usefulness of this approach in model optimization. The
+second example turns to model selection and focuses on optimizing
+shrinkage priors on unknown parameters, to identify key combinations
+of explanatory variables and eliminate redundant parameters. Finally,
+we consider a more complicated simulation using a nonlinear state-
+space model to illustrate both model selection and optimization.In
+this section, we outline the overall approach in terms of the
+assumptions that define the problem we are interested in. We try to
+relate the results to established procedures such as those based upon
+the Savage–Dickey density ratio. In the subsequent section, we apply
+these results to toy examples to illustrate their usefulness. We
+address the problem of scoring large numbers (thousands or millions)
+of models or exploring continuous model spaces. This problem is
+addressed by exploiting situations in which each model can be formed
+from a full model by changing the priors over its parameters. In
+brief, this means we can compute the evidence and posterior density
+over the parameters of any reduced model that is nested within a full
+model, given the evidence and posterior of a full model. This rests on
+the following arguments:Let a generative model Where Here, ΩEq. (2) is
+not saying anything very deep; it is just defining a set or space of
+reduced models that can be formed from a full model by collapsing the
+prior density over one or more parameters. This effectively converts
+free-parameters into known (reduced) parameters that usually have a
+prior mean of zero. Note that the number or dimensionality of the
+parameters is the same for all models: What distinguishes models is
+whether their priors allow specific parameters to take non trivial
+values. This definition of a reduced model means that model
+optimization (selection) can be cast as optimizing the priors over the
+parameters of the full model, where the optimum prior (model)
+maximizes the marginal likelihood or evidence:Here, we have used Bayes
+rule and the fact that the likelihoods of the reduced and full model
+are the same. Crucially, the marginal likelihood or evidence under the
+reduced model is just the evidence under the full model times the
+posterior expectation of the prior density ratio. This means the
+quantities required to evaluate the evidence of any reduced model are
+furnished by the inversion of the full model (namely its evidence The
+equivalence of the likelihood in Eq. (2) also allows us express the
+posterior under the reduced model in terms of the posterior under the
+full modelIn fact, Eq. (3) obtains from Eq. (4) by integrating both
+sides over the parameters. In general, this marginalization only needs
+to be over the subset of (reduced) parameters (3) as a Bayes factor
+(Kass and Raftery 1995):This expression only involves integrating over
+the marginal densities of the reduced parameters. Note that Eq. (5)
+does not make any assumptions about the form of the prior densities,
+provided they satisfy Eq. (2). We can further simplify things when the
+reduced prior is a point mass, (delta function) (5) reduces to the
+well-known Savage–Dickey density ratio (usually considered when In
+other words, the Savage–Dickey density ratio is a special case of the
+reduced evidence ratio that obtains when the reduced prior shrinks to
+a point mass. Eq. (6) is sensible, in that a conditional density on
+the reduced parameters that is far from its prior expectation
+indicates the reduced parameters are needed to explain the data and
+the reduced model has relatively low evidence.Verdinelli and Wasserman
+(1995) consider generalized Savage–Dickey density ratios using the
+above arguments from point of view of sampling approximations. Here,
+we consider Eq. (3) under the Laplace approximation to the posterior.
+This is a useful and generic approximation exploited in variational
+Bayes and related free-energy schemes (Beal, 1998; Beal and Ghahramani
+2003; Friston et al., 2007). In these schemes, a variational density
+Here, Penny et al. (2004). There are numerous schemes that use this
+approach. We use it extensively under the Laplace assumption, with
+log-normal forms for non-negative scale parameters (e.g., Friston et
+al., 2003; Friston et al., 2007).Our focus here is not on these
+variational schemes but on how to exploit their outputs; namely, the
+(approximate) log-evidence In this context, we have remarkably simple
+expressions for the log-evidence and posterior for any reduced model
+in terms of the sufficient statistics of a full modelEq. (9) says that
+the posterior precision of the reduced model is the posterior
+precision of the full model minus the difference between the full and
+reduced precisions. The posterior expectation is a mixture of
+precision-weighted expectations. Note that when a parameter is removed
+from the model, by shrinking its prior variance to zero, the prior and
+posterior moments become the same and the parameter no longer
+contributes to the reduced free-energy.Crucially, we can now compare
+two models in terms of their log-evidence, (9). Furthermore, we can
+consider any hyperparameterization of the prior In what follows, we
+will illustrate both perspectives; namely, model selection, In this
+section, we use some simulated examples to illustrate the use of the
+scoring method described in the previous section. This section
+illustrates model optimization, in terms of optimizing the sufficient
+statistics or hyperparameters of prior densities, and model selection,
+by searching over large model spaces.We start with a very simple
+example; namely the optimization of the priors on the precision
+parameters of a general linear model. To illustrate this, we formed
+simulated data (response variables) by adding four regressors sampled
+from the normal distribution.After adding random noise with a log-
+precision of two to the first half of the data and a log-precision of
+one to the second half, we then estimated the noise precision,
+allowing for different precisions over the first and second half of
+the observations. This model has six parameters, four regression
+parameters Dempster et al., 1977), as described in Friston et al.
+(2007). Crucially, the posterior density on all parameters was assumed
+to be Gaussian. As is usual in these Variational Laplace schemes, we
+assumed the posterior density over the log-precisions is Gaussian
+(i.e., posterior precisions have a log-normal form). In short, we
+estimated the regression coefficients and log-precisions to provide a
+Gaussian posterior. The priors on the parameters were uninformative
+Gaussian shrinkage priors with a mean of zero and variance of 32.After
+model inversion (using the Variational Laplace scheme described in
+Friston et al., 2007), we evaluated the model evidence under different
+priors on the log-precisions Fig. 1 (upper left panel) shows the log-
+evidence profile over the range of prior expectations and variances
+(10), one can see a characteristic shrinkage (increased precision) of
+the posterior to the optimized prior mean. The lower panel of Fig. 1
+shows the posterior distribution over the first precision parameter
+for the full model and the optimized (reduced) model. In this example,
+the ensuing shrinkage has improved the posterior expectation, in
+relation to the true value (vertical line). Although this is not a
+very useful application of model optimization in a practical sense, it
+illustrates the notion of optimizing models through their priors and,
+implicitly, optimizing a posterior. There are two further points this
+example highlights:First, the inversion scheme used to fit this model
+used a mean-field approximation that is ubiquitous in variational
+schemes. This assumes that the posterior over various subsets of
+parameters can be factorized. In this case, the factorization was
+between the regression and log-precision parameters; (5), which shows
+that the model evidence depends only on the marginal densities of
+those subsets of parameters that are being optimized; in this
+instance, the log-precision parameters. This point holds true
+generally and may be of particular relevance for the large number of
+schemes that rest upon on a mean-field (conditional independence)
+assumption.The second point is that this scheme allows one to optimize
+priors under any hyperparameterization. Indeed, it is the form of this
+hyperparameterization and the implicit constraints on the priors that
+make the optimization meaningful. This is meant in the sense that
+optimized priors are empirical priors, which benefit from formal
+constraints on the generative model. These constraints are implicit in
+the way the priors are hyperparameterized. This effectively adds a
+hierarchical level to the model, enabling further optimization of the
+model in relation to its evidence. In the example above, this
+hierarchical constraint was that, (7) that if there are no
+restrictions on the form of the optimum prior, it minimizes complexity
+when Here, we focus on selecting among a number of discrete models
+using exactly the same approach as above but using a formally
+different hyperparameterization of the prior density. In the example
+below, prior variances can only take one of two values; zero or a
+fixed prior variance. One could regard this as a hyperparameterization
+of the prior covariance with switched variables along the leading
+diagonal.Here, In this example, we formed data by taking the sum of
+four regressors  ∈ ℝ9. The resulting log-evidences over all
+permutations of prior variances is shown in the upper left panel of
+Fig. 2, using Fig. 2 shows the 12 regression parameter estimates in
+terms of their posterior mean for the full model, the reduced model
+and their true values. One can see immediately the benefit of model
+selection, in that the eight irrelevant parameters have been
+effectively switched off by very precise shrinkage priors.
+Interestingly, the four relevant parameters also improved, in terms of
+their distance from the true values. This reflects the fact that the
+optimized priors suppress irrelevant conditional dependencies among
+the posterior estimators.Again, this is a rather trivial example that
+starts to get more interesting when considering ill-posed problems
+that call for some regularization or shrinkage priors. Although this
+example used 16 data-points and 12 regressors, exactly the same sorts
+of results obtain with underdetermined problems (results not shown).
+Because the scoring of each model is so quick, one can consider
+exhaustive searches of up to thousands or millions of discrete
+models.It is interesting to relate the automatic detection of relevant
+model parameters above to automatic relevance determination (ARD).
+Fig. 3 illustrates the basis of this ARD or switching off behavior in
+terms of the dependency of the evidence on the shrinkage priors of
+relevant and irrelevant parameters. The key thing to take from Fig. 3
+is that the log-evidence for relevant parameters (here the first
+parameter) has a maxima at non-zero values. Conversely, the equivalent
+function for irrelevant parameters continues to increase as the prior
+variance approaches zero. This qualitative change in the points of
+inflexion induces a thresholding like behavior in the automatic model
+optimization, which explains the switching off of certain (irrelevant)
+parameters, when the maximum disappears. This behavior turns model
+optimization into categorical model selection. The irrelevant
+parameter here was the 8th regression parameter.Automatic relevance
+determination (Mackay and Takeuchi, 1996; Tipping, 2001) is based on
+exactly the same model evidence maximization approach used above but
+calls upon particular forms for the prior densities that lead to
+sparse conditional means. Here, we were able to reproduce this
+automatic determination under the Laplace assumption, with a simple
+hyperparameterization of the priors on the model parameters. The
+reason that this works is because of the formal prior or constraint
+implied by the hyperparameterization; in which prior variances can
+only take one of two values. This gives the optimization of the
+hyperparameters the look and feel of a model selection procedure, as
+opposed to the optimization of continuous hyperparameters. The
+examples above highlight the deep connection between the optimization
+of the parameters of hierarchical generative models and the
+hyperparameters of non hierarchical models used here for model
+optimization and selection. In essence, all these procedures are
+trying to maximize the evidence for a model through placing formal
+constraints of a hierarchical sort on the model. In the final example,
+we will pursue both the model selection and optimization perspectives,
+in the context of a problem that has a growing and pragmatic appeal.In
+this final example, we turn to a much more complicated generative
+model and a more specific sort of problem. The model that we use to
+generate data here is used as a generative model for brain imaging
+time series recorded from different parts of the brain. The problem
+that we are interested in is trying to discover the network of
+connections (i.e., an underlying dependency graph) that is responsible
+for observed brain responses. The details of the model we used
+(Friston et al., 2003) and the scheme we used to invert this model
+(Friston et al., 2010b) are not important here, because our focus is
+on how to use the posterior of a full model to discover the underlying
+network in terms of its adjacency matrix (the presence or absence of
+connections among observed brain regions). In brief, the model has a
+series of hidden neuronal and physiological states for each region We
+generated synthetic brain responses by driving each of four nodes or
+regions with smooth random fluctuations (with a log-precision of six).
+The resulting neuronal fluctuations cause changes in hidden
+physiological states, both within each region and in other regions to
+produce observed (hemodynamic) signals of the sort measured in fMRI
+experiments. This signal is effectively a generalized convolution of
+the underlying neuronal activity, where the characteristic time
+constant of the implicit convolution kernel is about four seconds.
+Examples of these fluctuating inputs and the resulting signals are
+shown in Fig. 4. In addition, Fig. 4 (upper right panel) shows the
+hidden neuronal and physiological states that mediate between the
+hidden causes (fluctuating inputs) and signal (outputs). To generate
+these data, we used a simple (bidirectional) connectivity structure,
+where four regions (nodes) were coupled reciprocally in a chain (lower
+right insert). Data were generated over 256 time bins (each
+corresponding to 3.22 seconds of simulated time) and the model used to
+generate these data was inverted using Generalized Filtering and the
+usual Gaussian priors (see Friston et al., 2003). Generalized
+Filtering is a Bayesian filtering scheme in generalized coordinates of
+motion that retains the Laplace assumption but dispenses with mean
+field approximations (see Friston et al., 2010b). Further details
+about the generation and treatment of these sorts of synthetic data
+can be found in Friston et al. (2010a). Model inversion (Generalized
+Filtering) provided the posterior or conditional means and covariances
+for the coupling parameters, which entered Eq. (9) to furnish the
+free-energy and conditional moments of all reduced models.Fig. 5 shows
+the results of Generalized Filtering and subsequent model selection.
+The upper right panel shows the posterior density and true values of
+the (sixteen) connections among the four simulated brain regions. The
+right hand panels show the profile of log-evidences and evidences
+(i.e., the posterior probability of each model under flat model
+priors). It can be seen immediately that one model has been selected
+with nearly 100% posterior confidence. The model space here was
+created by considering all permutations of the prior variances on
+connections that could take values of zero or two. In the full model,
+all connections had a prior variance of two. There were only 64 such
+models because we included the additional constraint that if a
+connection existed in one direction, it should (Fig. 5 shows the log-
+evidence of each of the 64 models grouped according to the number of
+connections (free coupling parameters). This is equivalent to graph
+size. It can be seen that, in general, as the number of parameters
+increases so does the evidence. This reflects the fact that the
+accuracy of the fit improves with the degrees of freedom that are
+endowed by additional coupling parameters. However, this increase in
+accuracy comes at a cost of complexity. Within each subset of models
+the most likely model (of graph size three or more used to generate
+the data) becomes unnecessarily complex when redundant connections are
+added and its evidence falls.Finally, to illustrate model
+optimization, we simply optimized the prior variance of each
+connection using Eq. (10) and a Gauss-Newton Scheme (as implemented in
+spm_argmax; http://www.fil.ion.ucl.ac.uk/spm). As anticipated, the
+prior variance collapsed to zero on connections that were absent, such
+that the optimized prior variance (organized as a weighted adjacency
+matrix) reflects the true connectivity structure (see Fig. 6). Note
+that in this hyperparameterization of the prior covariance, there was
+no formal constraint on reciprocal connections and yet a reciprocal
+connectivity has been selected automatically. In other words, we see
+automatic model selection emerging from optimization of
+hyperparameters that define a continuum of models (i.e., model
+space).In conclusion, we hope to have described an efficient Friston
+et al., 2010a). Another (practical) issue we have not pursued here is
+the pooling of evidence over units or subjects in group studies. The
+(9) can be treated in exactly the same way as in standard Bayesian
+model averaging or selection over subjects. For example, when treating
+models as fixed effects over subjects, the log-evidence inherent in
+multi-subject data is just the sum of log-evidences over subjects
+(under the assumption that subject-specific data are conditionally
+independent). This means that one can optimize models based on the
+summed log-evidence over subjects, following inversion of each
+subject's full model.Although, in principle, The aim of this paper was
+to highlight the pragmatic utility of some simple results that follow
+from Bayes rule and show that the same sort of (7)). In other words,
+this limiting case of model optimization is simply model inversion.
+This perspective unifies model inversion, optimization and selection
+schemes; including classical random effects modeling, parametric
+empirical Bayes (Efron and Morris, 1973; Kass and Steffey, 1989),
+automatic relevance determination (Mackay and Takeuchi, 1996; Tipping,
+2001) and Bayesian model comparison (Kass and Raftery, 1995; Penny et
+al., 2004). The basic idea here is to recast any generative model in
+terms of parameters and hyperparameters and regard all model
+inversion, optimization and selection as maximizing the evidence with
+respect to the hyperparameters.Here, the parameters can be thought of
+as the sufficient statistics of the likelihood function, while the
+hyperparameters become sufficient statistics of the prior on the
+parameters. Nearly all generative models and their optimization can be
+framed in this way. For example, take the hierarchical linear model
+underlying parametric empirical Bayes:Here, (14) can be written in
+terms of Eq. (13) as followsThis form shows that one has the latitude
+to optimize the model in terms of hyperparameters controlling the
+prior expectations μHarville, 1977). Indeed, the ReML objective
+function is formally identical to the free-energy bound on log-
+evidence in Eq. (7) (Friston et al., 2007). Table 1 summarizes these
+and other examples. The point here is that, in principle, all these
+schemes could be implemented using Eqs. (9) and (10), under the
+Laplace assumption (following the inversion of a likelihood model with
+uninformative priors). We will pursue this in subsequent work.As with
+all modelling initiatives, even exhaustive searches of model space
+will not disclose the optimum model, if the space does not include
+that model. For example, there could be unmodeled influences that,
+when included in the model, would increase its evidence. The scoring
+procedure described in this paper does not resolve the issue of how to
+define model spaces; it simply provides a computationally efficient
+way of searching those spaces, once they have been defined.Evaluating
+the evidence for a model is the holy grail of most statistical and
+modeling endeavors. In this sense, the procedures described in this
+paper address an important problem. We have tried to stress their
+generality, with a particular emphasis on optimizing the priors of a
+model with respect to its reduced log-evidence or free-energy. This
+optimization goes much further than conventional uses of the
+underlying formalism, which are currently restricted to comparing
+models with and without various parameters, (e.g., with the
+Savage–Dickey density ratio). We have also emphasized the simplicity
+and efficiency with which one can score models under the Laplace
+assumption. However, this comes at a cost: for highly nonlinear models
+the true posterior density will not be Gaussian. This means that the
+free-energy will only bound log-evidence and may not be an accurate
+approximation. This raises two issues: First, is the free-energy a
+good approximation to the underlying log-evidence? Second, is the
+reduced free-energy a good proxy for the free-energy of reduced
+models? Clearly, these questions can only be resolved with access to
+the true posteriors and evidences. This is a focus of current work
+using Gibbs sampling. At present, our experience with mildly nonlinear
+models (such as those used in dynamic causal modeling of fMRI time
+series) suggests that the free-energy provides a reasonable
+approximation. However, this has yet to be established for more
+strongly nonlinear models. The second issue raises an interesting
+question. If the reduced free energy is not the same as the free
+energy of the reduced model, which is the best approximation? One
+might conjecture that the reduced free-energy may be a more reliable
+proxy for log-evidence because it is based on the free-energy of the
+full model, which may be less prone to reporting local minima.
+Clearly, to test this conjecture one needs the true log-evidence,
+which again speaks to the use of sampling approximations to the
+posterior densities. We are currently pursuing this. Our early
+impressions are that the reduced free-energy and free-energy of the
+reduced model are reasonably consistent for weakly nonlinear models
+and that the free-energy provides better approximations than other
+alternatives (such as the Akaike and Bayesian information criteria).

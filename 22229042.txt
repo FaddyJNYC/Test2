@@ -1,0 +1,762 @@
+This paper is about the emergence of adaptive behaviour in agents or
+phenotypes immersed in an inconstant environment. We will compare and
+contrast two perspectives; one based upon a free energy principle [1]
+and the other on optimal control and reinforcement-learning [2–5]. The
+key difference between these perspectives rests on what an agent
+optimises. The free energy principle assumes that both the action and
+internal states of an agent minimise the surprise (the negative log-
+likelihood) of sensory states. This surprise does not have to be
+learned because it defines the agent. In brief, being a particular
+agent induces a probability density on the states it can occupy (e.g.,
+a fish in water) and, implicitly, surprising states (e.g., a fish out
+of water). Conversely, in reinforcement-learning, agents try to
+optimise a policy that maximises expected reward. We ask how free
+energy and policies are related and how they specify adaptive
+behaviour. Our main conclusion is that policies can be cast as beliefs
+about the state-transitions that determine free energy. This has some
+important implications for understanding the quantities that the brain
+has to represent when responding adaptively to changes in the
+sensorium.We have shown recently that adaptive behaviour can be
+prescribed by prior expectations about sensory inputs, which action
+tries to fulfill [6]. This is called 7]. These trajectories are
+learned and recapitulated in the absence of supervision. The resulting
+behaviour is robust to unexpected or random perturbations and can be
+used to solve benchmark problems in reinforcement-learning and optimal
+control: see [7] for a treatment of the mountain-car problem.
+Essentially, active inference replaces value-learning with perceptual
+learning that optimises empirical (acquired) priors in the agent's
+internal model of its world. These priors specify the free energy
+associated with sensory signals and guide action to ensure sensations
+conform to prior beliefs. In this paper, we consider the harder
+problem addressed by reinforcement-learning and other semisupervised
+schemes. These schemes try to account for adaptive behaviour, given
+only a function that labels states as attractive or costly. This means
+agents have to access distal attractors, under proximal constraints
+furnished by the environment and their repertoire of allowable
+actions. We will take a dynamical perspective on this problem, which
+highlights the relationship between active inference and
+reinforcement-learning and the connection between empirical priors and
+policies.This paper comprises five sections. The first considers
+adaptive behaviour in terms of equilibria and random attractors, which
+we attempt to link later to concepts in behavioural economics and
+optimal decision or game theory [8, 9]. This section considers
+autopoietic (self-creating) attractors to result from minimising the
+conditional entropy (average surprise) of an agent's states through
+action. However, agents can only infer hidden states of the
+environment given their sensory states, which means agents must
+minimise the surprise associated with sensations. The second section
+shows how agents can do this using an upper (free energy) bound on
+sensory surprise. This leads to a free energy formulation of well-
+known inference and learning schemes based on generative models of the
+world [10–13]. In brief, the imperatives established in the first
+section are satisfied when action and inference minimise free energy.
+However, the principle of minimising free energy also applies to the
+form of the generative model entailed by an agent (its formal priors).
+These encode prior beliefs about the transitions or motion of hidden
+states and ensuing attractors, which action tries to fulfil. These
+priors or policies are considered from a dynamical perspective in the
+remaining sections. Section three considers some universal policies,
+starting with the Helmholtz decomposition and introducing the notion
+of value, detailed balance, and divergence-free flow. The final two
+sections look at 2, 4, 14]. They are based on Lyapunov (value)
+functions that specify the policy. However, under the Helmholtz
+decomposition, value functions are an incomplete specification of
+policies. This speaks to more general forms of (itinerant) policies
+that rest on the autovitiation (self-destruction) of costly attractors
+and itinerant (wandering or searching) motion through state-space. We
+illustrate the basic ideas using the same mountain-car problem that we
+have used previously in the context of supervised learning [7].The
+main conclusion of this paper is that it is sufficient to minimise the
+average surprise (conditional entropy) of an agent's states to explain
+adaptive behaviour. This can be achieved by policies or empirical
+priors (equations of motion) that guide action and induce random
+attractors in its state-space. These attract agents to (low-cost)
+invariant sets of states and lead to autopoietic and ergodic
+behaviour. What do adaptive agents optimise? We address this question
+using an ensemble density formulation, which has close connections to
+models of evolutionary processes [15–17] and equilibria in game theory
+[18]. We also introduce a complementary perspective based on random
+dynamical systems [19]. The equilibrium approach rests on an ensemble
+density over the states of an agent. This can be regarded as the
+density of innumerable copies of the agent, each represented by a
+point in phase or state-space. This density is essentially a
+probabilistic definition of the agent, in terms of the states it
+occupies. For a well-defined agent to exist its ensemble density must
+be 20]. In other words, the density cannot change over time;
+otherwise, the definition of an agent (in terms of the states it
+occupies) would change. A simple example here would be the temperature
+of an organism, whose ensemble density is confined to certain phase-
+boundaries. Transgressing these boundaries would change the agent into
+something else (usually a dead agent). The simple fact that an agent's
+ensemble density exists and is confined within phase-boundaries (i.e.,
+is ergodic or invariant) has some fundamental implications, which we
+now consider more formally.If an agent and its environment have
+states, what does it mean for the states of an agent to be distinct
+from those of its environment? We will take this to mean that an agent
+has This straightforward consideration suggests a four-way partition
+of state-space  Figure 1 illustrates these conditional dependencies in
+terms of a graphical model, in which action and sensation form a
+Markov blanket separating external and internal states. In other
+words, external states are "hidden" from the agent's internal states.
+We will therefore refer to external states as The notion of a Markov
+blanket refers to a (statistical) boundary between the internal and
+hidden states of an agent. For simple (cellular) organisms, this could
+be associated with the cell surface, where sensory states correspond
+to the states of receptors and ion channels and action to various
+transporter and cell adhesion processes. For more complicated
+multicellular organisms (like us) the boundary of an agent is probably
+best thought of in terms of systems. For example, neuronal systems
+have clearly defined sensory states at their receptors and action is
+mediated by a discrete number of effectors. Here, the notion of a
+surface is probably less useful, in the sense that the spatial
+deployment of sensory epithelia becomes a hidden state (and depends on
+action).The external state-space we have in mind is high dimensional,
+covering the myriad of macroscopic states that constitute an embodied
+agent and its proximal environment. We assume that this system is open
+and that its states are confined to a low-dimensional manifold The
+existence of macroscopic states appeals to the fact that interactions
+among microscopic states generally lead to macroscopic order. There
+are many examples of this in the literature on complex systems and
+self-organisation. Key examples of macroscopic states are the order
+parameters used to describe phase-transitions [21]. The order
+parameter concept has been generalized to the slaving principle [22],
+under which the fast (stable) dynamics of rapidly dissipating patterns
+(modes or phase-functions) of microscopic states are determined by the
+slow (unstable) dynamics of a few macroscopic states (order
+parameters). These states can be regarded as the amplitudes of
+patterns that determine macroscopic behaviour. The enslaving of stable
+patterns by macroscopic states greatly reduces the degrees of freedom
+of the system and leads to the emergence of macroscopic order (e.g.,
+pattern formation). A similar separation of temporal scales is seen in
+centre manifold theory [23]. See [24–26] for interesting examples and
+applications. We will assume that macroscopic states The emergence of
+macroscopic order (and its associated states) is easy to simulate.
+Figure 2 provides a simple example where sixteen (Lorenz) oscillators
+have been coupled to each other, so that each oscillator (with three
+microscopic states) sees all the other oscillators. In this example,
+the macroscopic states (c.f. order parameters) are just the average of
+each state over oscillators; this particular phase-function is known
+as a mean field: see [27] for a discussion of mean field treatments of
+neuronal dynamics. Here, the mean field enslaves the states of each
+oscillator so that the difference between each microscopic state and
+its average decays quickly; these differences are the stable patterns
+and decay to zero. This draws the microscopic states to a low-
+(three-) dimensional manifold, known as a synchronisation manifold
+[28]. Although the emergence of order is easy to simulate, it is also
+easy to destroy.  Figure 3 shows how macroscopic order collapses when
+the random fluctuations on the motion of states are increased. Here,
+there is no slaving because the system has moved from a coherent
+regime to an incoherent regime, where each oscillator pursues its own
+path. Order can also be destroyed by making the coherence trivial;
+this is known as oscillator death and occurs when each oscillator
+approaches a fixed-point in state-space (interestingly these fixed-
+points are unstable when the oscillators are uncoupled, see [24]).
+Oscillator death is illustrated in Figure 3 by increasing the random
+dispersion of speeds along each oscillators orbit (trajectory). In
+these examples, macroscopic order collapses into incoherent or
+trivially coherent dynamics. We have deliberately chosen to illustrate
+these phenomena with a collection of similar oscillators (known
+technically as a globally coupled map; see also [29]), because the
+macroscopic dynamics recapitulate the dynamics of each oscillator in
+isolation. This means one could imagine that the microscopic states
+are themselves phase-functions of micromicroscopic states and so on
+30, 31].In summary, the emergence of macroscopic order is not
+mysterious and arises from a natural separation of temporal scales
+that is disclosed by some transformation of variables. However, the
+ensuing order is delicate and easily destroyed. In what follows, we
+shall try to understand how self-organisation keeps the macroscopic
+states of an agent within a bounded set Let the conditional
+dependencies among the (macroscopic) states Figure 1 be described by
+the following coupled differential equations:  f : g : As it stands,
+(1) is difficult to analyse because flow is a nonautonomous function
+of action. We can finesse this (without loss of generality) by
+expressing action as a function of the current state  3) reformulates
+the dynamics in terms of controlled flow With these variables in place
+we can now ask what can be deduced about the nature of action and
+control, given the existence of agents. Our starting point is that
+agents are ergodic [20, 32], in the sense that their ensemble density
+is invariant (conserved) over a suitably long time scale. This is just
+another way of saying that agents occupy a subset of states 33])
+describing the dynamics of the ensemble density over hidden states f,
+Γ) is the Fokker-Planck operator and Γ is half the covariance
+(amplitude) of the controlled fluctuations (a.k.a. the diffusion
+tensor). Equation (4) assumes the fluctuations are temporally
+uncorrelated (Wiener) processes; however, because the fluctuations
+34]. The Fokker-Planck equation exploits the fact that the ensemble
+(probability mass) is conserved. The first (diffusion) term of the
+Fokker-Planck operator reflects dispersion due to the fluctuations
+that smooth the density. The second term describes the effects of flow
+that translates probability mass. The ergodic density The ergodic
+density at any point in state-space is also the  The terms entropy and
+surprise are used here in an information theoretic (Shannon) sense.
+From a thermodynamic perceptive, the ergodic density corresponds to a
+35, 36] for useful introductions and discussion. However, the
+densities we are concerned with are densities on macroscopic states
+37, 38] for useful treatments in the setting of Darwinian dynamics.
+Having introduced the notion of entropy under ergodic assumptions, we
+next consider the implications of ergodicity for the flow or motion of
+agents through their state-space.A useful perspective on ergodic
+agents is provided by the theory of random dynamical systems. A random
+dynamical system is a measure-theoretic formulation of the solutions
+to stochastic differential equations like (3). It consists of a base
+flow (caused by random fluctuations) and a cocycle dynamical system
+(caused by flow). Ergodicity means the external states constitute a
+random invariant set 19]. A random attractor can be regarded as the
+set to which a system evolves after a long period of time (or more
+precisely the pullback limit, after evolving the system from the
+distant past to the present: the pullback limit is required because
+random fluctuations make the system nonautonomous). In the limit of no
+random fluctuations, random attractors coincide with the definition of
+a deterministic attractor; as the minimal compact invariant set that
+attracts all deterministic bounded sets. Crucially, random attractors
+are compact subsets of state-space that are bounded by deterministic
+sets. Technically speaking, if the base flow is ergodic and 39]. Put
+simply, this means that if the random attractor falls within a bounded
+deterministic set This existence of random attractors is remarkable
+because, in the absence of self-organising flow, the fluctuation
+theorem says they should not exist [40]. The fluctuation theorem
+generalises the second law of thermodynamics and states that the
+probability of a system's entropy decreasing vanishes exponentially
+with time. Put simply, random fluctuations disperse states, so that
+they leave any bounded set with probability one. See [41] and Appendix
+A, which show that in the absence of flow 5) that The formulation of
+agents as ergodic random dynamical systems has a simple implication:
+it requires their flow to induce attractors and counter the dispersion
+of states by random fluctuations. In the absence of this flow, agents
+would encounter phase-transitions where macroscopic states collapse,
+exposing their microscopic states to thermodynamic equilibrium. But
+how do these flows arise? The basic premise, upon which the rest of
+this paper builds, is that these attractors are autopoietic [42] or
+self-creating (from the Greek:  f, Γ)) of the Fokker-Planck operator,
+which depends on the policy through the deterministic part of action
+and the amplitude of random fluctuations through the fluctuating part.
+This means action plays a dual role in controlling flow to attractive
+states and suppressing random fluctuations. Equation (6) shows that
+increasing the amplitude of controlled fluctuations increases the rate
+of entropy production, because In summary, the ergodic or ensemble
+perspective reduces questions about adaptive behaviour to
+understanding how motion through state-space minimises surprise and
+its long-term average (conditional entropy). Action ensures motion
+conforms to an autopoietic flow or policy, given the agent and its
+current state. This policy induces a random invariant set In this
+section, we introduce the free energy principle as a means of
+minimising the conditional entropy of an agent's states through
+action. As noted above, these states and their entropy are hidden from
+the agent and can only be accessed through sensory states. This means
+that action cannot minimise the entropy of hidden states directly.
+However, it can do so indirectly by minimising the entropy of sensory
+states,  Appendix B). Crucially, because sensory entropy is the long-
+term average of sensory surprise, the extremal condition above
+requires action to minimise the path integral of sensory surprise.
+This means (by the fundamental lemma of variational calculus) for  9)
+says that it is sufficient for action to minimise sensory surprise to
+minimise the entropy of sensations (or at least find a local minimum).
+This is sensible because action should counter surprising deviations
+from the expected flow of states. However, there is a problem; agents
+cannot evaluate sensory surprise Free energy is a functional of
+sensory and internal states that upper bounds sensory surprise and can
+be minimised through action (cf. (2)). Effectively, free energy allows
+agents to finesse a generally intractable integration problem
+(evaluating surprise) by reformulating it as an optimisation problem.
+This well-known device was introduced by Feynman [43] and has been
+exploited extensively in machine learning and statistics [44–46]. The
+requisite free energy bound is created by adding a nonnegative
+Kullback-Leibler divergence or cross-entropy term [47] to surprise: To
+ensure action minimises surprise, the free energy must be minimised
+with respect the internal variables that encode the recognition
+density (to ensure the free energy is a tight bound on surprise). This
+is effectively perception because the cross-entropy term in (10) is
+non-negative, with equality when 10, 13, 48–52]. We can now formulate
+action (9) in terms of a dual minimisation of free energy (see (2) and
+Figure 1). In what follows, we will assume that the minimisation of
+free energy with respect to action and internal states (11) conforms
+to a generalised gradient descent,  53] and has the same form as
+Bayesian (e.g., Kalman-Bucy) filtering, used in time series analysis.
+The first term is a prediction based upon the differential operator In
+generalised filtering, one treats hidden parameters as hidden states
+that change very slowly: the ensuing generalised descent can then be
+written as a second-order differential equation: 53] for details. In
+neurobiological formulations of free energy minimisation, internal
+states generally correspond to conditional expectations about hidden
+states and parameters, which are associated with neuronal activity and
+connections strengths, respectively. In this setting, optimising the
+conditional expectations about hidden states (neuronal activity)
+corresponds to Equation (12) describes the dynamics of action and
+internal states, whose particular form depends upon the generative
+model of the world. We will assume this model has the following form:
+f, g) that depend on action. The generative model does not include
+action, because action is not a hidden state. Random fluctuations (13)
+furnish a probabilistic generative model of sensory states 53] for a
+full description of generalised filtering in the context of
+hierarchical dynamic models. For simplicity, we have assumed that
+state-space associated with the generative model is the same as the
+hidden state-space in the world. However, this is not necessary,
+because exchanges with the environment are mediated through sensory
+states and action.Given the form of the generative model (13) and an
+assumed (Gaussian) form for the recognition density, we can now write
+down the differential equations (12) describing the dynamics of
+internal states in terms of (precision-weighted) prediction errors
+12]. The simplicity of this scheme stems from the assumed Gaussian
+form of the recognition density. This means the internal states or
+sufficient statistics can be reduced to conditional expectations (see
+Appendix C). In neural network terms, (14) says that error-units
+receive predictions while prediction-units are driven by prediction
+errors. In neurobiological implementations of this scheme, the sources
+of prediction errors are usually thought to be superficial pyramidal
+cells while predictions are conveyed from deep pyramidal cells to
+superficial pyramidal cells encoding prediction error [54]. Because
+action can only affect the free energy by changing sensory states, it
+can only affect sensory prediction errors. From (13), we have 15)
+would have to be computed on the basis of a mapping from action to
+sensory consequences, which is usually quite simple; for example,
+activating an intrafusal muscle fibre elicits stretch receptor
+activity in the corresponding spindle: see [6] for discussion.In
+summary, we can account for the unnatural persistence of self-
+organising biological systems in terms of action that counters the
+dispersion of their states by random fluctuations. This action
+minimises the entropy of their ergodic density by minimising a free
+energy bound on sensory surprise or self-information as each point in
+time. To ensure the free energy is a good proxy for surprise, internal
+states must also minimise free energy and implicitly represent hidden
+states. This minimisation rests upon a generative model, which
+furnishes conditional predictions that action can fulfil. These
+predictions rest of on equations of motion that constitute (empirical)
+priors [55] on the flow of hidden states in the world. In short,
+agents are equipped with a model of dynamics in their local
+environment and navigate that environment to minimise their
+surprise.We can now associate the expected flow of the previous
+section with the empirical priors learned under the generative model:
+f(f(The previous section established differential equations that
+correspond to action and perception under a model of how hidden states
+evolve. These equations are based on the assumption that agents
+suppress (a bound on) surprise and, implicitly, the entropy of their
+ergodic density. We now consider optimising the model per se, in terms
+of formal priors on flow. These correspond to the form of the equation
+of motions in (13). In particular, we will consider constraints
+encoded by a (cost) function 17]. This section considers the policies
+that underwrite these solutions and introduces the notion of We start
+with the well-known decomposition of flow into curl- and divergence-
+free components (strictly speaking, the first term is only curl-free
+when  37, 56], formulates the divergence-free part in terms of an
+antisymmetric matrix,  57], it is fairly easy to show that 4): 18)
+uses the fact that the divergence-free component is orthogonal to
+∇Appendix D). This straightforward but fundamental result means that
+the flow of any ergodic random dynamical system can be expressed in
+terms of orthogonal curl- and divergence-free components, where the
+(dissipative) curl-free part increases value while the (conservative)
+divergence-free part follows isoprobability contours and does not
+change value. Crucially, under this decomposition value is simply
+negative surprise:  17) and how it provides a unifying perspective on
+evolutionary and statistical dynamics [38]: this decomposition shows
+that fluctuations in Darwinian dynamics imply the existence of
+canonical distributions of the Boltzmann-Gibbs type. Furthermore, it
+demonstrates the second law of thermodynamics, without detailed
+balance. In particular, the dynamical (divergence-free) component
+responsible for breaking detailed balance does not contribute to
+changes in entropy. In short, (17) represents “a simple starting point
+for statistical mechanics and thermodynamics and is consistent with
+conservative dynamics that dominates the physical sciences” [58]. The
+generality of this formulation can be appreciated by considering two
+extreme cases of flow that emphasise the curl and divergence-free
+components, respectively.When the random fluctuations are negligible
+(i.e., Γ → 0), irrotational (curl-free) flow Γ · ∇  57], using the
+generalised Einstein relation. Consider now systems in which random
+fluctuations dominate and the conservative (divergence-free) flow can
+be ignored.Here, irrotational (curl-free) flow dominates and the
+dynamics have Ergodic densities under detailed balance are closely
+connected to 18]. QRE do not require perfect rationality; players are
+assumed to make normally distributed errors in their predicted payoff.
+In the limit of no errors, QRE predict unique Nash equilibria. From
+the point of view of game theory, the interesting questions pertain to
+different equilibria prescribed by the policy or state-transitions.
+These equilibria are analogous to the solutions of the Fokker-Planck
+equation above, where 9, 59]. In this context, the ergodic density
+60], which are the most common specification of QRE. In economics,
+optimal state-transitions lead to equilibria that maximise value or
+expected utility. These are low-entropy densities with probability
+mass on states with high utility. We purse this theme in below, in the
+context of optimal control theory and reinforcement-learning.In this
+section, we have seen that a policy or empirical priors on flow
+(specified by conditional beliefs about the parameters of equations of
+motion) can be decomposed into curl and divergence-free components,
+specified in terms of a value-function and antisymmetric matrix that
+determines conservative flows of the sort seen in classical mechanics.
+Crucially, this value-function is just negative surprise and defines
+the ergodic (invariant) probability density over hidden states.
+However, we have no idea about where the policy comes from. All we
+know is that it furnishes a solution to the Fokker-Planck equation; an
+idiocentric description of an agent's exchange with the environment.
+The remainder of this paper will be concerned with how policies are
+specified and how they are instantiated in terms of value-
+functions.Evolutionary theory [61, 62] suggests that species (random
+attractors) do not arise 63, 64]). We take this to imply that policies
+are heritable and can be encoded (epigenetically) in terms of value or
+cost-functions. We will assume the agents are equipped with a cost-
+function that labels states as attractive or not 65]. In the
+deterministic limit Γ → 0 this kernel reduces to an attractor in the
+usual sense. From now on, we will use In this section, we look at
+policies and value from the point of view of optimal control theory
+and reinforcement-learning. In the previous section, value was
+considered to arise from a decomposition of flow into curl, and
+divergence-free parts. In that setting, value simply reports the
+surprise that a state is occupied. In other words, value is an
+attribute of the policy. Optimal control theory turns this around and
+assumes that the policy is an attribute of value. This enables
+policies to be specified by value, via cost-functions. In this
+section, we will consider optimal control theory as optimising
+policies (flows), whose attracting fixed-points are specified by cost-
+functions. Crucially, because optimal control policies do not specify
+divergence-free flow, they can only specify policies with attracting
+fixed points (the maxima of the value function). In the next section,
+we turn to generalised policies that exploit divergence-free flow to
+support itinerant policies. We will persist with continuous time
+formulations in this section and provide discrete time versions of the
+main results in the appendices.In optimal control theory and its
+ethological variants (i.e., reinforcement-learning), adaptive
+behaviour is formulated in terms of how agents navigate state-space to
+access sparse rewards and avoid costly regimes. The aim is to find a
+(proximal) policy that attains long-term (distal) rewards. In terms of
+the previous section, a policy 3) (see Appendix E),  24) shows that
+the maxima of the ergodic density can only exist where cost is zero or
+less (cf. (22)): at a maximum of  23) shows that the cost-function can
+be derived easily, given the policy and implicit value-function.
+However, to specify a policy with cost, we have to derive the flow
+from the cost-function. This entails associating a unique flow with
+the value-function and solving (24) for value: this association is
+necessary because optimal control does not specify the divergence-free
+part of the policy. Solving (24) is the difficult problem optimal
+control and value-learning deal with.Let optimal control be denoted by
+24) Appendix F for the interested reader. The basic problem, posed by
+the solution of the HJB equation for value, is that the value-function
+depends on optimal control, so that future cost can be evaluated.
+However, optimal control depends on the value-function. This circular
+dependency can only be resolved by solving the self-consistent
+equations above, also known as the dynamic programming recurrence.
+This is the In engineering, planning, and control problems, the HJB
+equation is usually solved by backwards induction (staring at the
+desired fixed-point and working backwards). However, this is not an
+ethological option for agents that have to learn the value-function
+online. An alternative solution exploits the fact that the expected
+increase in the value of the current state is cost. This leads to a
+straightforward value-learning scheme 24), at least for the states
+visited, In (28), 28) using the Robbins-Monro algorithm; [66, 67].
+Appendix G provides a brief survey of these schemes. Intuitively, they
+all involve increasing the value of the last state in proportion to
+the reward prediction error. This is the basis of temporal difference
+schemes [2] and Rescorla-Wagner [68] models of conditioning in
+psychology. See [5] for a comprehensive review. If the agent has no
+model of flow or state-transitions, similar schemes can be invoked to
+optimise the policy, (e.g., actor-critic schemes). A generalisation of
+value-learning, called Q-learning, considers a value or 69].
+Q-learning does not need a model in the form of probabilistic
+transitions to optimise control, because the quality of an action is
+encoded explicitly. Perhaps the most important thing to come out of
+these modelling initiatives is that phasic dopamine discharges in the
+brain are a prime candidate for reporting reward prediction error [3,
+70, 71]. In some cases theoretical predictions preempted empirical
+findings; for example, “in the absence of an expected reward, value
+system responses should show a decrease in activity at the time when
+the reward would normally be delivered” [72], which was confirmed
+subsequently [73].In summary, one can decompose any policy or expected
+flow into a part that is divergence-free and a part that increases
+value, where value is negative surprise or the log probability of a
+state being occupied. This means, given expected flow and the
+amplitude of random fluctuations about that flow, one can compute the
+ergodic density and associated value-function. Furthermore, if one
+defines surprise (negative value) of any state as the expected cost
+accumulated from that state, then it is straightforward to evaluate
+the cost-functions implied by any given policy. An example is given in
+Figure 4 using the Lorentz attractor in previous figures.Using this
+definition of cost, reinforcement-learning and optimal control theory
+try to derive value from cost-functions by assuming controlled flow
+minimises accumulated cost. This involves solving self-consistent
+equations that entail these assumptions. The ensuing value-function
+guides flow to ensure cost is minimized under constraints on motion.
+In dynamical terms, this approach optimises a policy in terms of its
+scalar potential, whose maxima coincide with points in state-space
+where Figure 4, because its dynamics do not have detailed balance. In
+other words, although one can derive a cost-function from any flow,
+one cannot specify any flow with a cost-function: to specify any given
+policy one would need the vector potentials (or anti-symmetric
+matrices) above.Furthermore, optimal control schemes and related
+heuristics have several shortcomings: (i) they are notoriously slow,
+requiring hundreds if not thousands of trials to learn even the
+simplest value-function, (ii) value-learning based on stochastic
+iteration depends on the same random fluctuations that need to be
+suppressed to pursue the policy, (iii) optimal control theory says
+nothing about exploration of state-space, (iv) an exigent limitation
+of these schemes is that they only account for policies with
+stationary fixed-points (i.e., agents who would optimally do nothing).
+This means they cannot account for the itinerant and context-sensitive
+nature of real behaviour. To resolve these problems we now turn to
+generalised policies that include divergence-free flow and are
+constrained directly, as opposed to placing constraints on value
+functions.In the previous section, cost was used to specify policies
+or expected flow in terms of value-functions. However, policies with
+detailed balance (of the form Generalised policies rest on the
+ensemble dynamics perspective: we start by considering how cost can
+restrict the probability mass of an ergodic density to a subset of
+state-space 3) provides a fundamental constraint on flow that must be
+satisfied when Λ  This provides a straightforward way of ensuring the
+peaks of the ergodic density lie in, and only in 21) 22), 74]. We will
+now illustrate how divergence-based cost works using the mountain car
+problem.Here, we use active inference and a generative model based on
+(31) to solve a fairly difficult problem in optimal control based
+purely on the theoretical treatment above. Crucially, the agent that
+solves this problem has no prior information about constraints on its
+action and yet it can respond adaptively, when supplied with a cost-
+function, to find its goal almost immediately. Note that there is no
+value-learning because we use divergence-based cost, which does not
+require a value-function. Furthermore, this behaviour is resilient to
+perturbations, because the policy provides predictions, which are
+fulfilled by action.In the mountain car problem, one has to park a
+mountain car halfway up a hill. However, the car is not sufficiently
+powerful to ascend the hill directly. This means the only solution to
+problem is to back away from the parking location and then accelerate
+towards it, in the hope of acquiring sufficient momentum to access the
+target. The upper left panel of Figure 5 shows the landscape or
+potential energy function (with a minimum at position, 13). These
+correspond to (31), where the cost-function is shown on the upper
+right. Here, the cost-function  Figure 6 shows two exemplar flows
+under different values for action. Under active inference, action
+tries to realise conditional beliefs that are specified by the policy
+or empirical priors on motion. Figure 7 shows how paradoxical but
+adaptive behaviour (moving away from a target to ensure it is secured
+later) emerges from this sort of generalised policy on the motion of
+hidden states, using 1) and (2) (see Appendix H for details). The
+inferred hidden states (upper right) show that the car explores its
+landscape until it encounters the target and negative cost or friction
+increases dramatically to prevent it escaping (i.e., falling down the
+hill). This ensuing trajectory is shown on the upper left panel. The
+paler lines provide exemplar trajectories from other trials, with
+different starting positions. In the real world, friction is constant
+(one eighth). However, the car expects friction to change with
+position, enforcing exploration or exploitation. These expectations
+are fulfilled by action (lower right).It is important to appreciate
+what has and what has not been achieved in this simulation: using a
+single scalar cost-function of position we have been able to induce
+adaptive goal-directed behaviour without any value-learning or
+enforced exploration of the environment. This behaviour is elicited
+immediately without the need for repeated trials or exposures.
+Furthermore, the requisite exploration and exploitation is manifest as
+a direct consequence of the agent's priors, without the need for
+carefully calibrated stochastic terms during training. This sort of
+adaptive behaviour is reminiscent of foraging seen in insects and
+other biological agents; where the environment is explored under
+autonomous dynamics until some reward is encountered. In an
+experimental context, the above simulation could be regarded in terms
+of eliciting foot-shock escape behaviour [75]; in that the uniformly
+high cost can only be avoided by escaping to a low-cost location. It
+may seem implausible to specify behaviour in terms of cost that is
+generally high everywhere; however, one can see easily how drive
+states might correspond to high cost and subsequent foraging or
+seeking behaviour [76, 77]. Mathematically, this reflects the fact
+that cost plays a permissive role, in that it ensures maxima of the
+ergodic density lie in low-cost regions of sate-space by precluding
+maxima elsewhere. In this sense, the emphasis is on What we have not
+addressed here is learning: we have assumed that the agent has already
+learned the potential energy function 6] for an example of this
+learning. However, there is a subtle but important point about
+learning: learning the parameters of the potential function
+corresponds to learning divergence-free flow, which does not affect
+the ergodic density or fixed points of the attractor. This contrasts
+with value-learning, in which divergence-flow is unspecified and the
+parameters of the value-function are learned. We now look at
+generalising divergence-based schemes and their role in prescribing
+sequential and itinerant dynamics.There are clearly many different
+ways in which we could formulate generalised policies and constrain
+them with cost-functions: We will concentrate on the use of cost to
+specify itinerant policies: itinerancy is important because it
+provides a principled explanation for exploration and foraging in
+ethology [78]. Furthermore, it provides a key connection to dynamical
+systems theory approaches to the brain [79] that emphasise the
+importance of itinerant chaos [80], metastability [81], self-organised
+critically [82], winnerless competition [83], and attractors [84].
+Similar constructs based on metastability have been invoked to
+understand the dynamics of molecular biology and the emergence of
+disease states like cancer [85]. The common theme here is the
+induction of itinerancy though the destruction of fixed-points or the
+gradients causing them [86]. The ensuing 87] provide a framework for
+heteroclinic orbits that are ubiquitous in neurobiology, in
+electrophysiology [88], cognition [89], and large-scale neuronal
+dynamics [90]. It is fairly easy to extend the mountain car example
+above to produce itinerant behaviour with heteroclinic orbits and
+winnerless competition [83]. Intuitively, this can be regarded as
+adaptive behaviour in which various rewards are accessed in sequence
+to maintain physiological homoeostasis (e.g., eating and drinking).
+This is straightforward to model by making the cost-function state
+dependent. This enables cost to be changed by the behaviours it
+induces. A simple example is provided in Figure 8, in which we have
+made the satiety parameter of the cost function a hidden state in the
+generative model (and environment) so that satiety increases whenever
+cost is low. Cost can only be low in attractive states, which means
+attractive states become unattractive when occupied for too long. In
+the mountain car setup, when satiety rises, cost is uniformly low
+everywhere and the agent will simply settle at the bottom of the
+valley and stay there until satiety decays sufficiently to make the
+parking location attractive again. Figure 8 shows the equations of
+motion and ensuing dynamics, using the same format as in previous
+figures. This behaviour is characteristic of winnerless competition,
+in the sense that attractive fixed points are inherently unstable and
+release the trajectory to the next fixed point in the sequence. In
+this instance, instability is induced dynamically through state-
+dependent cost. This causes the mountain car to periodically rouse
+itself from the bottom of the valley and visit the parking location
+for a short time, until sated and then return to the bottom of the
+valley for a rest.The vitiation of costly attractors is a mechanism
+that appears in several guises and has found important applications in
+a number of domains. For example, it is closely related to the notion
+of autopoiesis and self-organisation in situated (embodied) cognition
+[42]. It is formally related to the destruction of gradients in
+synergetic treatments of intentionality [86]. Mathematically, it finds
+a powerful application in universal optimisation schemes [91] and,
+indeed, as a model of perceptual categorization [92]. The dynamical
+phenomena, upon which these schemes rest, involve an itinerant
+wandering through state-space along heteroclinic channels (orbits
+connecting different fixed points). Crucially, these attracting sets
+are weak (Milnor) attractors or attractor ruins that expel the state
+until it finds the next weak attractor. The result is a sequence of
+transitions through state-space that, in some instances, can be stable
+and repeating. The resulting stable heteroclinic channels have been
+proposed as a metaphor for neuronal dynamics and underlying cognitive
+processing [83]. Furthermore, the notion of Milnor or ruined
+attractors underlies much of the technical and cognitive literature on
+itinerant dynamics. For example, one can explain “a range of phenomena
+in biological vision, such as mental rotation, visual search, and the
+presence of multiple time scales in adaptation” using the concept of
+weakly attracting sets [92], see also [93]. It is this sort of
+dynamical behaviour that may underpin generalised policies that are
+specified directly in terms of equations of motion (as opposed to
+value functions in optimal control).In this section, we have seen how
+cost can be used to induce attractive fixed points in hidden state-
+space while destroying unattractive fixed points. This does not
+involve any value-learning but rests upon the fact that stable fixed
+points result from flow with the negative divergence. We have seen how
+these policies can be realised in a straightforward manner under
+active inference and how endowing cost with a context sensitivity
+leads to itinerant but purposeful behaviour that is reminiscent of
+biological systems. The basic message here is that it may be
+sufficient to understand adaptive self-organised behaviour purely in
+terms of the itinerant dynamics induced by an agent's (implicit) prior
+beliefs about its motion through state-space. These dynamics and their
+associated attractors can be characterised in terms of unstable fixed
+points (weak attractors) and, in most instances, an associated
+sequence of heteroclinic orbits. In this dynamical setting, a natural
+way to specify (and inherit) the weakly attracting sets that define
+phenotypic behaviour is to destroy or preclude (stable) fixed points
+that do not belong to attracting set. Note that this stands in stark
+contrast to optimal control theory, which tries to optimise the flow
+using value-functions. However, the (generally intractable)
+computation of these functions may be unnecessary and unnatural, if it
+is sufficient to place straightforward constraints on the flow that
+defines value.This paper started with the existence of agents
+(systems) with defining characteristics that are conserved over time.
+We used arguments from ergodic theory, random dynamical systems and
+information theory to identify the imperatives for their dynamics. The
+picture that emerges can be summarised as follows. Agents are equipped
+(by evolution or engineering) with a characteristic (cost) function of
+the states they should occupy or possess. This function places
+constraints on prior beliefs about motion through state-space (state
+transitions). Action realises this policy by suppressing random or
+surprising deviations from the ensuing predictions, thereby minimising
+surprise and the entropy of the ergodic density (over long periods of
+time). The result is a random dynamical attractor, with small measure
+that ensures agents occupy a limited attracting set of states (or
+expresses phenotypic traits that are conserved over time). Every
+policy (flow) has an associated value-function, which is the (log)
+ergodic density (or negative surprise) of any generalised state. The
+self-consistency of cost-functions and the ergodic densities they
+engender is assured by natural selection; in the sense that cost-
+functions that do not induce ergodic behaviour cannot be inherited. In
+the final sections, we compared and contrasted policies from optimal
+control theory with generalised policies based on dynamical systems
+theory that lead to itinerant behaviour.The formulations in this paper
+emphasise the link between cost-functions and policies. Optimal
+control theory and reinforcement-learning assumes value is expected
+cost in the future. This enables the policy to be optimised in terms
+of control, such that the expected path integral of cost is minimised.
+The ensuing policies are prescribed directly by value, which acts as a
+guiding function. This entails finding a solution to a set of self-
+consistent equations linking value and cost. However, this is a
+difficult problem and leads to some inconsistencies; for example, the
+autonomous or random explorations of state-space needed to furnish
+solutions to the Bellman equations are precisely the fluctuations that
+optimal control is trying to avoid. Generalised policies resolve these
+difficulties because they do not define value as expected cost: value
+is defined in terms of the states that are visited most frequently
+(i.e., the ergodic density), and is a function of flow (the policy).
+The last section tried to show that there are straightforward ways to
+place constrain policies; namely, to destroy unattractive fixed
+points. In summary, reinforcement-learning starts with a cost-function
+from which the value-function is derived. The value is then used to
+optimise a policy. Conversely, in the setting of random attractors,
+cost-functions constrain the policy directly. By definition, the
+policy then maximises value or minimises surprise. This eschews the
+solution of the appropriate Bellman equation, provides a principled
+explanation for exploratory or itinerant dynamics, and affords an
+efficient and biologically plausible scheme. Furthermore, it allows
+action to actively suppress unpredicted deviations from the policy.The
+importance of dynamical itinerancy has been articulated many times in
+the past [94], particularly from the perspective of computation and
+autonomy; see [93] for a focus on Milnor attractors. It has also been
+considered formally in relation to cognition; see [87] for a focus on
+attractor relics, ghosts, or ruins. Indeed, there is growing interest
+in understanding brain dynamics 81, 83, 88, 89]. Tani et al., [95]
+consider itinerant dynamics in terms of bifurcation parameters that
+generate multiple goal-directed actions (on the behavioural side) and
+optimization of the same parameters (when recognizing actions). They
+provide a series of elegant robotic simulations to show generalization
+by learning with this scheme. See also [96] for interesting
+simulations of itinerant exploration, using just prediction errors on
+sensory samples over time.Reinforcement-learning frames the problem of
+adaptive behaviour in terms of accessing distal and sparse rewards. In
+one sense this is not a problem; it is the solution entailed by an
+agent and its interactions with the environment. In this view, agents
+do not seek out valuable (rewarding) states; valuable states are just
+states the agent frequents. This challenges any preconception that
+optimal control has a central or unique role in adaptive behaviour.
+Having said this, the premise of optimal control and reinforcement-
+learning that agents minimise expected future costs is a compelling
+and enduring heuristic. This heuristic may be exploited by the brain,
+particularly in terms of high-level (e.g., cognitive) processing using
+model-based schemes.The mountain car example can be regarded as a
+model of behavioural responses constrained by It is well know from the
+complete class theorem that there is a close relationship between
+priors and cost-functions; in the sense that any admissible decision
+rule is Bayes-optimal for at least one prior and cost-function [97].
+The treatment in this paper suggests that when decisions involve
+inferred states of the world, cost-functions can be treated as priors.
+Heuristically, cost-functions are a fixed attribute of the agent and
+can therefore only manifest as formal priors on the agent's inference
+and consequent behaviour. This is particularly important in a
+biological setting, where natural selection endows agents with formal
+or innate priors that constrain their exchanges with the
+environment.In this paper, we have tried to understand optimal control
+theory in relation to the free energy principle. We started with a
+review of ensemble dynamics and the perspective it provides on
+reinforcement-learning and optimal control. These approaches furnish
+policies or equations of motion that converge on attractors in state-
+space that are specified by a cost-function. Conventional schemes
+specify these equations in terms of value-functions or cost-to-go,
+which entail the solution of the appropriate Bellman equation. We
+considered a dynamical alternative based on the selective destruction
+of stable fixed-points in costly regimes of state-space. Although less
+efficient at minimising the path integral of cost, this divergence-
+based scheme involves no value-learning and accounts for exploratory
+dynamics that do not need stochastic interventions. In this context,
+the policies of optimal control become formal priors in generative
+models used to infer hidden states and predict sensations. Action
+fulfils these predictions by suppressing a free energy bound on
+surprise. Crucially, optimising action, perceptual inference,
+perceptual learning, and the priors themselves are all mandated by the
+free energy principle. This principle is simply a restatement of the
+fact that adaptive systems resist a natural tendency to disorder. In
+summary, agents must be equipped with policies that prescribe their
+expected motion through state-space (i.e., state transitions) and the
+ability to counter surprising (random) deviations from the expected
+trajectory though action. The motion prescribed by the policy (and
+realised by action) induces low entropy densities (in terms of
+ensemble dynamics) or random attractors with small measure (in terms
+of random dynamical systems). These are sufficient to explain to
+existent of ergodic self-organising systems, whose attributes are
+conserved over time.

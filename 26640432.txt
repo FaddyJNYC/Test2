@@ -1,0 +1,295 @@
+This technical note describes an application of Bayesian model
+reduction to the inversion of hierarchical or empirical Bayesian
+models (Efron and Morris, 1973; Kass and Steffey, 1989). These sorts
+of models are used (either implicitly or explicitly) in the analysis
+of multisubject studies that contain both within and between subject
+effects (e.g., Friston et al., 1999; Woolrich et al., 2004, 2009). In
+neuroimaging, models of regional responses are usually linear
+(convolution) models at the within-subject level. Here, we consider
+the problem of inverting or fitting equivalent models of effective
+connectivity, which are necessarily nonlinear.The contribution of this
+paper is to finesse the local maxima problem that attends the
+inversion of nonlinear dynamic causal models (DCM). In a recent paper
+(Friston et al., 2015) we described the use of We also take the
+opportunity to compare and contrast Bayesian model comparison (and
+inference about model parameters like effective connectivity and
+synaptic time constants), when using empirical Bayesian estimators of
+group effects, relative to the more conventional modeling of the grand
+mean response over all subjects. In brief, we found that the two
+approaches were remarkably consistent; however, the empirical Bayes
+estimators were more efficient. We imagine that this iterative
+application of empirical Bayes will be useful when trying to estimate
+subject-specific parameters for subsequent analysis at the between-
+subject (or trial) level using classical or Bayesian inference at the
+second level. We will illustrate the latter by trying to recover the
+changes in connectivity responsible for condition-specific (mismatch
+negativity) effects.This note comprises two sections. The first
+reviews the basic theory behind the iterative empirical Bayesian
+scheme, while the second describes the modeling of data from multiple
+subjects using the grand mean response and empirical Bayes. This
+worked example was chosen to be representative of real DCM studies—so
+that the procedures could be illustrated in a pragmatic way. We will
+therefore refer to specific (Matlab) routines that implement the
+procedures. These routines are part of the academic SPM software
+available from http://www.fil.ion.ucl.ac/spm.Bayesian model reduction
+refers to the analytic inversion of reduced models using the posterior
+densities of a full model. Reduced models are formed from full models
+by removing parameters from a full model using very precise priors
+that shrink their values to zero. In other words, the difference
+between a reduced (or restricted) model and the full (or parent) model
+is specified in terms of their respective priors, where the reduced
+prior eliminates or applies shrinkage priors to combinations of model
+parameters. Please see (Friston and Penny, 2011) and the Appendix for
+a more complete discussion of Bayesian model reduction and the
+optimization of models. In short, Bayesian model reduction is an
+efficient way of estimating the posterior density one would have
+obtained under new priors, from the posterior of a full model.Model
+reduction can be especially useful in hierarchical model inversion,
+where the reduced prior over the parameters of lower levels is
+provided by an empirical prior from the level above. For example,
+consider the empirical Bayes model: Approximate Bayesian inference can
+always be cast as maximizing the (negative) variational free energy
+with respect to the sufficient statistics 1999; Friston, 2008) for a
+fuller discussion. Using This scheme is the basis of the empirical
+Bayesian model reduction for group studies described in Friston et al.
+(2015). Effectively, it enables one to perform Bayesian model
+comparison and make inferences at the group level, without having to
+re-estimate each subject's DCM. In this paper, we consider the
+iterative optimization of (approximate) posteriors in Equation (2). In
+other words, we return to the first level, replacing the full prior
+with the empirical prior. Algorithmically, this corresponds
+to:DEMO_GROUP_PEB.m for a numerical illustration of this). However,
+with nonlinear models the iteration of Equation (3) could improve the
+estimates, if the empirical priors are sufficiently precise to
+preclude local maxima in the original inversion under full priors. In
+other words, empirical priors can shrink the estimators toward the
+global maxima, providing more consistent estimators over subjects and
+further shrinking the empirical priors. One might therefore conjecture
+that iterative inversion under empirical priors might progressively
+eliminate local maxima—and increase model evidence (or precision at
+the second level). In the next section, we provide a numerical proof
+of principle that iterative Bayesian model reduction can indeed
+improve model inversion (i.e., system identification), when applied to
+weakly nonlinear models.This section provides a worked example of how
+to apply empirical Bayesian reduction to multi-subject DCM studies. We
+consider the simplest situation, in which a group of normal subjects
+have been studied to characterize the functional anatomy of some
+cognitive process. Our objective is therefore to combine data from
+several subjects to optimize Bayesian model comparison (to test
+specific hypotheses changes in effective connectivity) and Bayesian
+model averaging (to identify and quantify condition-specific
+connectivity changes that have been induced experimentally).We chose a
+fairly standard setup to reproduce the sorts of data and questions
+typically encountered in DCM studies. We simulated data from 16
+subjects based on a previously reported EEG study of the mismatch
+negativity (Garrido et al., 2007)—a paradigm that has been examined
+extensively using DCM in both normal subjects and schizophrenia
+(Garrido et al., 2009a; Fogelson et al., 2014). In brief, subjects are
+presented with streams of auditory tones, whose frequency is changed
+sporadically and unexpectedly. These correspond to 2009b), see Figure
+1.We generated data for each of the 16 subjects using the locations of
+five sources (right and left auditory sources, right and left superior
+temporal sources, and a right prefrontal source) and the
+(connectivity) parameters estimated from a previously reported DCM
+study of the grand mean response (Garrido et al., 2007). The
+parameters used to generate the simulated data were obtained by
+inverting a model with hierarchical connectivity among the five
+sources, while allowing for condition-specific changes in the
+intrinsic connectivity of the auditory and temporal sources and
+extrinsic connectivity from the auditory to temporal sources.
+Physiologically, this corresponds to a change in the excitability of
+neuronal populations in the auditory and temporal sources, with a
+selective change in forward connectivity (i.e., temporal sensitivity
+to ascending auditory input). We deliberately precluded changes in
+backward connections to see whether model inversion could correctly
+identify changes in, and only in, forward connections.The resulting
+estimates were used as group mean values, to which random Gaussian
+variates were added to produce subject-specific parameters. These
+random effects were sampled from the prior distribution over model
+parameters, described in Garrido et al. (2009a). More precisely, we
+fixed the between-subject parametric variability to be a sixteenth of
+the usual prior variances used in this sort of DCM. These prior
+variances now play the role of full priors on the second level (group
+mean) parameters. This model has 158 neuronal parameters and 40
+spatial parameters for each subject. Of these, we were particularly
+interested in 18 parameters encoding the strength of connections
+within and between sources and how they changed with experimental
+condition (see Figure 1). We generated event related potentials using
+the lead field employed in the empirical study but with random (dipole
+orientation and amplitude) parameters sampled from their prior
+distribution.Figure 2, shows an example of the data simulated over 128
+channels. The upper left panel shows the simulated sensor data with
+and without simulated observation noise. Observation or sensor noise
+was created by convolving Gaussian noise with a smoothing kernel of
+eight (4 ms) time bins. The observation noise was scaled to have a
+standard deviation that was an eighth of the simulated signal. This
+signal-to-noise ratio corresponds roughly to the levels that one would
+expect after averaging 64 trials, where the amplitudes of signal and
+noise were equivalent. The lower panels show the between-subject
+variance in terms of the response of the first principal component
+over channel space; for the two conditions (left panel) and the
+condition-specific differences or mismatch negativity (right panel).We
+inverted the data from each subject using iterative empirical Bayesian
+inversion (as described in Equation (3) and implemented in
+spm_dcm_peb_fit.m). In this case, the second level model was a simple
+general linear model with a mean or constant term for each parameter
+at the first level. Figure 3 shows the free energy continues to
+increase after the first iteration. As noted above, this and
+subsequent increases can only be explained by local maxima (or other
+convergence behavior) induced by the non-linear nature of our DCM. If
+our model was linear and the free energy objective function was
+perfectly behaved, then the free energy would not change with
+successive iterations. The correlations between the subject-specific
+parameter estimates and the true values are also shown in Figure 3. In
+line with the local maxima conjecture, the correlations increase after
+the first iteration and then remain relatively high (at about 0.88).
+The improvement in the correlations is mirrored by a decrease in the
+sample and posterior variance of the parameters—as shown for the
+changes in connectivity in the lower panels of Figure 3.Note that the
+correlation with the true values falls very slightly after the fourth
+iteration. This behavior is characteristic of the (extensive)
+simulations that we have performed. Generally, the free energy
+continues to increase with successive iterations but after a few
+iterations, the correlations with the true values tend to decrease,
+and the posterior covariance starts to increase. We therefore require
+the (log determinant) of the posterior covariance to decrease before
+terminating the iterations. The rationale for this convergence
+criterion is that if the empirical priors are destroying local maxima,
+we would expect the posterior variance to decrease as subject-specific
+estimators converge to their global minima, which we suppose are in
+the vicinity of the group mean. Practically, this means the iterative
+scheme usually converges after three or four iterations.The
+correlation between the empirical Bayesian estimators and the true
+parameter values (over subjects) are shown in Figure 4 (upper panel).
+At these, not unrealistic, levels of noise and intersubject
+variability, there is a remarkably high correlation (of 0.89) between
+the parameters of interest; namely, those responsible for condition-
+specific effects (blue dots). A key thing to take from the results in
+Figure 4 is that the dispersion of estimators for any given parameter
+is very similar to the true dispersion. This suggests that the
+between-subject variability has been estimated reasonably accurately,
+thereby enabling optimal shrinkage to the group means. Note the
+vertical line of blue dots that correspond to the (backward) extrinsic
+connections that we fixed to their prior mean (with a log scaling of
+zero). Although the true values were zero, the empirical Bayesian
+estimators suggest these connections were actually reduced very
+slightly during the oddball conditions. We now look at the parameter
+estimates in greater detail, at the between-subject level:Having
+inverted the group data, we then applied Bayesian model reduction to
+evaluate the Bayesian model average over the group means. In this
+example, we performed an exhaustive search over all combinations of
+parameters and their condition-specific changes; using spm_dcm_peb.m
+to evaluate the posterior densities over second level parameters and
+spm_dcm_peb_bmc.m for Bayesian model averaging. The ensuing posterior
+densities are shown before and after Bayesian model reduction in the
+right panels of Figure 4. Crucially, every condition-specific increase
+was detected with a high degree of posterior confidence, with one
+exception (one of the forward connections). Conversely, the
+connections that did not change were estimated to decrease
+slightly—although the posterior confidence interval on one of the
+backward connections included zero. The lower right panel of Figure 4
+shows the results of Bayesian model comparison, when comparing models
+that did and did not include each parameter. This is a simple form of
+Bayesian model comparison that quantifies the belief that each
+parameter deviated from its prior expectations.Finally, we repeated
+the above Bayesian model averaging following inversion of the grand
+mean data. These simulated grand mean data were obtained by averaging
+the responses over the 16 subjects, which were subsequently inverted
+in the usual way (using spm_dcm_fit.m). Bayesian model reduction and
+averaging (using spm_dcm_bmr.m) produced results that were remarkably
+similar to the second level group means obtained with empirical
+Bayesian inversion. The lower panel of Figure 5 illustrates this
+correspondence by plotting the Bayesian model averages following
+empirical Bayesian inversion against the Bayesian model averages
+obtained by inverting the average of the data.This is a reassuring
+result because it means similar inferences can be obtained by
+inverting the average data over subjects and a full (empirical
+Bayesian) analysis. This is important because previous group studies
+using DCM have used the grand mean (average) responses. This sort of
+correspondence is nontrivial because the model is nonlinear. In other
+words, the parameters estimated from average of the data are not
+necessarily the average of the parameters estimated from the data.
+Having said this, the correspondence shown in Figure 5 probably owes
+much to the linearity of the mapping between neuronal sources and
+measured data, implicit in a linear electromagnetic forward model—that
+is part of the DCM for event related potentials (ERP).The posterior
+densities before and after Bayesian model averaging are shown in
+Figure 5 (left panels) for comparison with the corresponding empirical
+Bayesian estimates. The key thing to note here is that the posterior
+confidence intervals are larger for the grand average analysis. In
+other words, the empirical Bayesian scheme provides more precise
+estimates. This has two consequences. First, the empirical Bayesian
+estimators are biased toward the prior mean and generally
+underestimate the true effects, in relation to the equivalent
+estimators based upon the grand average. However, the greater
+uncertainty associated with the grand average estimators means that
+several connections are eliminated following Bayesian model reduction.
+This effect is particularly severe for the intrinsic and extrinsic
+connections at the lowest level of the auditory hierarchy (compare the
+results of Bayesian model comparison in the lower panels in Figure
+4).In conclusion, we have described an iterative extension to an
+empirical Bayesian scheme for nonlinear models. By repeatedly
+inverting models at the first level, under empirical priors furnished
+by higher levels, one can finesse the local maxima problem by
+shrinking estimators to the global mean. This provides more robust
+estimates at the first (e.g., within-subject) level for subsequent
+Bayesian model comparison and inferences about key model parameters.
+Furthermore, we have shown that, in principle, similar results can be
+obtained when analysing the grand mean data from ERP studies; however,
+ERP studies may be a rather special case given the linear relationship
+between (hidden) neuronal responses and observed data (and identical
+paradigms over subjects).This iterative application of empirical Bayes
+should provide more efficient and accurate estimates of parameters
+obtained from multiple trials, sessions or subjects. Although we have
+focused on Bayesian inference about group means in this technical
+note, subject-specific estimators can be treated as summary statistics
+in the usual way—and used to test for particular between trial or
+subject effects using classical inference. However, there is a caveat
+here: because these estimates enjoy the benefit of empirical shrinkage
+priors, they will all be shrunk to the group mean. This means that
+classical tests against the null hypothesis of a mean of zero will be
+biased. This does not affect any other tests; for example, the effects
+of age or other parametric (between trial or subject) variables.We are
+currently evaluating the reproducibility and robustness of this
+iterative scheme using empirical data. Key questions here include
+reproducibility in terms of inference about models and parameters
+under different models, different data and the difference between
+empirical Bayesian averaging vs. inversion of the grand average.Future
+work will focus on the convergence of our iterative scheme for group
+data. This is an interesting problem (highlighted by our reviewers),
+because the very presence of local minima—and related violations of
+the Laplace assumption—means that variational free energy could be a
+poor approximation to model evidence. In other words, the problem we
+are trying to finesse precludes a simple free energy optimization
+(indeed, one occasionally sees decreases in free energy with
+successive iterations). This is further compounded by the fact that
+approximate Bayesian inference based upon variational free energy is
+known to provide overconfident solutions, even when the assumptions of
+the Laplace approximation are met. Our (pragmatic) solution to this is
+to use the reduction in posterior uncertainty at the between subject
+level as a criterion for convergence. The rationale here is that
+shrinkage to the group mean will be reflected in a more precise
+posterior density (as local minima are destroyed). This appears to
+work for a variety of imaging modalities and data features; however, a
+full validation of this criterion would require (multimodal) posterior
+distributions that eschew the Laplace assumption. These can be
+accessed using sampling schemes that are the focus of current research
+(e.g., Sengupta et al., 2014). An alternative approach could call on
+extensions of Variational Bayes and mean-field approximation schemes,
+via the use of mixture distributions (e.g., Jaakkola and Jordan,
+1998). Essentially, instead of selecting one particular mean-field
+solution, these schemes form a weighted average (a mixture) of several
+mean-field solutions. Crucially, they rely on the assumption that
+minima are not close to each other, which might not be a completely
+unrealistic assumption in the context of DCM.The procedures described
+in this paper are implemented as Matlab routines in the SPM software
+(http://www.fil.ion.ucl.ac/spm). The key routines are
+spm_dcm_peb_fit.m, spm_dcm_peb.m and spm_dcm_peb_bmc.m. These
+(annotated) routines include a help section for further guidance on
+their functionality. A demonstration of their use is provided in the
+DEM Toolbox (invoked by typing DEM). The code can be edited and
+executed by selecting the “PEB with BMR” button or running the
+following routines directly: DEMO_BMR_PEB.m and DEMO_GROUP_PEB.m.The
+authors declare that the research was conducted in the absence of any
+commercial or financial relationships that could be construed as a
+potential conflict of interest.

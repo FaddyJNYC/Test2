@@ -1,0 +1,511 @@
+This paper concerns the application of Granger causality to biological
+timeseries; in particular, the analysis of electrophysiological data
+using (complex) cross spectra (Granger, 1969). Our focus is on
+spectral causality measures of the sort introduced by Geweke (Dhamala
+et al., 2008; Geweke, 1982; Nedungadi et al., 2009) and their
+relationship to dynamic causal modelling (Friston et al., 2013).We
+first show how Granger causality can be derived from the parameters of
+a state-space model of coupled neuronal dynamics — and establish that
+Granger causality correctly reports the true direction of coupling,
+under low levels of measurement noise. We then consider two cases
+where Granger causality provides unreliable estimates of the
+underlying effective connectivity. First, when the dynamics generating
+timeseries data contain slow (unstable) modes, recovering the
+autoregressive coefficients used in parametric Granger causality
+becomes an ill-posed problem. This is important because unstable modes
+are ubiquitous in biological systems; for example, in systems with
+scale-free characteristics (such as power laws) or dynamics associated
+with self-organised criticality (Bullmore et al., 2001; Shin and Kim,
+2006; Stam and de Bruin, 2004). This problem can be resolved by using
+nonparametric1 Granger causality that eschews autoregressive
+parameterisations (Dhamala et al., 2008; Nedungadi et al., 2009).
+However, both parametric and nonparametric Granger causality can fail
+in the context of measurement noise. This is an established
+shortcoming of Granger causality (Newbold, 1978) but becomes
+particularly acute with noisy electrophysiological recordings
+(Nalatore et al., 2007). Having characterised these two problems, we
+consider a solution using Granger causal measures based on the
+posterior parameter estimates of dynamic causal modelling.Unlike
+Granger causality, dynamic causal modelling uses an explicit model of
+the dynamics generating data — usually cast in terms of a state-space
+model with hidden states. This is crucial because DCM mandates an
+explicit parameterisation of both random Nalatore et al., 2007).
+However, in principle, the effects of measurement noise can be removed
+using DCM and the resulting Granger causal measures can be derived
+from the estimated model parameters furnished by model inversion.
+These points are described below using standard (analytic) results and
+numerical simulations. This treatment offers a way forward for Granger
+causality in the context of measurement noise and long-range
+correlations; however, there are many outstanding issues in the
+setting of DCM that we will return to in the discussion.This paper
+comprises three sections. In the first, we review the relationship
+between state-space models and various characterisations of their
+second-order behaviour, such as coherence and spectral Granger
+causality. This section describes the particular state-space model
+used for subsequent simulations. This model is based upon a standard
+neural mass model that is part of the suite of models used in the
+dynamic causal modelling of electromagnetic data (David et al., 2006;
+Friston et al., 2012; Moran et al., 2008). The section concludes by
+showing that – in the absence of noise and with well-behaved (stable)
+dynamics – expected Granger causal measures are accurate and properly
+reflect the underlying causal architecture. In the second section, we
+vary some parameters of the model (and measurement noise) to
+illustrate the conditions under which Granger causality fails. This
+section focuses on failures due to critical (unstable) dynamics and
+measurement noise using heuristic proofs and numerical simulations.
+The final section shows that, in principle, Bayesian model inversion
+with DCM dissolves the problems identified in the previous section;
+thereby providing veridical Granger causal measures in frequency
+space.The purpose of this section is to clarify the straightforward
+relationships between spectral descriptions of data and the processes
+generating those data. This is important because if we know – or can
+estimate – the parameters of the generative process, then one can
+derive expected measures – such as cross-covariance functions, complex
+cross spectra, autoregressive coefficients and directed transfer
+functions – analytically. In other words, measures that are typically
+used to characterise observed data can be regarded as samples from a
+probability distribution over functions, whose expectation is known.
+This means that one can examine the expected behaviour of normalised
+measures – like cross-correlation functions and spectral Granger
+causality – as an explicit function of the parameters of the
+underlying generative process. We will use this fact to see how
+Granger causality behaves under different parameters of a neural mass
+model generating electrophysiological observations — and different
+parameters of measurement noise.In what follows, we use F[·],
+expectations by E[·] convolution operators by * and Kronecker tensor
+products by ⊗. Variables with a ~ denote (usually Toeplitz) matrices
+whose columns contain (lagged) functions of time and † means conjugate
+transpose.Table 1a provides the basic form of the generative models
+that we will consider. This form is based on (stochastic and delay
+differential) equations of motion and a static mapping to
+observations. Any system of this sort has an equivalent Volterra
+series expansion that can be summarised in terms of its first order
+Volterra kernels. These kernels can be thought of as an impulse
+response to each source of fluctuations.Table 1b shows how various
+measures of spectral power or variance (second-order statistics) can
+be derived from the kernels — and from each other. This table is
+arranged so that the representations of second-order statistics listed
+against the columns can be derived from the representations over the
+rows (see the glossary of variables that accompanies this table). For
+example, cross spectral density is the Fourier transform of the cross
+covariance function. The entries along the leading diagonal define the
+models of (linear) dependency upon which these characterisations are
+based. The odd and even columns pertain to functions of time and
+frequency respectively, where the Fourier transforms of the kernels
+are known as transfer functions, which we will refer to as Second-
+order measures like cross-covariance and spectral density functions do
+not speak to directed functional connectivity because they do not
+appeal to any temporal precedence constraints — they simply reflect
+(non-causal) statistical dependence. In contrast, characterisations
+based upon autoregressive processes and causal spectral factors are
+measures of Dhamala et al., 2008; Nedungadi et al., 2009).
+Intuitively, this uses Newton's method to find a square root (or
+factor) under the constraint that the Fourier transform of the factor
+is causal or a minimum phase filter (Fomel et al., 2003). Once the
+cross spectral density has been factorised, the instantaneous part of
+the filter is removed — and becomes an estimate of the cross
+covariance of the innovations. The expressions in Table 1b use
+standard linear algebra results based upon Wiener–Khinchin theorem,
+the Yule–Walker relationships and (Wilson–Burg) spectral factorisation
+to show the relationships between different approaches to
+characterising second-order dependencies between time series.Note
+above the difference between the modulation transfer function Table 1c
+lists the normalised or standardised versions of non-causal (cross-
+covariance and spectral) and causal (directed transfer) functions.
+These are commonly used as the basis of inference about undirected and
+directed functional connectivity respectively (Friston et al.,
+2013).Equipped with the expressions in Table 1, one can derive the
+expected functions that characterise functional connectivity, given
+the parameters of the underlying state-space model. Furthermore, one
+can derive any one representation from another. For example, starting
+from a parameterised state-space model, we can derive the Volterra
+kernels and resulting cross-covariance functions among observation
+channels. One can then compute the autoregressive coefficients and
+directed transfer functions to compute parametric spectral Granger
+causality. Alternatively, one could take the Fourier transform of the
+kernels (and the cross-covariance functions of the fluctuations and
+measurement noise) to produce the expected cross spectrum over
+observed channels. Using spectral matrix factorisation, one can then
+identify the nonparametric directed transfer function and associated
+Granger causality. These two (parametric and nonparametric) routes are
+illustrated schematically in Fig. 1.To illustrate the derivation of
+expected transfer functions and Granger causality, we will use a
+standard state-space model from the suite of neural mass models used
+in the SPM software implementation of dynamic causal modelling. This
+suite includes neural mass models based upon convolution operators
+(that model synaptic convolution of presynaptic inputs) or models that
+are nonlinear in the hidden states based upon conductance models (that
+model the interaction between voltage and transmembrane conductances).
+All of these neuronal mass models allow for the coupling of multiple
+sources, where each source comprises multiple neuronal populations
+(usually three or four). Fig. 2 shows the canonical microcircuit
+neural mass model – a convolution model – that we will use in this
+paper. This particular model has been used previously to characterise
+things like intrinsic gain control mechanisms in hierarchical visual
+processing (Brown and Friston, 2012) and impaired top–down
+connectivity in minimally conscious states (Boly et al., 2011).Because
+our focus is on spectral Granger causality, we limit ourselves to a
+simple bivariate case — with two channels reporting observed
+depolarisation in two sources. To examine the validity of expected
+causal measures, we consider the simplest case of a unidirectional
+(forward) connection from the first to the second source — that is not
+reciprocated. We wanted to see whether spectral Granger causality
+could properly discount the backward connections. Fig. 2 details the
+architecture of this model, with four populations per source and one
+extrinsic forward connection between the sources. The intrinsic
+connections couple different populations within a source — here, spiny
+stellate cells, inhibitory interneurons and superficial and deep
+pyramidal cells. The equations in the boxes are the equations of
+motion that constitute the state-space model. Notice that these are
+delay differential equations because the sigmoid function of
+presynaptic input operates on the mean depolarisation of the
+presynaptic source in the recent past — to accommodate axonal
+conduction delays. Intrinsic (within source) conduction delays are
+about 1 ms while extrinsic (between source) delays are about 4 to
+8 ms.We assumed that observed data were generated by the superficial
+pyramidal cells, with parameterised measurement noise. The (neuronal)
+fluctuations driving both the spiny stellate cells and the measurement
+noise had a 1/f or power law form. The amplitude of the measurement
+noise was suppressed to low values with a log scaling of − 8. In other
+words, the spectral density of the measurement noise was Table 2, this
+pair of sources produces spectra of the sort shown in Fig. 3. The
+expected spectra (red line) showed clear spectral peaks at beta and
+gamma frequencies superimposed on a power law form. The blue and green
+lines show the empirical estimates over 16 (1024 ms) epochs based on
+simulated data. Appendix A describes how the delay differential
+equations in Fig. 2 were integrated.Equipped with the expressions in
+Table 1, one can now derive the expected transfer functions and
+spectral Granger causality for any generative process specified in
+terms of its parameters. Fig. 4 shows the functions expected using the
+parameters in Table 2. Note that the expected Granger causalities are
+not estimates — they are analytic reformulations of the underlying
+causal architecture using the expressions in Table 1. Given the
+(effective connectivity) parameters of the state-space model, the only
+thing that we have to specify is the order of the autoregressive model
+of linear dependencies (we used a model order of The expected
+modulation (blue lines) and (normalised) directed transfer functions
+(green lines) report the shared variance between the two regions as a
+function of frequency. For these parameters, the causal spectral
+measures (directed transfer functions and Granger causality) properly
+identify the gamma peak and – more importantly – assign all the causal
+effects to the forward connections — with no Granger causality in the
+backward direction. Note that the directed transfer functions are
+normalised and therefore have a different form to the modulation
+transfer functions. The modulation transfer functions report the total
+amount of power (at each frequency) in one source that appears in
+another. In short, under low level measurement noise, Granger
+causality can properly identify the directed functional connectivity
+in both qualitative and quantitative terms. In the next section, we
+explore the parameter space over which Granger causality retains its
+validity.We repeated the above analyses for different levels of some
+key parameters to illustrate two conditions under which Granger
+causality may fail. These parameters were the forward and backward
+extrinsic connection strengths, the intrinsic gain or the slope of the
+sigmoid function (Kiebel et al., 2007) and the amplitude of
+measurement noise (in the second source). Table 2 lists the prior
+expectations for these parameters, while Fig. 5 lists the levels we
+explored in terms of their log scaling. Fig. 5 shows the results of
+these analyses in terms of (normalised) modulation transfer functions
+(green lines) and Granger causality (blue lines) associated with the
+forward (left panels) and backward connections (right panels).
+Pleasingly, when increasing forward connection strengths, Granger
+causality increases in proportion, without detecting any backward
+Granger causality. Similarly, when the backward effective connectivity
+was increased, Granger causality detected this, while its estimate of
+forward influences remained unchanged. Interestingly, under these
+neural mass model parameters, the forward modulation transfer
+functions peak in the gamma range, while the backward connections
+peaked in the lower beta range. This is reminiscent of physiological
+findings: for example, recent findings suggest that the superficial
+layers show neuronal synchronization and spike-field coherence
+predominantly in the gamma frequencies, while deep layers prefer lower
+(alpha or beta) frequencies (Roopun et al., 2006, Maier et al., 2010;
+Buffalo et al., 2011). Since feedforward connections originate
+predominately from superficial layers and backward connections from
+deep layers, this suggests that forward connections use relatively
+high frequencies, compared to backward connections (Bosman et al.,
+2012).In contrast to changes in extrinsic connectivity, when intrinsic
+gain and measurement noise were increased, Granger causality fails in
+the sense that it detects strong and spectrally structured backward
+Granger causality. Interestingly, for increases in intrinsic gain,
+this spurious influence was localised to the gamma range of
+frequencies. In this example, the increase in measurement noise was
+restricted to the second channel and produced spurious spectral
+causality measures in high-frequency regimes. We now consider the
+reasons for these failures in terms of dynamical instability and
+measurement noise.The failure of Granger causality with increasing
+intrinsic connectivity is used to illustrate a key point when
+modelling dynamical (biophysical) systems with autoregressive models.
+Autoregression processes model temporal dependencies among
+observations that are mediated by (long memory) dynamics of hidden
+states. One can express the dependencies between the current and past
+states as follows (using a local linear approximation):Clearly, if one
+wanted to model these dependencies with a Here (Practically, this
+suggests that if the (neuronal) system is operating near a
+transcritical bifurcation — and its eigenvalues approach zero from
+below, then the autoregressive formulation will not converge and
+associated spectral (Granger causality) measures become unreliable.
+Technically, dynamical instability means that the covariance among
+observations becomes ill-conditioned, where the cross covariance (at
+zero lag) can be expressed in terms of the (real part of the)
+eigenvalues as follows:Eq. (3) means that the mode or pattern of
+activity described by the eigenvector whose eigenvalue approaches zero
+will decay much more slowly than the other modes and will dominate the
+cross-covariance. This is important because the auto regression
+coefficients are computed using the inverse of the cross-covariance
+matrix Based on this heuristic analysis, one might anticipate that the
+extrinsic connectivity parameters do not increase the principal
+eigenvalue of the Jacobian (also known as the local Lyapunov
+exponent), whereas the intrinsic gain parameter does. Fig. 6 (upper
+left panel) shows that increasing the intrinsic gain (expressed in
+terms of log scaling) produces eigenvalues with associated time
+constants of over 1/Fig. 6 illustrate the ensuing failure of an
+autoregressive characterisation of spectral responses by comparing the
+expected spectrum (from the first source) with the autoregressive
+approximation associated with the coefficients derived analytically
+from the expected cross-covariance function. One can see that marked
+differences are evident when the condition number of the cross
+covariance matrix exceeds about 10,000. Clearly, one could consider
+increasing the order of the autoregressive process; however, when the
+cross covariance matrix becomes (nearly) singular, one would need a
+(nearly) infinite order process.Other model parameters that cause the
+principal eigenvalue to approach zero from below include the intrinsic
+and extrinsic delays (see Fig. 6). This is important, because neuronal
+systems necessarily have delays, which effectively increases the
+number of hidden states to infinity: strictly speaking, the
+introduction of delays into the system's characteristic function
+induces an infinite number of eigenvalues (Driver, 1977). This
+(almost) inevitably produces near zero Lyapunov exponents and is an
+important source of critical behaviour in biological systems (Jirsa
+and Ding, 2004). Another perspective on the failure of autoregressive
+formulations is based on the fact that a (linear) state-space model
+with Nalatore et al., 2007). When the number of effective states
+increases to infinity, the associated infinite-order AR process cannot
+be approximated with a finite-order autoregressive process.One remedy
+for systems that show critical behaviour is to abandon the finite-
+order autoregressive formulation and consider nonparametric estimates
+of Granger causality based on spectral matrix factorisation (Nedungadi
+et al., 2009). Fig. 7 takes a closer look at the effect of increasing
+intrinsic gain and compares the performance of autoregressive and
+Wilson–Burg spectral causality measures. As one might predict, the
+Wilson–Burg estimates finesse the problem of unstable modes and may
+therefore be preferable in the characterisation of neuronal
+timeseries. Heuristically, the Wilson–Burg estimates can do this
+because they have more degrees of freedom to model (minimum phase)
+linear dependencies. In other words, minimum phase filters require
+more numbers to specify them than the number of coefficients available
+to AR models of the order used. Clearly, this latitude introduces a
+potential trade-off in terms of overfitting; however, in this setting
+Wilson–Burg procedures provide better estimates of the true (expected)
+Granger causality (green lines in Fig. 7).The failure of Granger
+causality in the context of measurement noise is slightly more
+problematic. This failure is almost self-evident from the relationship
+between the modulation transfer function and the directed transfer
+function. From Table 1:This expression says that the observed spectral
+density can be decomposed into measurement noise and shared variance
+mediated by (neuronal) fluctuations. It is the latter that underlies
+spectral measures of directed functional connectivity — and not the
+former. We therefore require the directed transfer functions to be
+proportional to the modulation transfer functionsIn this case, the
+(off-diagonal terms of the) normalised directed transfer functions
+report the shared variance. This constraint portends some good news
+and some bad news: the good news is that there is no requirement that
+the spectral power of the innovations has to be the same for all
+frequencies (this is why the covariance of the innovations Table 1 —
+and why some equalities are proportionalities). This means that
+normalised spectral measures – like directed transfer functions and
+Granger causality – do not have to assume the innovations are white.
+In other words, they can cope with serially correlated innovations The
+bad news is that for the proportionality above to hold the measurement
+noise has to be negligible (or proportional to the shared component).
+This is a simple but fundamental observation, which means that Granger
+causality can become an unreliable measure in the presence of
+substantial measurement noise. This problem was identified nearly half
+a century ago (Newbold, 1978) and has recently started to attract
+serious attention: see (Nalatore et al., 2007) for a comprehensive
+deconstruction of the problem in the context of autoregressive
+formulations. See also Solo (2007) who consider the effects of
+measurement noise under AR models and conclude that “state space or
+vector ARMA models are needed instead.”In brief, we can summarise the
+situation as follows: the spectral causality we seek is mediated by
+the modulation transfer functions. These modulation transfer functions
+can be approximated by directed transfer functions when measurement
+noise can be ignored. In this case, the fluctuations and innovations
+become the same. Furthermore, if we make the simplifying assumption
+that the spectral profile of the fluctuations (and implicitly the
+innovations) is the same for all sources, we can replace their cross
+spectral density with their covariance. This can be expressed formally
+to recover the conventional expression for spectral Granger
+causality:Fig. 8 shows what happens when measurement noise cannot be
+ignored by increasing its log-amplitude from trivial values (of − 8)
+to the level of the fluctuations. Here, we increased both the power of
+the measurement noise that was shared and unique to each channel
+(where the shared component was smaller than the unique component by a
+log-amplitude of one). This simulates a range of signal-to-noise
+ratios from almost negligible to very high levels. This can be seen in
+the inset of Fig. 8, which shows the coherence between the two
+channels for the eight noise levels considered. For the first four
+levels, nearly all the coherence is mediated by neuronal fluctuations;
+whereas at the last level of measurement, noise dominates the
+coherence (through the shared component).The effect of noise, as one
+might intuit, starts to emerge when the noise is no longer trivial in
+relation to signal — here at about a log-amplitude of − 4. At this
+point, the Granger causal measures of forward connectivity start to
+fall and nontrivial backward connectivity emerges. Interestingly, in
+the nonparametric case, the spurious spectral coupling is in the same
+(low-frequency) ranges for both forward and backward connections. One
+might suppose that this is a reflection of the symmetrical cross
+spectral density induced by noise.It should be emphasised that the
+levels of noise that impact on spectral causality measures are large
+in relation to typical electrophysiological recordings, especially LFP
+recordings. In typical data analysis situations, one should be able to
+diagnose recordings with high levels of shared measurement noise using
+measures that are sensitive to non-causal shared variance (e.g.,
+volume conduction), like imaginary coherence and the weighted phase-
+locking index (Nolte et al., 2004; Vinck et al., 2012). In these
+situations, it is well-known that Granger causal analysis can be
+confounded (Nalatore et al., 2007). In the next section, we explore
+how DCM can mitigate this problem.In summary, the naive application of
+Granger causality to measured data is unreliable unless the
+measurements are relatively noiseless. This observation speaks to the
+fundamental difference between approaches that try to characterise
+dependencies among observations and approaches that acknowledge
+observations are generated by hidden states, such as dynamic causal
+modelling. Does this mean that spectral Granger causality should be
+abandoned in the setting of noisy measurements? Not necessarily. In
+the final section, we consider how valid Granger causality estimates
+can be recovered from dynamic causal modelling.In the previous
+section, we saw that nonparametric Granger causality finesses the
+problems associated with characterising biological timeseries
+generated by coupled and delayed dynamics with unstable (slow) modes
+of behaviour. However, nonparametric Granger causality fails in the
+presence of measurement noise. Here, we provide a proof of principle
+that the problem of measurement noise can be dissolved by computing
+the Granger causality based upon the modulation transfer functions
+estimated by dynamic causal modelling (see Eq. (6)).Put simply, using
+an explicit model of (realistic) fluctuations and measurement noise,
+one can estimate the Granger causality that would have been seen in
+the absence of noise. This is illustrated in Fig. 9, where we have
+inverted a model of the generative process using standard (variational
+Laplace) procedures (Friston et al., 2007) to estimate the effective
+connectivity parameters. These parameters provide the modulation
+transfer functions — and the corresponding Granger causality measures
+that properly reflect the spectral structure of forward influences and
+the absence of backward connectivity. In this example, we fitted the
+expected cross spectra in channel space using the (known) form of the
+neural mass model with (unknown) parameters and the usual priors for
+this model (provided in Table 2).For those people not familiar with
+dynamic causal modelling, DCM is a Bayesian model comparison and
+inversion framework for state-space models formulated in continuous
+time. It uses standard variational Bayesian procedures to fit
+timeseries or cross spectra – under model complexity constraints – to
+provide Friston et al. (2012) for more details in this particular
+setting. This iterative procedure usually converges within about 32
+iterations, producing the sort of fits shown in the left panels of
+Fig. 9. In short, DCM solves the inverse problem of recovering
+plausible parameters (of both neuronal dynamics and noise) that
+explain observed cross spectra.In summary, provided that one can solve
+the inverse problem posed by dynamic causal modelling, one can recover
+veridical Granger causality measures in the spectral domain.
+Crucially, this requires accurate models of the underlying generative
+process. From the point of view of dynamic causal modelling, these
+measures provide an intuitive and quantitative report of the directed
+frequency-specific influences mediated by effective connectivity.
+Specifically, they are the normalised modulation transfer functions
+(as opposed to the normalised directed transfer functions). From the
+point of view of spectral Granger causality, DCM has just been used to
+place constraints on the parametric form of the underlying dynamics,
+which enable observed power to be partitioned into signal (generated
+by hidden states) and noise.In conclusion, we have shown that naïve
+Granger causality is not appropriate for noisy measurements of coupled
+dynamical systems with delays. Having said this, it is fairly
+straightforward to compute Granger causality measures of directed
+functional connectivity from estimates of directed effective
+connectivity — as provided by dynamic causal modelling. In their
+analysis of measurement noise, Nalatore et al. (2007) proposed a
+solution based upon a linear state-space model and Bayesian model
+inversion (an expectation maximisation scheme based upon Kalman
+smoothing). The same approach – to estimating measurement noise by
+modelling dependencies with linear state-space models – appears to
+have been proposed independently by Sommerlade et al. (2012). Although
+this approach may fail when the process generating data exhibits
+critical dynamics, it nicely highlights the need to explicitly model
+hidden states generating observed data — such that covariance induced
+by fluctuations in hidden states can be separated from covariance due
+to measurement noise; see also Robinson et al. (2004). In short, a
+failure to model hidden states may produce false inferences when
+naïvely applying spectral Granger causality to observed data.This
+conclusion shifts the problem from worrying about the shortcomings of
+Granger causality to worrying about the problems posed by dynamic
+causal modelling. These problems should not be underemphasised
+(Daunizeau et al., 2011): in the illustration above, we used a dynamic
+causal model that had the same form as the process generating noisy
+observations. Clearly, this model will not be known in real world
+applications. This means that the DCM has to be optimised in relation
+to the data at hand — using Bayesian model comparison or averaging
+(Penny et al., 2004). This speaks to an open issue in DCM; namely, how
+to score and invert alternative models of observed data in an accurate
+and efficient fashion. In one sense, this problem is the focus of
+nearly all current work on dynamic causal modelling and – although
+much progress has been made – dynamic causal modelling is still in its
+infancy. This model optimisation speaks to the continuous process of
+perfecting the underlying model of neuronal dynamics as more
+information about neuronal circuits becomes available. This is at the
+heart of a Bayesian approach to data modelling: placing knowledge in
+the model to provide more informed constraints and better estimates of
+causal interactions.We have distinguished between estimates of Granger
+spectral causality based upon autoregressive processes and spectral
+factorisation as parametric and nonparametric respectively (Dhamala et
+al., 2008). For some people, this is contentious because both rest
+upon models of statistical dependencies that have implicit parameters.
+For example, the autoregression coefficients in autoregressive models
+or the minimum phase filters produced by spectral factorisation. In
+this sense, both are parametric. Conversely, unlike dynamic causal
+modelling, neither parametric nor nonparametric Granger causality are
+equipped with parameterised models of how dependencies are generated.
+In this sense, they are both nonparametric. The slightly unfortunate
+use of parametric and nonparametric could be finessed by explicit
+reference to the underlying model of dependencies; e.g.,
+autoregressive or minimum phase (as suggested by our reviewers).It is
+well-known that long-range temporal autocorrelations are problematic
+for Granger causality. Non-invertible (even if causal) filtering can
+induce such autocorrelations; as will long-memory processes (e.g.
+power–law autocorrelation decay found in fractionally-integrated
+autoregressive processes). Granger causality is not well-defined for
+such processes because they do not satisfy prerequisite spectral
+conditions (Geweke, 1982). We have considered this issue in terms of
+dynamical instability in the vicinity of transcritical bifurcations —
+when the system's principal Lyapunov exponent (real eigenvalue)
+approaches zero from below. In spectral theory, this instability can
+be characterised in terms of the Barnett and Seth (2014).The focus of
+this technical note has been rather pragmatic: it has focused on the
+technical issue of estimating Granger causality in the presence of
+measurement noise and long range correlations. Furthermore, we have
+restricted our treatment to spectral measures of Granger causality.
+One might ask why measure Granger causality with dynamic causal
+modelling if one has already estimated the causal influences
+(effective connectivity and associated transfer functions) en route.
+In the setting of effective and functional connectivity, Granger
+causality has been cast as a measure of directed functional
+connectivity (Friston et al., 2013). Given that functional
+connectivity is a measure of statistical dependencies or mutual
+information, this means that Granger causality measures the directed
+mutual information between the present state (of a target) and the
+past state (of a source). Formally, directed mutual information
+corresponds to transfer entropy (Lindner et al., 2011). This is
+important because there is equivalence between Granger causality and
+transfer entropy (Barnett et al., 2009), which therefore allows one to
+quantify directed information transfer in terms of Granger causal
+estimates. This suggests that it is possible to relate causal
+influences (effective connections) to their information theoretic
+consequences in a quantitative sense.Finally, we have not addressed
+how to assess the significance of Granger causality. Generally, this
+would proceed using some form of nonparametric inference based upon
+(surrogate) data in which directed temporal dependencies are
+destroyed. Although our focus has been on estimation, as opposed to
+inference, it is worth noting that – from the perspective of DCM –
+inference rests on comparing the evidence for models generating
+Granger causality metrics. In other words, one would first select the
+DCM with the highest model evidence, after which Granger causal
+measures would be used to characterise directed functional
+connectivity in a quantitative fashion.

@@ -1,0 +1,201 @@
+I know little about social psychology and less about 2013, Friston,
+2010; Friston, FitzGerald, Rigoli, Schwartenbeck, & Pezzulo, 2017;
+Hohwy, 2016). Particular flavors of this formulation have dominated
+cognitive neuroscience and aspects of philosophy for the past decade.
+For example, the Bayesian brain hypothesis (Kersten, Mamassian, &
+Yuille, 2004; Knill & Pouget, 2004) and predictive processing (Barrett
+& Simmons, 2015; Michael & De Bruin, 2015; Rao & Ballard 1999; Seth,
+2013) are now predominant paradigms in cognitive neuroscience. Active
+inference generalizes this approach to provide an enactive or embodied
+treatment of action and perception. This resulting treatment bears
+some remarkable similarities to the ideas reviewed in Kruglanski
+et al. This commentary tries to establish the formal links between In
+brief, active inference explains everything we perceive and do in
+terms of one imperative, namely, the minimization of variational free
+energy (Friston, 2013). Variational free energy is an upper bound on
+surprise, where surprise (the negative log probability of sensory
+samples) corresponds to negative Bayesian log evidence. This means
+that everything we infer (and do) is in the service of minimizing
+surprise or maximizing the evidence for our internal or generative
+models of the world. By maximizing the evidence for our models of the
+world (i.e., self-evidencing), we come to infer hidden or latent
+states of the world “out there” that generate our sensations. This
+formulation of “perception as inference” has a long pedigree and was
+arguably best articulated by Helmholtz (Helmholtz, 1878/1971):
+“Objects are always imagined as being present in the field of vision
+as would have to be there in order to produce the same impression on
+the nervous mechanism.”Crucially, in active inference, we also have to
+consider beliefs about action or behavior. These (posterior) beliefs
+depend upon the degree to which a course of action will minimize
+expected free energy in the future. The notion of Technically, free
+energy can always be expressed as a   Based on these beliefs, we can
+then form beliefs about “what to do” by choosing those actions that
+minimize expected free energy. The important move here is to separate
+the divergence and evidence parts of free energy and understand what
+their expected values mean. It turns out that they correspond to The
+mathematical form of this separation can be expressed in terms beliefs
+Equation 1 provides a detailed description of these mathematical
+expressions for readers familiar with Bayesian or variational
+treatments. The variable γ is a constant of proportionality that will
+play an important role later in terms of affective responses to
+beliefs about action.Pragmatic value acquires the semantic
+“motivational” because it is the expected log probability of prior
+beliefs about outcomes. In other words, if we treat beliefs about the
+consequences of behavior as prior preferences, then we will choose
+those behaviors that lead to goals or preferred outcomes. However,
+this is always in the context of reducing uncertainty (that can be
+also expressed in terms of Equation A.1 in the appendix). This is the
+epistemic part of expected free energy—variously known as Bayesian
+surprise, information gain, the value of information, intrinsic
+motivation, and so on (see Equation 1). In summary, the interaction
+between motivational and epistemic value appears to underpin the
+deconstruction of cognitive consistency and plays a central role in
+active inference. Note that pragmatic and epistemic values are log
+probabilities. This means that there is exactly the same sort of
+interaction in terms of probabilities per se suggested by Kruglanski
+et al. (this issue). In other words, our prior preferences
+contextualize attempts to resolve uncertainty. So how can this
+formalism used to understand “the affective response to new
+information” and, more specifically, how does it address “people’s
+reactions to awkward news” (Kruglanski et al., this issue, p. 54)?The
+important thing that active inference brings to the table is the
+distinction between beliefs about states of the world and beliefs
+about “what I am going to do.” Expected free energy is a functional
+of beliefs about states of the world and therefore determines
+(posterior) beliefs about “what to do” based on motivational
+(pragmatic) and epistemic value. So where does the affective bit come
+in? Generally, people describe affective or hedonic attributes to the
+beliefs about “what to do,” as opposed to the “states of affairs.” In
+particular, a positive valence is associated with precise, confident
+(low entropy) beliefs about action, and conversely, negative affect is
+associated with uncertainty and confusion about what to do next (Gu,
+Hof, Friston, & Fan, 2013; Seth & Friston, 2016). This distinction
+between beliefs about states and beliefs about action comfortably
+accommodates the key dialectics in the target article, as
+follows.First, it distinguishes between 2017; Seth, 2013; Stephan
+et al., 2016).The interesting thing about associating inconsistency
+with uncertainty about policies to pursue is that inconsistency
+becomes proportional to the free energy expected under the policies
+entertained. Mathematically, this can be expressed as follows: This is
+remarkable because it is exactly the conclusion offered by Kruglanski
+et al. (this issue), namely, goal-sensitive or deliberative
+inconsistency is not a universal construct; it is composed of
+motivational and epistemic components that contextualize one another.
+Often, these imperatives can be in opposition. Indeed, a ubiquitous
+pattern of behavior—seen when simulating active inference—is that
+epistemic imperatives predominate initially, even at the expense of
+securing preferred outcomes. Only when the context has been explored
+sufficiently—and its epistemic value has been exhausted—do (synthetic)
+subjects exploit their epistemic foraging to pursue preferred outcomes
+(Friston et al., 2015; Moulin & Souchay 2015).Note that this
+construction necessarily implies that we will try to avoid bad news
+because we are inherently optimistic (Sharot, 2011; Sharot, Guitart-
+Masip, Korn, Chowdhury, & Dolan, 2012). This optimism is a necessary
+aspect of ideal Bayesian (active) inference, in which subjects make
+choices that are most likely given the sort of subject they are
+(Friston et al., 2015). Because the posterior probability of a choice
+rests upon prior beliefs, these prior beliefs bias everything we do.
+Any epistemic foraging (i.e., information seeking) that that leads to
+highly unlikely outcomes will therefore not be entertained; for
+example, we do not seek medical information that leads to a course of
+action that is so unlikely it is not worth contemplating, namely,
+dying.Before turning to some of the implications in terms of affective
+responses to good and bad information, there is one interesting
+corollary that endorses the arguments in Kruglanski et al. (this
+issue)—and allows us to showcase the advantages of formal treatments,
+like active inference. In brief, the constant of proportionality γ
+above itself has a Bayes optimal (free energy minimizing) solution
+that turns out to be proportional to cognitive consistency [this can
+be written mathematically as follows by substituting Equation (2) into
+the update equations in Figure 1]: This is important because this
+constant of proportionality behaves in a way that has all the
+hallmarks of dopaminergic responses in real brains (Friston et al.,
+2014). This speaks to the neuromodulatory correlates of affective
+reactions to changes in cognitive consistency—and shows how formal
+treatments can link concepts in social psychology to neurobiological
+processes. In short, it suggests that whenever there is an increase in
+epistemic or motivational value during active inference, there will be
+an increase in consistency that will be reported by increases in
+dopamine activity. See Figure 1 for an example of phasic dopamine
+responses to epistemic and motivational value. Indeed, there is an
+emerging literature on the link between dopaminergic activity, in this
+setting, that may be usefully migrated to social psychology
+(Schwartenbeck, FitzGerald, Mathys, Dolan, & Friston, 2015). Although
+promising, this formulation of consistency—as the impact of new
+information on confidence about what to do—does not explain our
+responses to good and bad news (Kruglanski et al., this issue). Or
+does it?On the preceding arguments, a negative effective response to
+bad news would imply that new evidence induces posterior beliefs about
+the state of the world that induce uncertainty about the course of
+action. This seems sensible: For example, when opening a letter that
+contains exam results, one would imagine that this epistemic foraging
+is driven by the epistemic value (i.e., resolution of uncertainty)
+about your performance and the sort of person you are. If you have
+failed, under the belief that you are an overachiever, the overall
+consequences can be summarized as “What on Earth am I to do now?” In
+short, bad news almost invariably induces uncertainty about how to
+realize goals or prior preferences, whereas good news signifies a
+clear path forward, either in the short or long term. This seems to be
+a plausible explanation for our affective responses to new evidence
+that incorporates both the affective dimension and the interplay
+between epistemic affordance and prior preferences, both in resolving
+uncertainty and inducing it in terms of future prospects. There are
+more nuanced arguments (that entail the opportunity to resolve
+uncertainty in the future) that can be applied to the interesting
+phenomena of not wanting to know the end of a book (Kruglanski et al.,
+this issue) or the final score of a football match before it is
+watched. See Friston, Lin, et al. (2017) for a discussion of novelty
+and curiosity in this context.So is there a universal need for
+cognitive consistency? In the preceding view, one would argue that
+consistency is not the primary construct: It is an inevitable
+consequence of forming posterior beliefs about an active engagement
+with the world that has epistemic and motivational aspects. This dual-
+aspect construction has the latitude to dissociate (Bayesian) surprise
+from prior preference [see Equation (1)], providing an accommodating
+account of pleasant and unpleasant surprises. For example, the state
+of mind on opening a gift can place motivational and epistemic
+imperatives in opposition. Both will reduce uncertainty and afford
+Bayesian surprise (i.e., be informative); however, the outcome (i.e.,
+the gift) may or may not be what you expected (i.e., preferred).
+Before closing, I wanted to briefly mention other prescient points of
+contact between active inference and the Kruglanski et al. (this
+issue) account.It strikes me that “a reluctance to face ambiguity and
+uncertainty” (Kruglanski et al., this issue, p. 51) fits comfortably
+within the epistemic value of certain actions—and the overall
+propensity to minimize surprise (entailed by the free energy
+principle). The degree to which one person or another expresses a need
+for nonspecific closure may translate into the degree to which they, a
+priori, weight epistemic against pragmatic imperatives. This speaks to
+characterizing phenotypic traits in terms of priors, which is a
+prominent direction of research in things like computational
+psychiatry (Huys, Moutoussis, & Williams, 2011; Wang & Krystal,
+2014).I was also taken with the notion of 2016). This becomes
+particularly interesting in relation to understanding certain
+psychiatric syndromes. For example, the explanation for depression as
+self-verification or self-evidencing—in the context of prior beliefs
+about adverse consequences of behavior—fits perfectly with current
+formulations of depression in terms of false inference (Stephan
+et al., 2016). In short, “individuals with such low self-esteem (e.g.,
+depressed people) search for and prefer negative feedback consistent
+with their self-view” (Kruglanski et al., this issue, p. 51). This
+reduces uncertainty about their engagement with the (prosocial) world.
+There are clear metaphors for this in the behavioral psychology
+literature, for example, learned helplessness (Hammack, Cooper, &
+Lezak, 2012; Stephan et al., 2016).In closing, I refer interested
+readers to Table 1 and Figure 2 for a summary of the similarity
+between the paradigm in the target article and active inference. Table
+1 attempts to map the concepts and terms used in cognitive consistency
+theory with the corresponding constructs in active inference. The
+corresponding process theories are sketched out in Figure 2 using the
+same format as in Kruglanski et al. (this issue). As intimated in the
+closing comments of Kruglanski et al., these theoretical formulations
+will only prove themselves in terms of their predictive validity. In
+this regard, there are some interesting paradigms that are emerging
+from the active inference literature that could be scrutinized from
+the perspective of social psychology. I have in mind here explicit
+tests of choice behavior when motivational and epistemic imperatives
+are set in opposition. One might even imagine the study of the
+neuronal correlates of belief updating—along the lines of the
+dopaminergic responses just described (Schwartenbeck, FitzGerald,
+Mathys, Dolan, & Friston, 2015).Table 1.The construct validity of
+cognitive consistency and constructs in active inference.

@@ -1,0 +1,374 @@
+1This paper looks at the functional architecture of cortical circuits
+from the point of view of perception; namely, the fitting or inversion
+of internal models of sensory data by the brain. Critically, the
+nature of this inversion lends itself to a relatively simple neural
+network implementation that shares many formal similarities with real
+cortical hierarchies in the brain. The basic idea that the brain uses
+hierarchical inference has been described in a series of papers
+(Friston, 2005; Friston, Kilner, & Harrison, 2006; Mumford, 1992; Rao
+& Ballard, 1998). These papers suggest that the brain uses This paper
+comprises three sections. In the first, we introduce a free-energy
+formulation of model inversion or perception, which is then applied to
+a specific class of models that we assume the brain uses —
+hierarchical dynamic models. An important aspect of these models is
+their formulation in generalised coordinates of motion. This lends
+them a hierarchical form in both structure and dynamics, which can be
+exploited during inversion. In the second section, we show how
+inversion can be formulated as a simple gradient descent using
+neuronal networks and relate these to cortical circuits in the brain.
+In the final section, we consider how evoked brain responses might be
+understood in terms of perceptual inference and categorisation, using
+the schemes of the preceding section.2This section considers the
+problem of inverting generative models of sensory data and provides a
+summary of the material in Friston (2008). This problem is addressed
+using Feynman, 1972; Friston, 2005; Friston et al., 2006; Hinton & von
+Cramp, 1993; MacKay, 1995; Neal & Hinton, 1998). This bound is called
+free-energyFriston, 2005; Hinton & von Cramp, 1993; MacKay, 1995; Neal
+& Hinton, 1998). In summary, the recognition density, induces a free-
+energy bound, which converts a difficult integration problem (inherent
+in computing the exact conditional density) into an easier
+optimisation problem.The bound can be evaluated easily because it is a
+function of If we assume that the recognition density Eq. (7)
+prescribes recognition dynamics that track time-varying causes or
+states of the world and can be thought of as a gradient descent in a
+moving frame of reference. The recognition dynamics for time-invariant
+causes (i.e., parameters (7) depends on the generative model that
+defines Gibb’s energy. Next, we examine forms associated with
+hierarchical dynamic models.2.1This section introduces a general class
+of generative models that the brain may use for perception. We will
+start with simple dynamic models and then deal with hierarchical cases
+later. Consider a state-space model that describes the evolution of
+states in the world and how they map to sensory input
+2.1.1Hierarchical dynamic models with In summary, hierarchical dynamic
+models are about as complicated as one could imagine; they comprise
+causal and hidden states, whose dynamics can be coupled with arbitrary
+(analytic) nonlinear functions. Furthermore, these states can have
+random fluctuations with unknown amplitude and arbitrary (analytic)
+autocorrelation functions. A key aspect of these models is their
+hierarchical form, which induces empirical priors on the causal
+states. See Kass and Steffey (1989) for a discussion of approximate
+Bayesian inference in conditionally independent hierarchical models of
+static data.2.1.2We can now write down Gibb’s energy for these
+generative models, which has a simple quadratic form (ignoring
+constants) 2.2In this section, we have seen how the inversion of
+dynamic models can be formulated as an optimisation of free-energy. By
+assuming a Gaussian (Laplace) approximation to the conditional
+density, one can reduce optimisation to finding the conditional means
+of the unknown causes of sensory data. This can be formulated as a
+gradient ascent in a frame of reference that moves along the path
+encoded in generalised coordinates (Eq. (6)). The only thing needed to
+implement this recognition scheme is Gibb’s energy, which is specified
+by a generative model. We have looked at hierarchical dynamic models,
+whose form provides empirical priors or constraints on inference at
+both a structural and dynamic level (Eq. (14)). The 3A key
+architectural principle of the brain is its hierarchical organisation
+(Felleman & Van Essen, 1991; Maunsell & van Essen, 1983; Zeki & Shipp,
+1988).  This has been established most thoroughly in the visual
+system, where lower (primary) areas receive sensory input and higher
+areas adopt a multimodal or associational role. The neurobiological
+notion of a hierarchy rests upon the distinction between forward and
+backward connections (Angelucci et al., 2002; Felleman & Van Essen,
+1991; Murphy & Sillito, 1987; Rockland & Pandya, 1979; Sherman &
+Guillery, 1998). This distinction is based upon the specificity of
+cortical layers that are the predominant sources and origins of
+extrinsic connections. Forward connections arise largely in
+superficial pyramidal cells, in supra-granular layers and terminate on
+spiny stellate cells of layer four in higher cortical areas (DeFelipe,
+Alonso-Nanclares, & Arellano, 2002; Felleman & Van Essen, 1991).
+Conversely, backward connections arise largely from deep pyramidal
+cells in infra-granular layers and target cells in the infra- and
+supra-granular layers of lower cortical areas. Intrinsic connections
+mediate lateral interactions between neurons that are a few
+millimetres away. There is a key functional asymmetry between forward
+and backward connections that renders backward connections more
+modulatory or nonlinear in their effects on neuronal responses
+(Sherman & Guillery, 1998; see also Hupe et al., 1998). This is
+consistent with the deployment of voltage-sensitive NMDA receptors in
+supra-granular layers that are targeted by backward connections
+(Rosier, Arckens, Orban, & Vandesande, 1993). Typically, the synaptic
+dynamics of backward connections have slower time constants. This has
+led to the notion that forward connections are driving and illicit an
+obligatory response in higher levels, whereas backward connections
+have both driving and modulatory effects and operate over larger
+spatial and temporal scales. This hierarchical aspect of the brain’s
+functional anatomy speaks to hierarchical models of sensory input. We
+now consider how this functional architecture can be understood under
+the inversion of hierarchical models by the brain.3.1If we assume that
+the activity of neurons encode the conditional mean of external states
+causing sensory data, then Eq. (6) specifies the neuronal dynamics
+entailed by recognising states of the world from sensory data. Using
+Gibb’s energy in Eq. (14) we have (16) describes how neuronal states
+self-organise, when exposed to sensory input. Its form is quite
+revealing and suggests two distinct populations of neurons; causal or
+hidden 3.2If we unpack these equations, we can see the hierarchical
+nature of the implicit message-passing Fig. 1). Critically, inference
+requires only the prediction error from the lower level Rao & Ballard,
+1998).We can identify error-units with superficial pyramidal cells,
+because the only messages that pass up the hierarchy are prediction
+errors and superficial pyramidal cells originate forward connections
+in the brain. This is useful because it is these cells that are
+primarily responsible for electroencephalographic (EEG) signals that
+can be measured non-invasively. Similarly, the only messages that are
+passed down the hierarchy are the predictions from state-units that
+are necessary to form prediction errors in lower levels. The sources
+of extrinsic backward connections are deep pyramidal cells; suggesting
+that these encode the expected causes of sensory states (see Mumford,
+1992 and Fig. 1). Critically, the motion of each state-unit is a
+linear mixture of bottom-up prediction error (see Eq. (17)). This is
+exactly what is observed physiologically; bottom-up driving inputs
+elicit obligatory responses that do not depend on other bottom-up
+inputs. The prediction error itself is formed by predictions conveyed
+by backward and lateral connections. These influences embody the
+nonlinearities implicit in It has been shown recently that
+hierarchical architectures (cf, Fig. 1) can be reformulated as a
+specific type of biased competition, where state-units receive
+messages from lower-level error-units and direct inputs from higher-
+level state-units (replacing lateral inputs from error-units in the
+original predictive coding scheme based on Kalman filtering; Rao &
+Ballard, 1998). It has been argued that this architecture provides a
+more realistic model of backward connections in cortex (Spratling,
+2008a, 2008b) and usefully connects predictive coding, Kalman
+filtering and biased competition.A related Bayesian algorithm called
+belief-propagation (Dean, 2006; Hinton, Osindero, & Teh, 2006; Lee &
+Mumford, 2003; Rao, 2006) also rests on message-passing. In these
+schemes, the messages are not prediction errors but, like prediction
+errors, are defined self-consistently, in terms of likelihoods and
+empirical priors. Critically, the belief-propagation algorithm can be
+derived by minimising free-energy (Yedidia, Freeman, & Weiss, 2005);
+for example, it can be shown that the Kalman filter is a special case
+of belief-propagation. This speaks to formal similarities between
+predictive coding, Bayesian filtering and belief-propagation, which
+could be implemented by recursive message-passing in the brain and
+understood in terms of free-energy optimisation.3.3In summary, we have
+seen how the inversion of a generic hierarchical and dynamical model
+of sensory inputs can be transcribed onto neuronal quantities that
+optimise a free-energy bound on surprise. This optimisation
+corresponds, under some simplifying assumptions, to suppression of
+prediction error at all levels in a cortical hierarchy. This
+suppression rests upon a balance between bottom-up (prediction error)
+and top-down (empirical prior) influences. In the final section, we
+use this scheme to simulate neuronal responses. Specifically, we look
+at the electrophysiological correlates of prediction error and ask
+whether we can understand some common phenomena in event-related
+potential (ERP) research in terms of the free-energy formulation and
+message-passing in the brain.4In this section, we examine a system
+that uses hierarchical dynamics as a generative model of sensory
+input. The aim of this section is to provide some face-validity for
+the functional deconstruction of extrinsic and intrinsic circuits in
+the previous section. To do this, we try to show how empirical
+measures of neuronal processes can be reproduced using simulations
+based on the theoretical analysis above. The example we use is
+birdsong and the empirical measures we focus on are local field
+potentials (LFP) or evoked (ERP) responses that can be recorded non-
+invasively. The material in section is based on the simulations
+described in Friston and Kiebel (2009).We first describe our model of
+birdsong and demonstrate the nature and form of this model through
+simulated lesion experiments. We then use simplified versions of this
+model to show how attractors can be used to categorise sequences of
+stimuli quickly and efficiently. Throughout this section, we will
+exploit the fact that superficial pyramidal cells are the major
+contributors to observed LFP and ERP signals. This means we can
+ascribe these signals to prediction error; because the superficial
+pyramidal cells are the source of bottom-up messages in the brain (see
+Fig. 1).4.1The basic idea here is that the environment unfolds as an
+ordered sequence of spatiotemporal dynamics (George & Hawkins, 2005;
+Kiebel, Daunizeau, & Friston, 2008), whose equations of motion entail
+attractor manifolds that contain sensory trajectories. Critically, the
+shape of the manifold generating sensory data is itself changed by
+other dynamical systems that could have their own attractors. If we
+consider the brain has a generative model of these coupled dynamical
+systems, then we would expect to see attractors in neuronal dynamics
+that are trying to predict sensory input. In a hierarchical setting,
+the states of a high-level attractor enter the equations of motion of
+a low-level attractor in a nonlinear way, to change the shape of its
+manifold. This form of generative model has some key
+characteristics:First, any level in the model can generate and
+therefore encode structured sequences of events, as the states flow
+over different parts of the manifold. These sequences can be simple,
+such as the quasi-periodic attractors of central pattern generators
+(McCrea & Rybak, 2008) or can exhibit complicated sequences of the
+sort associated with chaotic and itinerant dynamics (e.g., Breakspear
+& Stam, 2005; Canolty et al., 2006; Friston, 1997; Haken, Kelso,
+Fuchs, & Pandya, 1990; Jirsa, Fuchs, & Kelso, 1998; Kopell,
+Ermentrout, Whittington, & Traub, 2000; Rabinovich, Huerta, & Laurent,
+2008). The notion of attractors as the basis of generative models
+extends the notion of encoding trajectories in terms of generalised
+motion, to families of trajectories that lie on the attractor
+manifold. Hierarchically deployed attractors enable the brain to
+generate and therefore predict or represent different categories of
+sequences. This is because any low-level attractor encodes a family of
+trajectories that correspond to a structured sequence. The neuronal
+activity representing the trajectory at any one time determines
+Secondly, if the states in a higher attractor change the manifold of a
+subordinate attractor, then the states of the higher attractor come to
+encode the category of the sequence represented by the lower
+attractor. This means it is possible to generate and represent
+sequences of sequences and, by induction sequences of sequences of
+sequences Finally, this particular model has implications for the
+temporal structure of perception. Put simply, the dynamics of high-
+level representations unfold more slowly than the dynamics of lower-
+level representations. This is because the state of a higher attractor
+prescribes a manifold that guides the flow of lower states, which
+could change quite rapidly. We will see an example of this below when
+considering the perceptual categorisation of different sequences of
+chirps subtending birdsongs. This suggests that neuronal
+representations in the brain will change more slowly at higher levels
+(Kiebel et al., 2008; see also Botvinick, 2007; Hasson, Yang,
+Vallines, Heeger, & Rubin, 2008). One can turn this argument on its
+head and use the fact that we are able to recognise sequences of
+sequences (e.g., Chait, Poeppel, de Cheveigné, & Simon, 2007) as an
+existence proof for this sort of generative model. In the examples
+below, we will try to show how autonomous dynamics furnish generative
+models of sensory input, which behave much like real brains, when
+measured electrophysiologically.4.2The toy example used here deals
+with the generation and recognition of birdsongs (Laje & Mindlin,
+2002). We imagine that birdsongs are produced by two time-varying
+causal states that control the frequency and amplitude of vibrations
+of the syrinx of a songbird (see Fig. 2). There has been an extensive
+modelling effort using attractor models at the biomechanical level to
+understand the generation of birdsong (e.g., Laje, Gardner, & Mindlin,
+2002). Here we use the attractors at a higher level to provide time-
+varying control over the resulting sonograms. We drive the syrinx with
+two states of a Lorenz attractor, one controlling the frequency
+(between two to five kHz) and the other (after rectification)
+controlling the amplitude or volume. The parameters of the Lorenz
+attractor were chosen to generate a short sequence of chirps every
+second or so. To endow the generative model with a hierarchical
+structure, we placed a second Lorenz attractor, whose dynamics were an
+order of magnitude slower, over the first. The states of the slower
+attractor entered as control parameters (the Raleigh and Prandtl
+number) to control the dynamics exhibited by the first. These dynamics
+could range from a fixed-point attractor, where the states of the
+first are all zero; through to quasi-periodic and chaotic behaviour,
+when the value of the Raleigh number exceeds an appropriate threshold
+(about twenty four) and induces a bifurcation. Because higher states
+evolve more slowly, they switch the lower attractor on and off,
+generating distinct songs, where each song comprises a series of
+distinct chirps (see Fig. 3).4.3This model generates spontaneous
+sequences of songs using autonomous dynamics. We generated a single
+song, corresponding roughly to a cycle of the higher attractor and
+then inverted the ensuing sonogram (summarised as peak amplitude and
+volume) using the message-passing scheme described in the previous
+section. The results are shown in Fig. 3 and demonstrate that, after
+several hundred milliseconds, the veridical hidden states and
+supraordinate causal states can be recovered. Interestingly, the third
+chirp is not perceived, in that the first-level prediction error was
+not sufficient to overcome the dynamical and structural priors of the
+model. However, once the subsequent chirp had been predicted correctly
+the following sequence of chirps was recognised with a high degree of
+conditional confidence. Note that when the second and third chirps in
+the sequence are not recognised, first-level prediction error is high
+and the conditional confidence about the causal states at the second
+level is low (reflected in the wide 90% confidence intervals).
+Heuristically, this means that the synthetic bird listening to the
+song did not know which song was being emitted and was unable to
+predict subsequent chirps.4.3.1This example provides a nice
+opportunity to illustrate the relative roles of structural and dynamic
+priors. Structural priors are provided by the top-down inputs that
+reshape the manifold of the low-level attractor. However, this
+attractor itself contains an abundance of dynamical priors that unfold
+in generalised coordinates. Both provide important constraints on the
+evolution of sensory states, which facilitate recognition. We can
+selectively destroy these priors by lesioning the top-down connections
+to remove structural priors or by cutting the intrinsic connections
+that mediate dynamic priors. The latter involves cutting the self-
+connections in Fig. 1, among the causal and state-units. The results
+of these two simulated lesion experiments are shown in Fig. 4. The top
+panel shows the percept as in the previous panel, in terms of the
+predicted sonogram and prediction error at the first and second level.
+The subsequent two panels show exactly the same things but without
+structural (middle) and dynamic (lower) priors. In both cases, the
+synthetic bird fails to recognise the sequence with a corresponding
+inflation of prediction error, particularly at the sensory level.
+Interestingly, the removal of structural priors has a less marked
+effect on recognition than removing the dynamical priors. Without
+dynamical priors there is a failure to segment the sensory stream and,
+although there is a preservation of frequency tracking, the dynamics
+4.4We repeated the above simulation but terminated the song after the
+fifth chirp. The corresponding sonograms and percepts are shown with
+their prediction errors in Fig. 5. The left panels show the stimulus
+and percept as in Fig. 4, while the right panels show the stimulus and
+responses to omission of the last syllables. These results illustrate
+two important phenomena. First, there is a vigorous expression of
+prediction error after the song terminates prematurely. This reflects
+the dynamical nature of the recognition process because, at this
+point, there is no sensory input to predict. In other words, the
+prediction error is generated entirely by the predictions afforded by
+the dynamic model of sensory input. It can be seen that this
+prediction error (with a percept but no stimulus) is almost as large
+as the prediction error associated with the third and fourth stimuli
+that are not perceived (stimulus but no percept). Second, it can be
+seen that there is a transient percept, when the omitted chirp should
+have occurred. Its frequency is slightly too low but its timing is
+preserved, in relation to the expected stimulus train. This is an
+interesting stimulation from the point of view of ERP studies of
+omission-related responses. These simulations and related empirical
+studies (e.g., Nordby, Hammerborg, Roth, & Hugdahl, 1994; Yabe,
+Tervaniemi, Reinikainen, & Näätänen, 1997) provide clear evidence for
+the predictive capacity of the brain. In this example, prediction
+rests upon the internal construction of an attractor manifold that
+defines a family of trajectories, each corresponding to the
+realisation of a particular song. In the last simulation we look more
+closely at perceptual categorisation of these songs.4.5In the previous
+simulations, we saw that a song corresponds to a sequence of chirps
+that are preordained by the shape of an attractor manifold that is
+controlled by top-down inputs. This means that for every point in the
+state-space of the higher attractor there is a corresponding manifold
+or category of song. In other words, recognising or categorising a
+particular song corresponds to finding a fixed location in the higher
+state-space. This provides a nice metaphor for perceptual
+categorisation; because the neuronal states of the higher attractor
+represent, implicitly, a category of song. Inverting the generative
+model means that, probabilistically, we can map from a sequence of
+sensory events to a point in some perceptual space; where this mapping
+corresponds to perceptual recognition or categorisation. This can be
+demonstrated in our synthetic songbird by ignoring the dynamics of the
+second-level attractor and exposing the bird to a song and letting the
+states at the second level optimise their location in perceptual
+space. To illustrate this, we generated three songs by fixing the
+Raleigh and Prandtl variables to three distinct values. We then placed
+uninformative priors on the second-level causal states (that were
+previously driven by the hidden states of the second-level attractor)
+and inverted the model in the usual way. Fig. 6 shows the results of
+this simulation for a single song. This song comprises a series of
+relatively low-frequency chirps emitted every 250 ms or so. The causal
+states of this song (song C in the next figure) are recovered after
+the second chirp, with relatively tight confidence intervals (the blue
+and green lines in the lower left panel). We then repeated this
+exercise for three songs. The results are shown in Fig. 7. The songs
+are portrayed in sonogram format in the top panels and the inferred
+perceptual causal states in the bottom panels. The left panel shows
+the evolution of the causal states for all three songs as a function
+of peristimulus time and the right panel shows the corresponding
+conditional density in the causal or perceptual space of these two
+states after convergence. It can be seen that for all three songs, the
+90% confidence interval encompasses the true values (red dots).
+Furthermore, there is very little overlap between the conditional
+densities (grey regions), which means that the precision of the
+perceptual categorisation is almost 100%. This is a simple but nice
+example of perceptual categorisation, where sequences of sensory
+events with extended temporal support can be mapped to locations in
+perceptual space, through Bayesian deconvolution of the sort entailed
+by the free-energy formulation.5This paper has suggested that the
+architecture of cortical circuits speaks to hierarchical generative
+models in the brain. The estimation or inversion of these models
+corresponds to a generalised deconvolution of sensory inputs to
+disclose their causes. This deconvolution could be implemented in a
+neuronally plausible fashion, where neuronal dynamics self-organise
+when exposed to inputs to suppress free-energy. The focus of this
+paper has been on the nature of the hierarchical models and, in
+particular, how one can understand message-passing among neuronal
+populations in terms of perception. We have tried to demonstrate their
+plausibility, in relation to empirical observations, by interpreting
+the prediction error, associated with model inversion, with observed
+electrophysiological responses.The ideas reviewed in this paper have a
+long history, starting with the notion of neuronal energy (Helmholtz,
+1860/1962); covering ideas like efficient coding and analysis by
+synthesis (Barlow, 1961; Neisser, 1967) to more recent formulations in
+terms of Bayesian inversion and Predictive coding (e.g., Ballard,
+Hinton, & Sejnowski, 1983; Dayan, Hinton, & Neal, 1995; Kawato,
+Hayakawa, & Inui, 1993; Mumford, 1992; Rao & Ballard, 1998). This work
+has also tried to provide support for the notion that the brain uses
+dynamics to represent and predict causes in the sensorium (Byrne,
+Becker, & Burgess, 2007; Deco & Rolls, 2003; Freeman, 1987; Tsodyks,
+1999).

@@ -1,0 +1,107 @@
+This scientific commentary refers to ‘On the nature of seizure
+dynamics’, by Jirsa 10.1093/brain/awu133).In this issue of Jirsa ).
+They derive a formal taxonomy of seizure activity from the basic
+principles of coupled dynamical systems. In brief, they show that a
+minimal model—comprising just five states or variables—is sufficient
+to describe the onset, time-course and offset of seizure activity.
+This may sound implausible; however, the repertoire of dynamics that
+coupled systems can generate may be much smaller than people imagine.
+In effect, Jirsa Without recourse to Wikipedia, I confess that I could
+not explain the difference between a saddle node and homoclinic
+bifurcation. However, this is not important: the authors have done all
+the mathematical heavy lifting for us and bring three things to the
+table: first, the notion that seizure onset (and offset) can be cast
+in terms of bifurcations (qualitative changes in dynamics) that are
+induced by changing the parameters of a coupled dynamical system—such
+as synaptic efficacy in neuronal microcircuits. Second, the attending
+qualitative changes rest upon a separation of temporal scales. For
+example, slow fluctuations in synaptic efficacy induce qualitative
+changes in fast dynamics. Finally, there is an inherent circular
+causality in epileptogenesis; whereby slow fluctuations in synaptic
+efficacy cause changes in fast neuronal activity—that couple back to
+the slow variables through processes such as activity-dependent
+plasticity. This circular causality is a necessary aspect of coupling
+variables that fluctuate over separable timescales. It is interesting
+to note that these fundaments of dynamical systems are formally
+articulated in synergetics—an approach to self-organization pioneered
+by the first author’s mentor Herman Haken (Haken, 1983). In short,
+what is on offer here is a canonical description of seizure activity
+that has all the necessary ingredients for a formal taxonomy of
+seizure dynamics. But how does a mathematical taxonomy reach beyond
+phenomenology?At this point, we have to consider why the modelling of
+seizure dynamics is potentially important. In previous years, there
+have been substantial advances in the use of models of neuronal
+microcircuits as forward or generative models of observed
+electrophysiological responses. This is most evident in the advent of
+dynamic causal modelling, which is now used routinely to address
+questions about functional brain architectures—and their synaptic
+underpinnings—in cognitive and systems neuroscience. The key thing
+here is that dynamic causal models are not just used to reproduce the
+phenomenology of electrophysiological measurements: they explain
+empirical data through Bayesian model inversion and subsequent
+selection. A formal understanding of how seizure dynamics are
+generated could therefore provide vital constraints on dynamic causal
+models of seizure activity. In principle, this means that one could
+identify the biophysical substrates of slow and fast variables in
+phenomenological models.The generative mechanisms underlying seizure
+activity have been modelled extensively; particularly in neocortical
+and hippocampal systems. A recurring theme in these studies is the
+interaction between excitatory pyramidal cells and inhibitory
+interneurons. This speaks to the central role of intrinsic
+connectivity in maintaining excitation-inhibition balance. The
+intracellular and extracellular mechanisms underlying slow changes in
+synaptic efficacy have been the subject of much study. For example,
+Wendling  model seizure onset in terms of slow ensemble dynamics
+involving pyramidal cells and local interneurons, highlighting the
+increases in excitability and decreases in slow dendritic and fast
+synaptic inhibition that peak at seizure onset. The emerging picture
+from these studies points to slow changes in the excitability of
+cortical and subcortical microcircuits mediated by interactions
+between pyramidal cells and inhibitory interneurons. Slow
+fluctuations—and associated extracellular increases in potassium and
+decreases in calcium ion concentration—cause, and are caused by, the
+fast fluctuations in synaptic activity that announce seizure onset.
+Indeed, Nevado-Holgado  have characterized the evolution of seizure
+activity as a path through the parameter space of a neural mass model,
+whereas Hocepied  consider a similar formulation for seizure
+detection. But how can we test these hypotheses—or indeed quantify
+synaptic variables in a given patient at a given point in time? Here,
+we turn to dynamic causal modelling.Dynamic causal modelling (DCM) is
+a biophysically informed framework for comparing hypotheses or network
+models of (neurophysiological) time series. It is an established
+procedure in the analysis of functional magnetic resonance time series
+and is now used increasingly in electrophysiology. DCM rests upon the
+fact that there is a straightforward mapping between the synaptic
+connectivity of neuronal circuits and their responses to exogenous or
+endogenous neuronal input. In some cases, this mapping can be
+remarkably direct and intuitive (see Fig. 1 for an example). There is
+an extensive literature on DCM ranging from face validation studies
+(David ) to construct validation in terms of multimodal measurements
+and pharmacological manipulations (Moran ). Crucially, DCM is now
+finding a role in understanding pathophysiology in terms of extrinsic
+(long range) disconnections (Boly ) and aberrant intrinsic (local)
+connectivity that may underlie pathological (beta) oscillations in
+Parkinson’s disease (Marreiros ). The hope here is that DCM can be
+used to quantify slow fluctuations in synaptic efficacy in
+epilepsy—and perhaps to predict seizure onset. The promise for
+modelling seizure dynamics is illustrated in Fig. 2. This figure shows
+the spectral responses of a canonical microcircuit as a function of
+intrinsic connectivity; namely, the recurrent self-inhibition of
+superficial pyramidal cells. This simple manipulation leads to fast
+epileptiform activity as the system approaches a (transcritical)
+bifurcation—and is motivated easily by the convergent evidence
+implicating fast synaptic inhibition in the context of recurrent
+coupling between pyramidal cells and inhibitory interneurons (see
+above). The power of DCM lies in its ability to adjudicate among
+different mechanistic hypotheses using Bayesian model selection. For
+example, David  analysed seizure activity elicited during electrical
+stimulation. Bayesian model comparison suggested that seizure onset
+could be modelled in terms of changes in intrinsic connectivity (as
+opposed to extrinsic connectivity). Furthermore, DCM identified
+fluctuations in synaptic efficacy in the ictal zone; suggesting that
+the mesial temporal lobe epilepsy studied by David  could be explained
+in terms of a pre-ictal increase in sensitivity to hippocampal
+afferents from the temporal pole.This sort of study provides proof-of-
+principle that the functional anatomy of epilepsy can be characterized
+in single subjects. If Jirsa K.F. is funded by the Wellcome Trust.
+Principal Research Fellowship (Ref: 088130/Z/09/Z).

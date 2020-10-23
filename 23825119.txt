@@ -1,0 +1,426 @@
+1.How can the events in space and time which take place within the
+spatial boundary of a living organism be accounted for by physics and
+chemistry?Erwin Schrödinger [1, p. 2]The emergence of life—or
+biological self-organization—is an intriguing issue that has been
+addressed in many guises in the biological and physical sciences
+[1–5]. This paper suggests that biological self-organization is not as
+remarkable as one might think—and is (almost) inevitable, given local
+interactions between the states of coupled dynamical systems. In
+brief, the events that ‘take place within the spatial boundary of a
+living organism’ [1] may arise from the very existence of a boundary
+or blanket, which itself is inevitable in a physically lawful
+world.The treatment offered in this paper is rather abstract and
+restricts itself to some basic observations about how coupled
+dynamical systems organize themselves over time. We will only consider
+behaviour over the timescale of the dynamics themselves—and try to
+interpret this behaviour in relation to the sorts of processes that
+unfold over seconds to hours, e.g. cellular processes. Clearly, a full
+account of the emergence of life would have to address multiple
+(evolutionary, developmental and functional) timescales and the
+emergence of DNA, ribosomes and the complex cellular networks common
+to most forms of life. This paper focuses on a simple but fundamental
+aspect of self-organization—using abstract representations of
+dynamical processes—that may provide a metaphor for behaviour with
+different timescales and biological substrates.Most treatments of
+self-organization in theoretical biology have addressed the peculiar
+resistance of biological systems to the dispersive effects of
+fluctuations in their environment by appealing to statistical
+thermodynamics and information theory [1,3,5–10]. Recent formulations
+try to explain adaptive behaviour in terms of minimizing an upper
+(free energy) bound on the 11,12]. This minimization usefully connects
+the imperative for biological systems to maintain their sensory states
+within physiological bounds, with an intuitive understanding of
+adaptive behaviour in terms of active inference about the causes of
+those states [13].Under ergodic assumptions, the long-term average of
+surprise is entropy. This means that minimizing free energy—through
+selectively sampling sensory input—places an upper bound on the
+entropy or dispersion of sensory states. This enables biological
+systems to resist the second law of thermodynamics—or more exactly the
+fluctuation theorem that applies to open systems far from equilibrium
+[14,15]. However, because negative surprise is also 16–20]. In short,
+biological systems act on the world to place an upper bound on the
+dispersion of their sensed states, while using those sensations to
+infer external states of the world. This inference makes the free
+energy bound a better approximation to the surprise that action is
+trying to minimize [21]. The resulting active inference is closely
+related to formulations in embodied cognition and artificial
+intelligence; for example, the use of predictive information [22–24]
+and earlier homeokinetic formulations [25].The ensuing (variational)
+free energy principle has been applied widely in neurobiology and has
+been generalized to other biological systems at a more theoretical
+level [11]. The motivation for minimizing free energy has hitherto
+used the following sort of argument: systems that do not minimize free
+energy cannot exist, because the entropy of their sensory states would
+not be bounded and would increase indefinitely—by the fluctuation
+theorem [15]. Therefore, biological systems must minimize free energy.
+This paper resolves the somewhat tautological aspect of this argument
+by turning it around to suggest: any system that exists will appear to
+minimize free energy and therefore engage in active inference.
+Furthermore, this apparently inferential or mindful behaviour is
+(almost) inevitable. This may sound like a rather definitive assertion
+but is surprisingly easy to verify. In what follows, we will consider
+a heuristic proof based on random dynamical systems and then see that
+biological self-organization emerges naturally, using a synthetic
+primordial soup. This proof of principle rests on four attributes
+of—or tests for—self-organization that may themselves have interesting
+implications.2.We start with the following lemma: 26,27]. This means
+that one can interpret the average amount of time a state is occupied
+as the probability of the system being in that state when observed at
+random. We will refer to this probability measure as the A Markov
+blanket is a set of states that separates two other sets in a
+statistical sense. The term Markov blanket was introduced in the
+context of Bayesian networks or graphs [28] and refers to the children
+of a set (the set of states that are influenced), its parents (the set
+of states that influence it) and the parents of its children. The
+notion of influence or dependency is central to a Markov blanket and
+its existence implies that any state is—or is not—coupled to another.
+For example, the system could comprise an ensemble of subsystems, each
+occupying its own position in a Euclidean space. If the coupling among
+subsystems is mediated by short-range forces, then distant subsystems
+cannot influence each other. The existence of a Markov blanket implies
+that its states (e.g. motion in Euclidean space) do not affect their
+coupling or independence. In other words, the interdependencies among
+states comprising the Markov blanket change slowly with respect to the
+states The existence of a Markov blanket induces a partition of states
+into table 1). Crucially, the dependencies induced by Markov blankets
+create a circular causality that is reminiscent of the
+action–perception cycle (figure 1). The circular causality here means
+that external states cause changes in internal states, via sensory
+states, while the internal states couple back to the external states
+through active states—such that internal and external states cause
+each other in a reciprocal fashion. This circular causality may be a
+fundamental and ubiquitous causal architecture for self-organization.
+Table 1.Definitions of the tuple  Equipped with this partition, we can
+now consider the behaviour of any random dynamical system Here,
+29,30]. The associated ergodic density 31] describing the evolution of
+the probability density over statesHere, the diffusion tensor
+32],Using this standard form [33], it is straightforward to show that
+12]:This means that we can express the flow in terms of the ergodic
+densityAlthough we have just followed a sequence of standard results,
+there is something quite remarkable and curious about this flow: the
+flow of internal and active states is essentially a (circuitous)
+gradient ascent on the (log) ergodic density. The gradient ascent is
+circuitous because it contains divergence-free (solenoidal) components
+that circulate on the isocontours of the ergodic density—like walking
+up a winding mountain path. This ascent will make it look as if
+internal (and active) states are flowing towards regions of state
+space that are most frequently occupied We can finesse this apparent
+paradox by noting that the flow is the expected motion through any
+point averaged over time. By the ergodic theorem, this is also the
+flow averaged over the external states, which does not depend on the
+external state at any particular time: more formally, for any point
+The Iverson bracket [Equation (2.6) is quite revealing—it shows that
+the flow of internal and active states performs a circuitous gradient
+ascent on the Free energy. Using Bayes rule, we can rearrange the
+expression for free energy in terms of a Kullback34]:In other words,
+the flow of internal and active states minimizes free energy,
+rendering the variational density equivalent to the posterior density
+over external states.Remarks 2.2. Put simply, this proof says that if
+one interprets internal states as parametrizing a variational density
+encoding Bayesian beliefs about external states, then the dynamics of
+internal and active states can be described as a gradient descent on a
+variational free energy function of internal states and their Markov
+blanket. Variational free energy was introduced by Feynman [35] to
+solve difficult integration problems in path integral formulations of
+quantum physics. This is also the free energy bound that is used
+extensively in 34,36,37]. The expression for free energy in equation
+(2.8) discloses its Bayesian interpretation: the first term is the
+negative log evidence or 38] between the variational density and the
+posterior density over external states. Because (by Gibbs inequality)
+this divergence cannot be less than zero, the internal flow will
+appear to have minimized the divergence between the variational and
+posterior density. In other words, the internal states will appear to
+have solved the problem of Bayesian inference by encoding posterior
+beliefs about hidden (external) states, under a generative model
+provided by the Gibbs energy. This is known as Because the divergence
+in equation (2.8) can never be less than zero, free energy is an upper
+bound on the negative log evidence. Now, because the system is ergodic
+we haveThis means that action will (on average) appear to minimize
+free energy and thereby place an upper bound on the entropy of the
+internal states and their Markov blanket. If we associate these states
+2,5,12,39,40]. Furthermore, we have shown elsewhere [11,41] that free
+energy minimization is consistent with information-theoretic
+formulations of sensory processing and behaviour [23,42,43]. Equation
+(2.7) also shows that minimizing free energy entails maximizing the
+entropy of the variational density (the final term in the last
+equality)—in accord with the maximum entropy principle [44]. Finally,
+because we have cast this treatment in terms of random dynamical
+systems, there is an easy connection to dynamical formulations that
+predominate in the neurosciences [40,45–47].The above arguments can be
+summarized with the following attributes of biological self-
+organization: — 26]: in the sense that the average of any measure of
+their states converges over a sufficient period of time. This includes
+the occupancy of state space and guarantees the existence of an
+invariant ergodic density over functional and structural states;— 28]:
+the existence of a Markov blanket necessarily implies a partition of
+states into internal states, their Markov blanket (sensory and active
+states) and external or hidden states. Internal states and their
+Markov blanket (— 11]: the partition of states implied by the Markov
+blanket endows internal states with the apparent capacity to represent
+hidden states probabilistically, so that they appear to infer the
+hidden causes of their sensory states (by minimizing a free energy
+bound on log Bayesian evidence). By the circular causality induced by
+the Markov blanket, sensory states depend on active states, rendering
+inference active or embodied; and— 4]: because active states
+change—but are not changed by—hidden states (figure 1), they will
+appear to place an upper (free energy) bound on the dispersion
+(entropy) of biological states. This homoeostasis is informed by
+internal states, which means that active states will appear to
+maintain the structural and functional integrity of biological
+states.When expressed like this, these criteria appear perfectly
+sensible but are they useful in the setting of real biophysical
+systems? The premise of this paper is that these criteria apply to
+(almost) all ergodic systems encountered in the real world. The
+argument here is that biological behaviour rests on the existence of a
+Markov blanket—and that a Markov blanket is (almost) inevitable in
+coupled dynamical systems with short-range interactions. In other
+words, if the coupling between dynamical systems can be neglected—when
+they are separated by large distances—the intervening systems will
+necessarily form a Markov blanket. For example, if we consider short-
+range electrochemical and nuclear forces, then a cell membrane forms a
+Markov blanket for internal intracellular states (figure 1). If this
+argument is correct, then it should be possible to show the emergence
+of biological self-organization in any arbitrary ensemble of coupled
+subsystems with short-range interactions. The final section uses
+simulations to provide a proof of principle, using the four criteria
+above to identify and verify the emergence of lifelike behaviour.3.In
+this section, we simulate a primordial soup to illustrate the
+emergence of biological self-organization. This soup comprises an
+ensemble of dynamical subsystems—each with its own structural and
+functional states—that are coupled through short-range interactions.
+These simulations are similar to (hundreds of) simulations used to
+characterize pattern formation in dissipative systems; for example,
+Turing instabilities [48]: the theory of dissipative structures
+considers far-from-equilibrium systems, such as turbulence and
+convection in fluid dynamics (e.g. Bénard cells), percolation and
+reaction–diffusion systems such as the Belousov–Zhabotinsky reaction
+[49]. Self-assembly is another important example from chemistry that
+has biological connotations (e.g. for pre-biotic formation of
+proteins). The simulations here are distinguished by solving
+stochastic differential equations for both structural and functional
+states. In other words, we consider states from classical mechanics
+that determine physical motion—and functional states that could
+describe electrochemical states. Importantly, the functional states of
+any system affect the functional and structural states of another. The
+agenda here is not to explore the repertoire of patterns and self-
+organization these ensembles exhibit—but rather take an arbitrary
+example and show that, buried within it, there is a clear and
+discernible anatomy that satisfies the criteria for life.3.1.To
+simulate a primordial soup, we use an ensemble of elemental subsystems
+with (heuristically speaking) Newtonian and electrochemical dynamics
+Here, 50]. The nonlinear coupling effectively renders the Rayleigh
+parameter of the flow The Lorenz form for these dynamics is a somewhat
+arbitrary choice but provides a ubiquitous model of electrodynamics,
+lasers and chemical reactions [51]. The rate parameter In a similar
+way, the classical (Newtonian) motion of each subsystem depends upon
+the functional status of its neighbours:This motion rests on forces
+Note that the ensemble system is dissipative at two levels: first, the
+classical motion includes dissipative friction or viscosity. Second,
+the functional dynamics are dissipative in the sense that they are not
+divergence-free. We will now assess the criteria for biological self-
+organization within this coupled random dynamical ensemble.3.2.In the
+examples used below, 128 subsystems were integrated using Euler's
+(forward) method with step sizes of 1/512 s and initial conditions
+sampled from the normal distribution. Random fluctuations were sampled
+from the unit normal distribution. By adjusting the parameters in the
+above equations of motion, one can produce a repertoire of plausible
+and interesting behaviours (the code for these simulations and the
+figures in this paper are available as part of the SPM academic
+freeware). These behaviours range from gas-like behaviour (where
+subsystems occasionally get close enough to interact) to a cauldron of
+activity, when subsystems are forced together at the bottom of the
+potential well. In this regime, subsystems get sufficiently close for
+the inverse square law to blow them apart—reminiscent of subatomic
+particle collisions in nuclear physics. With particular parameter
+values, these sporadic and critical events can render the dynamics
+non-ergodic, with unpredictable high amplitude fluctuations that do
+not settle down. In other regimes, a more crystalline structure
+emerges with muted interactions and low structural (configurational)
+entropy.However, for most values of the parameters, ergodic behaviour
+emerges as the ensemble approaches its random global attractor
+(usually after about 1000 s): generally, subsystems repel each other
+initially (much like illustrations of the big bang) and then fall back
+towards the centre, finding each other as they coalesce. Local
+interactions then mediate a reorganization, in which subsystems are
+passed around (sometimes to the periphery) until neighbours gently
+jostle with each other. In terms of the dynamics, transient
+synchronization can be seen as waves of dynamical bursting (due to the
+nonlinear coupling in equation (3.2)). In brief, the motion and
+electrochemical dynamics look very much like a restless soup (not
+unlike solar flares on the surface of the sun, figure 2)—but does it
+have any self-organization beyond this? 3.3.Because the structural and
+functional dependencies share the same adjacency matrix—which depends
+upon position—one can use the adjacency matrix to identify the
+principal Markov blanket by appealing to spectral graph theory: the
+Markov blanket of any subset of states encoded by a binary vector with
+elements Given the internal states and their Markov blanket, we can
+now follow their assembly and visualize any structural or functional
+characteristics. Figure 3 shows the adjacency matrix used to identify
+the Markov blanket. This adjacency matrix has non-zero entries if two
+subsystems were coupled over the last 256 s of a 2048 s simulation. In
+other words, it accommodates the fact that the adjacency matrix is
+itself an ergodic process—due to the random fluctuations.
+Figure 3Figure 3Figure 33.4.If the internal states encode a
+probability density over the hidden or external states, then it should
+be possible to predict external states from internal states. In other
+words, if internal events represent external events, they should
+exhibit a significant statistical dependency. To establish this
+dependency, we examined the functional (electrochemical) status of
+internal subsystems to see whether they could predict structural
+events (movement) in the external milieu. This is not unlike the
+approach taken in brain mapping that searches for statistical
+dependencies between, say, motion in the visual field and neuronal
+activity [52].To test for statistical dependencies, the principal
+patterns of activity among the internal (functional) states were
+summarized using singular value decomposition and temporal embedding
+(figure 4). A classical canonical variates analysis was then used to
+assess the significance of a simple linear mapping between expression
+of these patterns and the movement of each external subsystem.
+Figure 4figure 4figure 4)—as would be anticipated if internal events
+are modelling external events. Interestingly, the subsystem best
+predicted was the furthest away from the internal states (magenta
+circle in figure 4This example illustrates how internal states infer
+or register distant events in a way that is not dissimilar to the
+perception of auditory events through sound waves—or the way that fish
+sense movement in their environment. Figure 453,54]. However, in our
+set-up there is no master–slave relationship but a circular causality
+induced by the Markov blanket. Generalized synchrony was famously
+observed by Huygens in his studies of pendulum clocks—that
+synchronized themselves through the imperceptible motion of beams from
+which they were suspended [55]. This nicely illustrates the ‘action at
+a distance’ caused by chaotically synchronized waves of motion.
+Circular causality begs the question of whether internal states
+predict external causes of their sensory states or actively cause them
+through action. Exactly the same sorts of questions apply to
+perception [56,57]: for example, are visually evoked neuronal
+responses caused by external events or by our (saccadic eye)
+movements?3.5.The previous section applied a simple sort of brain
+mapping to establish the statistical dependencies between external and
+internal states—and their functional correlates. The final simulations
+also appeal to procedures in the biological sciences—in particular
+neuropsychology to examine the effects of lesions. To test for
+autopoietic maintenance of structural and functional integrity, the
+sensory, active and internal subsystems were selectively lesioned—by
+rendering them functionally closed—in other words, by preventing them
+from influencing their neighbours. This is a relatively mild lesion,
+in the sense that they remain physically coupled with intact dynamics
+that respond to neighbouring elements. Because active states depend
+only on sensory and internal states one would expect to see a loss of
+structural integrity not only with lesions to action but also to
+sensory and internal states that are an integral part of active
+inference.Figure 5 illustrates the effects of these interventions by
+following the evolution of the internal states and their Markov
+blanket over 512 s. Figure 54.Clearly, there are many issues that need
+to be qualified and unpacked under this formulation. Perhaps the most
+prescient is its focus on boundaries or Markov blankets. This
+contrasts with other treatments that consider the capacity of living
+organisms to reproduce by passing genetic material to their offspring
+[1]. In this context, it is not difficult to imagine extending the
+simulations above to include slow (e.g. diurnal) exogenous
+fluctuations—that cause formally similar Markov blankets to dissipate
+and reform in a cyclical fashion. The key question would be whether
+the internal states of a system in one cycle induce—or code for—the
+formation of a similar system in the next.The central role of Markov
+blankets speak to an important question: is there a unique Markov
+blanket for any given system? Our simulations focused on the principal
+Markov blanket—as defined by spectral graph theory. However, a system
+can have a multitude of partitions and Markov blankets. This means
+that there are many partitions that—at some spatial and temporal
+scale—could show lifelike behaviour. For example, the Markov blanket
+of an animal encloses the Markov blankets of its organs, which enclose
+Markov blankets of cells, which enclose Markov blankets of nuclei and
+so on. Formally, every Markov blanket induces active (Bayesian)
+inference and there are probably an uncountable number of Markov
+blankets in the universe. Does this mean there is lifelike behaviour
+everywhere or is there something special about the Markov blankets of
+systems we consider to be alive?Although speculative, the answer
+probably lies in the statistics of the Markov blanket. The Markov
+blanket comprises a subset of states, which have a marginal ergodic
+density. The entropy of this marginal density reflects the dispersion
+or invariance properties of the Markov blanket, suggesting that there
+is a unique Markov blanket that has the smallest entropy. One might
+conjecture that minimum entropy Markov blankets characterize
+biological systems. This conjecture is sensible in the sense that the
+physical configuration and dynamical states that constitute the Markov
+blanket of an organism—or organelle—change slowly in relation to the
+external and internal states it separates. Indeed, the physical
+configuration must be relatively constant to avoid destroying anti-
+edges (the absence of an edge or coupling) in the adjacency matrix
+that defines the Markov blanket. This perspective suggests that there
+may be ways of characterizing the statistics (e.g. entropy) of Markov
+blankets that may quantify how lifelike they appear. Note from
+equation (2.9) that systems (will appear to) place an upper bound on
+the entropy of the Markov blanket (and internal states). This means
+that the marginal ergodic entropy measures the success of this
+apparent endeavour.However, minimum entropy is clearly not the whole
+story, in the sense that biological systems act on their
+environment—unlike a petrified stone with low entropy. In the language
+of random attractors, the (internal and Markov blanket) states of a
+system have an attracting set that is 11]. Put simply, biological
+systems move around in their state space but revisit a limited number
+of states. This space filling aspect of attracting sets may rest on
+the divergence-free or solenoidal flow (equation (2.3)) that we have
+largely ignored in this paper but may hold the key for characterizing
+life forms.Clearly, the simulations in this paper are a long way off
+accounting for the emergence of biological structures such as complex
+cells. The examples presented above are provided as proof of principle
+and are as simple as possible. An interesting challenge now will be to
+simulate the emergence of multicellular structures using more
+realistic models with a greater (and empirically grounded)
+heterogeneity and formal structure. Having said this, there is a
+remarkable similarity between the structures that emerge from our
+simulations and the structure of viruses. Furthermore, the appearance
+of little cilia (figure 3) are very reminiscent of primary cilia,
+which typically serve as sensory organelles and play a key role in
+evolutionary theory [59].A related issue is the nature of the
+dynamical (molecular or cellular) constituents of the ensembles
+considered above. Nothing in this treatment suggests a special role
+for carbon-based life or, more generally, the necessary conditions for
+life to emerge. The contribution of this work is to note that if
+systems are ergodic and possess a Markov blanket, they will—almost
+surely—show lifelike behaviour. However, this does not address the
+conditions that are necessary for the emergence of ergodic Markov
+blankets. There may be useful constraints implied by the existence of
+a Markov blanket (whose constituency has to change more slowly than
+the states of its constituents). For example, the spatial range of
+electrochemical forces, temperature and molecular chemistry may
+determine whether the physical motion of molecules (that determine the
+integrity of the Markov blanket) is large or small in relation to
+fluctuations in electrochemical states (that do not). However, these
+questions are beyond the scope of this paper and may be better
+addressed in computational chemistry and theoretical biology.This
+touches on another key issue, namely that of evolution. In this
+treatment, we have assumed biological systems are ergodic. Clearly,
+this is a simplification, in that real systems are only locally
+ergodic. The implication here is that self-organized systems cannot
+endure indefinitely and are only ergodic over a particular (somatic)
+timescale, which raises the question of evolutionary timescales: is
+evolution itself the slow and delicate unwinding of a trajectory
+through a vast state space—as the universe settles on its global
+random attractor? The intimation here is that adaptation and evolution
+may be as inevitable as the simple sort of self-organization
+considered in this paper. In other words, the very existence of
+biological systems necessarily implies they will adapt and evolve.
+This is meant in the sense that any system with a random dynamical
+attractor will Adaptation on a somatic timescale has been interpreted
+as optimizing the parameters of a generative model (encoded by slowly
+changing internal states like synaptic connection strengths in the
+brain) such that they minimize free energy. It is fairly easy to show
+that this leads to Hebbian or associative plasticity of the sort that
+underlies learning and memory [21]. Similarly, at even longer
+timescales, evolution can be cast in terms of free energy
+minimization—by analogy with Bayesian model selection based on
+variational free energy [60]. Indeed, free energy functionals have
+been invoked to describe natural selection [61]. However, if the
+minimization of free energy is just a corollary of descent onto a
+global random attractor, does this mean that adaptation and evolution
+are just ways of describing the same thing? The answer to this may not
+be straightforward, especially if we consider the following
+possibility: if self-organization has an inferential aspect, what
+would happen if systems believed their attracting sets had low
+entropy. If one pursues this in a neuroscience setting, one arrives at
+a compelling explanation for the way we adaptively sample our
+environments—to minimize uncertainty about the causes of sensory
+inputs [62]. In short, this paper has only considered inference as
+emergent property of self-organization—not the nature of implicit
+(prior) beliefs that underlie inference.

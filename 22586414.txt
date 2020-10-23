@@ -1,0 +1,242 @@
+2007; Friston, 2010a) suggests that all biological systems are driven
+to minimize an information-theoretic (not thermodynamic, though the
+two are mathematically close) quantity known as “free energy.” Free
+energy, as here defined, bounds surprise, conceived as the difference
+between an organism’s predictions about its sensory inputs (embodied
+in its models of the world) and the sensations it actually encounters.
+In this discussion, surprise is used explicitly as a measure of
+improbability from information theory. This is also known as Part of
+the excitement about Information Theory has long related to its
+potential for explaining natural processes and phenomena. One
+proposition has been that we can explain adaptive behavior by saying
+it is a mechanism by which agents “reduce their surprise” about the
+environment they inhabit. This idea appeals in a number of ways. Not
+only does it promise to provide adaptive behavior with a mathematical
+foundation, it also generalizes straightforwardly to the case of
+learning and cognition. The acquisition of any form of knowledge can
+be viewed in the same way, as an attempt to reduce surprise. Last but
+not least, there is the intriguing link between informational
+uncertainty and physical disorder. Mathematically, they are identical.
+Cutting a long story short, it then becomes possible to envisage a
+deep, underlying unity connecting generative processes of adaptation,
+mind, and life.A proposal of this general form has recently been made
+in the “free energy” framework, particularly associated with the work
+of the Furthermore, the hypothesis seems to have an element missing.
+Surprise is calculated with reference to the agent’s interpretation or
+“model” of the world. It is the way probabilities are assigned to
+features of the world that fixes the level of surprise in any given
+case. Let us say I turn up to watch a football match and discover that
+the players are all running around the edge of the pitch for some
+reason. I might respond adaptively, by re-interpreting the situation
+as an athletics meeting rather than a football match. But this only
+functions to reduce surprise if it is calculated from probabilities
+arising from my Initially, it seems we can escape the circularity by
+taking the position that agents do not form any substantive
+interpretation. We envisage them attending to uninterpreted sensory
+data, instead. On this basis, the probabilities that mediate
+measurement of surprise can be taken to be the frequencies with which
+different data are acquired. This strategy does not really work,
+however. If this really is the basis on which agents operate,
+reduction of surprise dictates blocking out sensory data altogether.
+Alternatively but equally absurdly, agents should proceed directly to
+the least stimulating environment and stay there. That is to say, they
+should take up position in the nearest “dark room” and never move
+again. This will always be the best way to reduce surprise for an
+agent that operates in the absence of an adaptively appropriate
+interpretation. This, then, is the so-called “dark-room problem” that
+provides the title and focus for the debate.Appealing as it seems at
+the outset, then, the surprise-reduction hypothesis leads into a
+serious tangle. If we allow unlimited rein over the interpretations
+agents are assumed to apply, the dark-room problem can be eliminated.
+But the hypothesis then seems to be stating something that is true by
+definition. If we go the other way, ruling out substantive
+interpretation, the hypothesis becomes contentful but dictates that
+agents will tend to behave very stupidly indeed. There seems to be
+something wrong. All three of us are convinced, however, that there is
+also something importantly I would like to start, then, by putting to
+the Physicist the central question about explanatory content.
+Specifically, should we view the surprise-reduction hypothesis (of
+adaptive behavior) as having content It might be useful to
+contextualize the free-energy principle in relation to other
+principles here. From an information theory or statistical
+perspective, free-energy minimization lies at the heart of variational
+Bayesian procedures (Hinton and van Camp, 1993) and has been proposed
+as a 1995) – a 1866/1962). This leads naturally to the notion of
+perception as hypothesis testing (Gregory, 1968) and the Bayesian
+brain (Yuille and Kersten, 2006). Indeed, some specific
+neurobiological proposals for the computational anatomy of the brain
+are based on this formulation of perception (Mumford, 1992). Perhaps
+the most popular incarnation of these schemes is predictive coding
+(Rao and Ballard, 1999). The free-energy principle simply gathers
+these ideas together and summarizes their imperative in terms of
+minimizing free energy (or surprise). However, the free-energy
+principle brings something else to the table – it says that action
+should also minimize free energy. With this simple addition, we are
+now in a position to consider behavior and self organization; however,
+the same basic principle remains – namely, minimizing free energy or
+surprise.Having said this, I think you are right to invoke the notion
+of a “larger package,” in that “surprise” is minimized over multiple
+scales. For example, the fact that you can reinterpret football as
+athletics rests upon having an internal model of both football and
+athletics. The acquisition of these concepts depends upon free-energy
+minimization during learning. The fact you survive long enough to
+learn rests on free-energy minimization at an evolutionary scale; and
+so on.Avoiding surprises means that one has to model and anticipate a
+changing and itinerant world. This implies that the models used to
+quantify surprise must themselves embody itinerant wandering through
+sensory states (because they have been selected by exposure to an
+inconstant world): Under the free-energy principle, the agent will
+become an optimal (if approximate) model of its environment. This is
+because, mathematically, surprise is also the negative log-evidence
+for the model entailed by the agent. This means minimizing surprise
+maximizes the evidence for the agent (model). Put simply, the agent
+becomes a model of the environment in which it is immersed. This is
+exactly consistent with the Good Regulator theorem of Conant and Ashby
+(1970). This theorem, which is central to cybernetics, states that
+“every Good Regulator of a system must be a model of that system.”
+This means a Dark-Room agent can only exist if there are embodied
+agents that can survive indefinitely in dark rooms (e.g., caves). In
+short, Dark-Room agents can only exist if they can exist. The
+tautology here is deliberate, it appeals to exactly the same tautology
+in natural selection (Why am I here? – because I have adaptive
+fitness: Why do I have adaptive fitness? – because I am here). Like
+adaptive fitness, the free-energy formulation is not a mechanism or
+magic recipe for life; it is just a characterization of biological
+systems that exist. In fact, adaptive fitness and (negative) free
+energy are considered by some to be the same thing.The particular
+minimum free-energy solutions associated with that existence will be
+unique to each conspecific and its econiche. Interestingly, Dark-Room
+agents do exist: Troglophiles have evolved to model and navigate
+environments like caves (Barr and Holsinger, 1985). So why do they
+exist? Surprise is a function of sensations and the agent (model)
+itself. This means that the surprise can be reduced by changing
+sensory input (action), predictions of that input (perception), or the
+model 2005). Evolutionary or neurodevelopmental optimization of a
+model is distinct from perception and entails changing the form and
+architecture of an agent. In this sense, every agent represents a
+viable solution to the free-energy minimization problem that is
+supported by the real world.Technically, the resolution of the Dark-
+Room Problem rests on the fact that average surprise or entropy
+H(H(2004); ensuring we keep to well-trodden paths in the space of all
+the physical and physiological variables that underwrite our
+existence. In this sense, every organism (from viruses to vegans) can
+be regarded as a model of its econiche, which has been optimized to
+predict and sample from that econiche. Interestingly, free energy is
+used explicitly for model optimization in statistics (e.g., Yedidia et
+al., 2005) using exactly the same principles.This means that a dark
+room will afford low levels of surprise if, and only if, the agent has
+been optimized by evolution (or neurodevelopment) to predict and
+inhabit it. Agents that predict rich stimulating environments will
+find the “dark room” surprising and will leave at the earliest
+opportunity. This would be a bit like arriving at the football match
+and finding the ground empty. Although the ambient sensory signals
+will have low entropy in the absence of any expectations (model), you
+will be surprised until you find a rational explanation or a new model
+(like turning up a day early). Notice that average surprise depends
+on, and only on, sensations and the model used to explain them. This
+means an agent can compare the surprise under different models and
+select the best model; thereby eluding any “circular explanation” for
+the sensations at hand.At this point I would like to introduce
+another, perhaps not unrelated, issue. In raising it, I follow the
+advice of Sellars, 1962, p. 37] who famously wrote that the aim of
+philosophy “is to understand how things in the broadest possible sense
+of the term hang together in the broadest possible sense of the term.”
+One question that thus arises concerns the relation between all this
+talk about surprise minimization But despite thus agreeing on very
+many fronts with Bearing all that in mind, it seems that we cannot
+know (1996; Ziemke, 2002). This means we cannot entertain infinite
+regresses when modeling interactions with other agents; i.e., our
+models are bounded (bounded rationality is an important constraint in
+game theory and economics). A bound on recursive “theory of mind”
+(models of models of models …) becomes quite acute when one considers
+that the most important conspecific in the world is me. This means my
+representation of my representation of my representation … is bounded
+at some (low) finite order. In short, I can never conceive of what it
+is like to be me, because that would require the number of recursions
+I can physically entertain, plus one. I introduce this partly to amuse
+you (and partly to emphasize the philosophical naivety of the It seems
+to me that the claim that the free-energy principle “prescribes” the
+nature of biological agents may be heard in two distinct ways, then.
+In the first (I think incorrect) way, it would mean that everything
+about the agent here-and-now can be explained by considering the ways
+in which its structure is such as to minimize (over multiple time
+scales) free energy in its exchanges with the environment. In the
+second (I think correct) way it would mean that everything about the
+agent has been selected under the constraints of free-energy
+minimization, working alongside a swathe of contingent influences. If
+this is right, then it is an (interesting and important) empirical
+question just how much of the human mind and even our adult,
+“culturally marinated” cognitive architecture is to be explained by
+direct appeal to the free-energy framework, and how much is determined
+by those messier processes of historical path-dependence.This matters,
+because the level of surprise an agent registers regarding specific
+sensory stimulation all depends on how the entropy is measured. This
+depends on how probabilities are assigned to the different
+constituents. Different assumptions about the relevant probabilities
+then yield different measurements of surprise, and thus different
+“surprise reducing” strategies.Consider football again, but now with
+the idea that we want to construct a set of usefully autonomous
+cambots. Cambots are adaptive agents that are meant to produce nicely
+angled video recordings using camera-style sensory stimulation. Let us
+name these agents MIN1, MIN2, MIN3, and MIN4. All will minimize
+surprise; but each will be able to choose how probabilities are
+determined. Consider what happens when one of these agents acquires
+visual stimulation containing a blob of pink pixels in the top-right
+corner of its sensory image.MIN1 works on the basis that the
+probability of a particular pixel having a particular color is
+determined by interactions between ambient light and 3D structures in
+the visual field. Calculation of probabilities for pixels in the pink
+blob then yields an intermediate level of surprise, reflecting the
+fact that pink is a possible but not very likely color for a 3D
+structure in a football stadium. Attempting to reduce this surprise,
+MIN1 produces a series of physical motions (crashing into a barrier in
+the process) in an attempt to “crisp up” the visual border of the
+blob.MIN2 works on the basis that the pixel-color probabilities are
+determined by the statistical properties of the image itself.
+Determination of probabilities on this basis then yields a very low
+level of surprise, reflecting the fact that, for MIN2, an image
+comprised exclusively of blobs is by far the least surprising. No
+action is required; none is taken.MIN3 works on the basis that pixel-
+color probabilities are determined solely by local textures based on
+adjacent pixel values. MIN3 believes fields of (pink) pixels with no
+texture are improbable and registers a high degree of sensory
+surprise. Aiming to reduce this, it commences a random exploration of
+the stadium, eventually finding a back-room containing a tartan flag.
+Offering a rough approximation of a checkerboard pattern, this
+produces the stimulation that is minimally surprising within MIN3’s
+pixel-adjacency probability model.Finally, MIN4 works on the basis
+that pixel-color probabilities are determined by events and patterns
+in the real world, pretty much as humans conceive them, including such
+things as the rules of football, social norms, dynamic properties of
+3D objects and so forth. Detecting that the pink blob in question is
+actually the visual stimulus resulting from a pink elephant standing
+in the middle of the pitch, MIN4 determines probabilities yielding an
+extremely high level of surprise. Surprise-reduction kicks in,
+producing immediate flight, the agent vigorously seeking out a more
+predictable environment.The point is, of course, that such examples
+can be continued indefinitely. If the critical question of how
+probabilities are determined is left unsettled, there is no limit to
+the ways we can envisage agents determining probability distributions,
+and thus no limit to the range of strategies that might fulfill
+“surprise reduction” in practice. The reduce-surprise/live-longer
+hypothesis is thus consistent with a very large number of
+interpretations of informed, adaptive behavior.The key point Theorist
+makes with the MIN “cambots” series is that there can be an infinite
+number of models (“cambots”). However, only one will have the lowest
+(average) free energy. This is the “cambot” that would be selected in
+an evolutionary setting or by a “cambot” designer (cf., Buason et al.,
+2005). This selection is just another instance of free-energy
+optimization but operating at the level of models. At the same time,
+each model is trying minimize its own free energy.It would certainly
+be possible to rank woodland creatures in terms of their average
+surprise (provided one was able to measure their sensations) because
+this is just the entropy of their sensory states over time. Those
+phenotypes who maintained low entropy distributions for short periods
+of time would have higher average surprise and lower adaptive fitness.
+In other words, some creatures (models) are more optimal than others.
+Having said this, there is a unique optimal action and state of
+perceptual inference for any given creature (model). These are the
+behaviors and percepts that minimize free energy, given a particular
+creature or model.The authors declare that the research was conducted
+in the absence of any commercial or financial relationships that could
+be construed as a potential conflict of interest.
